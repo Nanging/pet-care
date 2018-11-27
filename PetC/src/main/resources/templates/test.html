@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function start(){
+		
+		
+		
+	}
+</script>
+</head>
+<body>
+	<form action="/user/all" method="post">
+	    requestParam Test<br>
+	    username:<input type="text" name="username"><br>
+	    password:<input type="text" name="password"><br>
+	    <input type="submit" value="submit">
+	</form>
+	<a href="/user/all">1231321</a>
+	<b th:if="${msg}!=null" th:text="${msg}"> something</b>
+</body>
+</html>

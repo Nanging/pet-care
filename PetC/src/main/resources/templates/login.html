@@ -31,18 +31,18 @@
     <div class="container-fluid">
         <div class="row" id="loginRow">
             <div class="col-lg-4 offset-lg-4 col-sm-8 offset-sm-2">
-                <form id="loginForm">
+                <form id="loginForm" onsubmit="return false">
                     <h3 class="loginTitle">
                         SignIn
                     </h3>
                     <div class="form-group">
                         <label class="sr-only">Username</label>
                         <input class="form-control" type="text" id="userName" name="username" placeholder="Username"
-                               required oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkEmpty();", autofocus>
+                               required oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkEmpty();" autofocus>
                     </div>
                     <div class="form-group">
                         <label class="sr-only">Password</label>
-                        <input class="form-control" type="password" id="passWord" name="password" placeholder="Password" required
+                        <input class="form-control" type="password" id="passWord" name="password" placeholder="Password"
                                required oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkEmpty()">
                     </div>
                     <div class="form-group container" id="btnGroup">
@@ -51,7 +51,7 @@
                                     data-toggle="modal" data-target="#signUpModal">Sign up</button>
                         </div>
                         <div class="row">
-                            <button class="btn btn-block btn-primary  col-12" disabled  id="btnSubmit" onclick="login();">Sign In</button>
+                            <button class="btn btn-block btn-primary  col-12" disabled type="button" onclick="login()"  id="btnSubmit">Sign In</button>
                         </div>
                     </div>
                 </form>
@@ -68,23 +68,23 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <from id="signUpform">
+                    <form id="signUpform" onsubmit="return false">
                         <div class="form-group">
-                            <input class="form-control" type="text" id="newUsername" name="newusername" placeholder="Username" required
+                            <input class="form-control" type="text" id="newUsername" name="username" placeholder="Username" required
                                    oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
                         </div>
                         <div class="form-group">
-                            <input class="form-control" type="password" id="newPassword" name="newpassword" placeholder="Password" required
+                            <input class="form-control" type="password" id="newPassword" name="password" placeholder="Password" required
                                    oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
                         </div>
                         <div class="form-group">
-                            <input class="form-control" type="tel" id="newPhone" name="newphone" placeholder="Phone Number" required
+                            <input class="form-control" type="tel" id="newPhone" name="phone" placeholder="Phone Number" required
                                    oninvalid="setCustomValidity('Phone Number cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
                         </div>
-                    </from>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-info" id="accept" disabled onclick="signup()">Accept</button>
+                    <button class="btn btn-outline-info" type="button" id="accept" onclick="signup()" disabled >Accept</button>
                 </div>
             </div>
         </div>

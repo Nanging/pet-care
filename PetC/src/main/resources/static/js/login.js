@@ -34,13 +34,18 @@ function checkEmpty(){
 
 function signup() {
     //signuphere
-    var signupData=$('#signUpform').serializeArray();
-    console.log(signupData);
+    var signupData=$('#signUpform').serializeArray()
+    var s = {};
+    $.each(signupData,function(index,field){
+        s[field.name] = field.value;
+    })
+    console.log(s);
     $.ajax({
         url:"/signup",  //tartget url
         type:"POST",
+        contentType: "application/json;charset=utf-8",
         dataType:'json',
-        data: signupData,
+        data: JSON.stringify(s),
         success: function(result){
             if(result){
                 alert("sucess");
@@ -67,28 +72,38 @@ function signup() {
 function login() {
 
     var loginData = $('#loginForm').serializeArray();
-    console.log(loginData);
+    var s={
+    		
+    };
+    $.each(loginData,function(index,field){
+        s[field.name] = field.value;
+    })
+    console.log(s);
     $.ajax({
         url: "/login",  //tartget url
         type: "POST",
+        contentType: "application/json;charset=utf-8",
         dataType: 'json',
-        data: loginData,
+        data: JSON.stringify(s),
         success: function (result) {
             if (result) {
                 alert("sucess");
+                window.location.href="userInfo.html";
                 //login success
                 //create session and redirect
             }
             else {
                 //failed
                 //add specific function according to the result from backend later
-                alert("failed");
+
+               alert("failed");
 
 
             }
 
         },
         error: function () {
+            return;
             alert("failed");
             //failed like 404 & 400
         }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PetC</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/popper.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/unslider.min.js"></script>
+    <script src="../js/login.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/login.css"/>
+</head>
+<body>
+    <div id="mainContainer">
+        <div id="slides" class="banner" >
+            <ul>
+                <li id="Slider1">
+
+                </li>
+                <li id="Slider2">
+
+                </li>
+                <li id="Slider3">
+
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row" id="loginRow">
+            <div class="col-lg-4 offset-lg-4 col-sm-8 offset-sm-2">
+                <form id="loginForm">
+                    <h3 class="loginTitle">
+                        SignIn
+                    </h3>
+                    <div class="form-group">
+                        <label class="sr-only">Username</label>
+                        <input class="form-control" type="text" id="userName" name="username" placeholder="Username"
+                               required oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkEmpty();", autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only">Password</label>
+                        <input class="form-control" type="password" id="passWord" name="password" placeholder="Password" required
+                               required oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkEmpty()">
+                    </div>
+                    <div class="form-group container" id="btnGroup">
+                        <div class="row">
+                            <button class="btn btn-block btn-outline-primary btn-sm offset-9 col-3" type="button" id="btnSignUp"
+                                    data-toggle="modal" data-target="#signUpModal">Sign up</button>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-block btn-primary  col-12" disabled  id="btnSubmit" onclick="login();">Sign In</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signUpTitle">Sign Up for PetC!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <from id="signUpform">
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="newUsername" name="newusername" placeholder="Username" required
+                                   oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="password" id="newPassword" name="newpassword" placeholder="Password" required
+                                   oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="tel" id="newPhone" name="newphone" placeholder="Phone Number" required
+                                   oninvalid="setCustomValidity('Phone Number cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
+                        </div>
+                    </from>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-info" id="accept" disabled onclick="signup()">Accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

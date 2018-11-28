@@ -47,22 +47,32 @@ function signup() {
         dataType:'json',
         data: JSON.stringify(s),
         success: function(result){
-            if(result){
-                alert("sucess");
+            console.log(result);
+            if(result.code==0){
+
+                window.location.href="./main";
+
                 //signup&login success
                 //create session and redirect
             }
-            else{
-                //failed
+            else if(result.code==-1){//user already exists
                 //add specific function according to the result from backend later
-                alert("failed");
+                $("#newUsername").parent().children("small").remove();
+                $("#newUsername").parent().append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'>  "+result.msg+"</small>")
 
+
+
+            }
+            else{//other error
+                $("#newPhone").parent().children("small").remove();
+                $("#newPhone").parent().append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'>  "+result.msg+"</small>")
 
             }
 
         },
         error:function () {
-            alert("failed");
+            $("#newPhone").parent().children("small").remove();
+            $("#newPhone").parent().append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'>  "+"404 ERROR"+"</small>")
             //failed like 404 & 400
         }
     })
@@ -86,25 +96,30 @@ function login() {
         dataType: 'json',
         data: JSON.stringify(s),
         success: function (result) {
-            if (result) {
-                alert("sucess");
-                window.location.href="userInfo.html";
+            console.log(result);
+            if (result.code==0) {//success
+                //alert("sucess");
+                window.location.href="./main";
+                //redirect to main page
                 //login success
                 //create session and redirect
             }
-            else {
+            else {//failed
                 //failed
                 //add specific function according to the result from backend later
+                $("#userName").parent().children("small").remove();
+                $("#userName").parent().append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'>  "+result.msg+"</small>")
 
-               alert("failed");
 
 
             }
 
         },
         error: function () {
-            return;
-            alert("failed");
+            $("#userName").parent().children("small").remove();
+            $("#userName").parent().append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'>  "+"404 ERROR"+"</small>")
+            //window.location.href="./main";
+
             //failed like 404 & 400
         }
     })

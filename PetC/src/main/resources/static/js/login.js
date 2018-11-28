@@ -13,6 +13,8 @@ $(function() {
 
 });
 function checkSignupEmpty(){
+    $("#newUsername").parent().children("small").remove();
+    $("#newPhone").parent().children("small").remove();
     if($("#newPassword").val()==""||$("#newUsername").val()==""||$("#newPhone").val()==""){
         $("#accept").attr("disabled",true)
     }
@@ -25,6 +27,7 @@ function checkSignupEmpty(){
 
 
 function checkEmpty(){
+    $("#userName").parent().children("small").remove();
     if($("#passWord").val()==""||$("#userName").val()==""){
         $("#btnSubmit").attr("disabled",true)
     }
@@ -32,7 +35,28 @@ function checkEmpty(){
         $("#btnSubmit").attr("disabled",false)
 }
 
+function phoneCheck(){
+    var phone=$("#newPhone").val();
+    var re=re = /^[0-9]+.?[0-9]*$/;
+    if(phone.length!=11){
+        console.log(phone.length);
+        return false
+    }
+    else{
+        return re.test(phone);
+    }
+
+
+}
+
 function signup() {
+    if(!phoneCheck()){
+
+        $("#newPhone").parent().children("small").remove();
+        $("#newPhone").parent().append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'>  "+"Phone number invalid"+"</small>")
+        return;
+    }
+
     //signuphere
     var signupData=$('#signUpform').serializeArray()
     var s = {};

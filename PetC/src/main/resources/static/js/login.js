@@ -5,6 +5,7 @@ $(function() {
         keys: false,
         fluid: true,
     });
+
 //    var height=$('body').height;
 
 //    $('.banner').unslider().data('unslider').start();

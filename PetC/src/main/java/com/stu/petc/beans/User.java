@@ -1,5 +1,7 @@
 package com.stu.petc.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class User {
 	private Integer user_id;
 	private String username;
@@ -19,24 +21,28 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	@JsonIgnore
 	public String getUser_tel() {
 		return user_tel;
 	}
 	public void setUser_tel(String user_tel) {
 		this.user_tel = user_tel;
 	}
+	@JsonIgnore
 	public String getUser_role() {
 		return user_role;
 	}
 	public void setUser_role(String user_role) {
 		this.user_role = user_role;
 	}
+	@JsonIgnore
 	public String getUser_loc() {
 		return user_loc;
 	}

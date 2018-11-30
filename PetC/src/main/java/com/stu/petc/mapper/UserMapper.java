@@ -28,6 +28,8 @@ public interface UserMapper {
 	@Select("select * from user where username = #{username}")
 	public User getUserByName(String username);
 	
+	@Select("select * from user where username = #{username} and password = #{password}")
+	public User checkUser(User user);
 	
 	@Select("select * from user")
 	public List<User> getAllUsers();

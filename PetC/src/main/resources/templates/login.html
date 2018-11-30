@@ -37,12 +37,16 @@
                     </h3>
                     <div class="form-group">
                         <label class="sr-only">Username</label>
-                        <input class="form-control" type="text" id="userName" name="username" placeholder="Username" maxlength="12"
+                        <input class="form-control" th:if="${status}=='SAVED' or ${status}=='FAILED' " th:value="${loginName}" type="text" id="userName" name="username" placeholder="Username" maxlength="12"
+                               required oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkEmpty();" autofocus>
+                       <input class="form-control"  th:if="${status}!='SAVED' and ${status}!='FAILED'"  type="text" id="userName" name="username" placeholder="Username" maxlength="12"
                                required oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkEmpty();" autofocus>
                     </div>
                     <div class="form-group">
                         <label class="sr-only">Password</label>
-                        <input class="form-control" type="password" id="passWord" name="password" placeholder="Password" maxlength="20"
+                        <input class="form-control" th:if="${status}=='SAVED' or ${status}=='FAILED' " th:value="${loginPassword}" type="password" id="passWord" name="password" placeholder="Password" maxlength="20"
+                               required oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkEmpty()">
+                         <input class="form-control" th:if="${status}!='SAVED' and ${status}!='FAILED' "  type="password" id="passWord" name="password" placeholder="Password" maxlength="20"
                                required oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkEmpty()">
                     </div>
                     <div class="form-group container" id="btnGroup">
@@ -99,7 +103,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h3>Please Sign In Again</h3>
+                    <h3 th:if="${msg}!=null" th:text="${msg}">Please Sign In Again</h3>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" type="button" id="ok" data-dismiss="modal" >OK</button>
@@ -108,7 +112,7 @@
         </div>
     </div>
 
-    <script th:if="'${status}!=null">
+    <script th:if="${status}!='SAVED' and ${status}!='DEFAULT'">
         $("#expireModal").modal();
     </script>
 </body>

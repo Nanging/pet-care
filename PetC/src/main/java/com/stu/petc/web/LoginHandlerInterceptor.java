@@ -13,6 +13,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stu.petc.service.UserRedisService;
+import com.stu.petc.util.Encoder;
 
 //@Component
 public class LoginHandlerInterceptor implements HandlerInterceptor {
@@ -29,6 +30,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 		}
 		boolean flag = false;
 		String username = "";
+		String password = "";
 		Cookie[] cookies = request.getCookies();
 		if (null != cookies) {
 			for (Cookie cookie : cookies) {
@@ -38,7 +40,9 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 						/**
 						 * check user
 						 */
-						username = cookie.getValue();
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+						password = Encoder.decryptBasedDes(token[1]);
 					}
 				}
 			}

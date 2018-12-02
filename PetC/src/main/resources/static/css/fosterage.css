@@ -1,0 +1,48 @@
+
+.sample0,.sample1,.sample2{
+    width: 100%;
+    height: auto;
+}
+
+.addSearch{
+    width:100%;
+    height:auto;
+}
+.addSearch:hover{
+    transform: scale(1.05);
+
+
+}
+.grid{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.grid-item {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom: 20px;
+    width: 200px;
+}
+
+
+.grid-item--width2 {
+    width: 400px;
+
+}
+.grid-item--width2:hover{
+    transform: scale(1.03);
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
+}
+
+.title{
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    color: #FFFFFF;
+    margin: 0;
+    left: 0;
+    right: 0;
+    padding:5px;
+}

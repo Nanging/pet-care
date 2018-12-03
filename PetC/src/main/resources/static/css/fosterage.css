@@ -1,8 +1,22 @@
+body{
+
+}
+
 
 .sample0,.sample1,.sample2{
     width: 100%;
     height: auto;
 }
+
+
+.grid{
+
+    margin:0;
+    left:0;
+    top:0;
+    max-width: 100%;
+}
+
 
 .addSearch{
     width:100%;
@@ -13,22 +27,18 @@
 
 
 }
-.grid{
-    margin-left: 10%;
-    margin-right: 10%;
-}
 
 .grid-item {
     display:flex;
     align-items:center;
     justify-content:center;
     margin-bottom: 20px;
-    width: 200px;
+    width: 160px;
 }
 
 
 .grid-item--width2 {
-    width: 400px;
+    width: 320px;
 
 }
 .grid-item--width2:hover{

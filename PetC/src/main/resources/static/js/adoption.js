@@ -10,7 +10,3 @@ $(document).ready(function () {
 $(".grid").imagesLoaded().progress(function () {
     $(".grid").masonry("layout");
 });
-
-function filterSubmit(){
-    $("#searchForm").submit();
-}

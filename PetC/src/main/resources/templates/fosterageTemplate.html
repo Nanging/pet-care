@@ -10,80 +10,82 @@
     <script src="../js/masonry.pkgd.min.js"></script>
     <script src="../js/imagesloaded.pkgd.min.js"></script>
     <script src="../js/fosterage.js"></script>
+    <script src="../js/bootstrap-datepicker.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap-datepicker.min.css"/>
     <link rel="stylesheet" href="../css/bootstrap.css"/>
     <link rel="stylesheet" href="../css/fosterage.css"/>
     <link rel="stylesheet" href="../css/titleGroup.css"/>
     <!--Access this page through GET request with param of sort, filter and page-->
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row pageBanner">
-        <div class="logoGroup">
-            <img src="../staticImg/petC.png"  class="logo"/>
-            <img src="../staticImg/fosterage.png" class="titleLogo"/>
+    <div class="container-fluid">
+        <div class="row pageBanner">
+            <div class="logoGroup">
+                <img src="../staticImg/petC.png"  class="logo"/>
+                <img src="../staticImg/fosterage.png" class="titleLogo"/>
+            </div>
+        </div>
+        <div class="col-lg-10 offset-lg-1 offset-sm-0 col-sm-12 columnGrid">
+            <div class="grid">
+            <div class="grid-item" data-toggle="modal" data-target="#publishModal">
+                <img class="addSearch" src="../staticImg/add.png"/>
+            </div>
+            <div class="grid-item" data-toggle="modal" data-target="#searchModal">
+                <img class="addSearch" src="../staticImg/search.png"/>
+            </div>
+            <div th:each="FosterNote : ${list}">
+                <div class="grid-item  grid-item--width2">
+                    <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
+                <h3 class="title" th:text="${FosterNote.title}">This is a sample tile</h3>
+            </div>
+            </div>
+
+
+            <!-- --below--Sample blocks, use a 20-size array to implement it through thymeleaf -->
+
+            <div class="grid-item  grid-item--width2">
+                <img class="sample1" src="../staticImg/Sample1080_1920.jpg"/>
+                <h3 class="title">This is a very looooooooooooong sample tile</h3>
+            </div>
+            <div class="grid-item  grid-item--width2">
+                <img class="sample2" src="../staticImg/Sample1280_1280.jpg"/>
+            </div>
+            <div class="grid-item  grid-item--width2">
+                <img class="sample1" src="../staticImg/Sample1080_1920.jpg"/>
+            </div>
+            <div class="grid-item  grid-item--width2">
+                <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
+            </div>
+            <div class="grid-item  grid-item--width2">
+                <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
+            </div>
+            <div class="grid-item  grid-item--width2">
+                <img class="sample2" src="../staticImg/Sample1280_1280.jpg"/>
+            </div>
+            <div class="grid-item  grid-item--width2">
+                <img class="sample1" src="../staticImg/Sample1080_1920.jpg"/>
+            </div>
+            <!-- --above-- Sample blocks, use a 20-size array to implement it through thymeleaf -->
+
+            <!-- detail display in progress! -->
+            <!-- publish display in progress! -->
+
+            <!--previous page, directly add the previous page url here through thymeleaf -->
+            <div class="grid-item" data-toggle="modal">
+                <img class="addSearch" src="../staticImg/previous.png"/>
+            </div>
+
+
+            <!--next page, directly add the previous page url here through thymeleaf -->
+            <div class="grid-item" data-toggle="modal">
+                <img class="addSearch" src="../staticImg/next.png"/>
+            </div>
+
+
+
+        </div>
         </div>
     </div>
-    <div class="col-lg-10 offset-lg-1 offset-sm-0 col-sm-12 columnGrid">
-        <div class="grid">
-        <div class="grid-item" >
-            <img class="addSearch" src="../staticImg/add.png"/>
-        </div>
-        <div class="grid-item" data-toggle="modal" data-target="#searchModal">
-            <img class="addSearch" src="../staticImg/search.png"/>
-        </div>
-		<div th:each="FosterNote : ${list}">
-			<div class="grid-item  grid-item--width2">
-            	<img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
-            <h3 class="title" th:text="${FosterNote.title}">This is a sample tile</h3>
-        </div>
-		</div>
-
-
-        <!-- --below--Sample blocks, use a 20-size array to implement it through thymeleaf -->
-
-        <div class="grid-item  grid-item--width2">
-            <img class="sample1" src="../staticImg/Sample1080_1920.jpg"/>
-            <h3 class="title">This is a very looooooooooooong sample tile</h3>
-        </div>
-        <div class="grid-item  grid-item--width2">
-            <img class="sample2" src="../staticImg/Sample1280_1280.jpg"/>
-        </div>
-        <div class="grid-item  grid-item--width2">
-            <img class="sample1" src="../staticImg/Sample1080_1920.jpg"/>
-        </div>
-        <div class="grid-item  grid-item--width2">
-            <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
-        </div>
-        <div class="grid-item  grid-item--width2">
-            <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
-        </div>
-        <div class="grid-item  grid-item--width2">
-            <img class="sample2" src="../staticImg/Sample1280_1280.jpg"/>
-        </div>
-        <div class="grid-item  grid-item--width2">
-            <img class="sample1" src="../staticImg/Sample1080_1920.jpg"/>
-        </div>
-        <!-- --above-- Sample blocks, use a 20-size array to implement it through thymeleaf -->
-
-        <!-- detail display in progress! -->
-        <!-- publish display in progress! -->
-
-        <!--previous page, directly add the previous page url here through thymeleaf -->
-        <div class="grid-item" data-toggle="modal">
-            <img class="addSearch" src="../staticImg/previous.png"/>
-        </div>
-
-
-        <!--next page, directly add the previous page url here through thymeleaf -->
-        <div class="grid-item" data-toggle="modal">
-            <img class="addSearch" src="../staticImg/next.png"/>
-        </div>
-
-
-
-    </div>
-    </div>
-</div>
     <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" >
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -108,6 +110,8 @@
                                 <option>ChongMing</option>
                                 <option>PuTuo</option>
                                 <option>FengXian</option>
+                                <option>JinShan</option>
+                                <option>HongKou</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -130,6 +134,72 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="modal fade" id="publishModal" tabindex="-1" role="dialog" data-backdrop="static" >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Publish Your Requirement</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="publishForm" onsubmit="return false;"  role="form">
+                            <div class="form-group">
+                                <label for="newTitle">Title</label>
+                                <textarea class="form-control" name="newTitle" id="newTitle" maxlength="140" placeholder="Describe your requirement briefly"
+                                          required oninput="counterTitle();"></textarea>
+                                <small id="titleCounter">0/140</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="regionSelect">Select region</label>
+                                <select class="form-control" id="newRegionSelect" name="newRegionSelect">
+                                    <option>All</option>
+                                    <option>JiaDing</option>
+                                    <option>YangPu</option>
+                                    <option>SongJiang</option>
+                                    <option>Jing'An</option>
+                                    <option>HuangPu</option>
+                                    <option>ChongMing</option>
+                                    <option>PuTuo</option>
+                                    <option>FengXian</option>
+                                    <option>JinShan</option>
+                                    <option>HongKou</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="kindSelect">Select pet kind</label>
+                                <select class="form-control" id="newKindSelect" name="newKindSelect">
+                                    <option>All</option>
+                                    <option>Cats</option>
+                                    <option>Dogs</option>
+                                    <option>Birds</option>
+                                    <option>Fishes</option>
+                                    <option>Rabbits</option>
+                                    <option>Reptiles</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="newDate">Start Date</label>
+                                <input class="form-control" type="text" readonly required placeholder="The date you want to start"  id="newDate"
+                                       name="newDate"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="newContent">Details</label>
+                                <textarea class="form-control" name="newContent" id='newContent' maxlength="800" placeholder="Details about your pet and requirement"
+                                          required oninput="counterDetail();"></textarea>
+                                <small id="detailCounter">0/800</small>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary"  data-target="" id="submitPublish" >Publish</button>
+                    </div>
+                </div>
+            </div>
     </div>
 </body>
 </html>

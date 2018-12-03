@@ -52,10 +52,20 @@ body{
 .title{
     position: absolute;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.35);
     color: #FFFFFF;
     margin: 0;
     left: 0;
     right: 0;
     padding:5px;
+}
+
+.pageBanner{
+    height: 300px;
+    margin-bottom: 20px;
+    background-image: url("../staticImg/bannerBG.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center;
+
 }

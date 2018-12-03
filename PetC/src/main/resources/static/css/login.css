@@ -4,6 +4,16 @@ body{
 
 }
 
+.logo{
+    width: 240px;
+    position: absolute;
+    margin: 10px;
+    left: 0;
+    top:0;
+    z-index: 100;
+}
+
+
 #mainContainer{
     height: 100%;
     width: 100%;

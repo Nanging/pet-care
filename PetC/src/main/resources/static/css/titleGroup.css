@@ -1,0 +1,15 @@
+.logoGroup{
+    position: absolute;
+    margin: 10px;
+    left: 0;
+    top:0;
+    z-index: 100;
+}
+.logo{
+    display: block;
+    width:240px;
+}
+.titleLogo{
+    display: block;
+    width: 360px;
+}

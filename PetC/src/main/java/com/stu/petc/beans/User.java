@@ -1,8 +1,14 @@
 package com.stu.petc.beans;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class User {
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer user_id;
 	private String username;
 	private String password;

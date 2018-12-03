@@ -27,14 +27,16 @@
         <div class="grid-item" data-toggle="modal" data-target="#searchModal">
             <img class="addSearch" src="../staticImg/search.png"/>
         </div>
-
+		<div th:each="FosterNote : ${list}">
+			<div class="grid-item  grid-item--width2">
+            	<img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
+            <h3 class="title" th:text="${FosterNote.title}">This is a sample tile</h3>
+        </div>
+		</div>
 
 
         <!-- --below--Sample blocks, use a 20-size array to implement it through thymeleaf -->
-        <div class="grid-item  grid-item--width2">
-            <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
-            <h3 class="title">This is a sample tile</h3>
-        </div>
+
         <div class="grid-item  grid-item--width2">
             <img class="sample1" src="../staticImg/Sample1080_1920.jpg"/>
             <h3 class="title">This is a very looooooooooooong sample tile</h3>

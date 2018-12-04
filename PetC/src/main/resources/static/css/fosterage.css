@@ -30,6 +30,7 @@
 .addSearch{
     width:100%;
     height:auto;
+    transition: all 0.5s;
 }
 .addSearch:hover{
     transform: scale(1.05);
@@ -48,22 +49,47 @@
 
 .grid-item--width2 {
     width: 320px;
-
+    overflow: hidden;
+    transition: all 0.5s;
 }
 .grid-item--width2:hover{
     transform: scale(1.03);
     box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
 }
 
+
+.titleText{
+    margin-bottom: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 .title{
+    overflow:hidden;
     position: absolute;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    text-overflow: ellipsis;
     bottom: 0;
     background-color: rgba(0,0,0,0.35);
     color: #FFFFFF;
     margin: 0;
     left: 0;
     right: 0;
-    padding:5px;
+    word-break: break-all;
+    max-height: 40%;
+}
+
+#errorText{
+    margin-top:10px;
+}
+
+.grid-item--width2:hover >.title{
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+
+
 }
 
 

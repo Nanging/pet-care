@@ -13,108 +13,108 @@
     <link rel="stylesheet" href="../css/login.css"/>
 </head>
 <body>
-    <img src="../staticImg/petC.png" class="logo"/>
-    <div id="mainContainer">
-        <div id="slides" class="banner" >
-            <ul>
-                <li id="Slider1">
+<img src="../staticImg/petC.png" class="logo"/>
+<div id="mainContainer">
+    <div id="slides" class="banner" >
+        <ul>
+            <li id="Slider1">
 
-                </li>
-                <li id="Slider2">
+            </li>
+            <li id="Slider2">
 
-                </li>
-                <li id="Slider3">
+            </li>
+            <li id="Slider3">
 
-                </li>
-            </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row" id="loginRow">
+        <div class="col-lg-4 offset-lg-4 col-sm-8 offset-sm-2">
+            <form id="loginForm" onsubmit="return false">
+                <h3 class="loginTitle">
+                    SignIn
+                </h3>
+                <div class="form-group">
+                    <label class="sr-only">Username</label>
+                    <input class="form-control" th:if="${status}=='SAVED' or ${status}=='FAILED' " th:value="${loginName}" type="text" id="userName" name="username" placeholder="Username" maxlength="12"
+                           required oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkEmpty();" autofocus>
+                    <input class="form-control"  th:if="${status}!='SAVED' and ${status}!='FAILED'"  type="text" id="userName" name="username" placeholder="Username" maxlength="12"
+                           required oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkEmpty();" autofocus>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Password</label>
+                    <input class="form-control" th:if="${status}=='SAVED' or ${status}=='FAILED' " th:value="${loginPassword}" type="password" id="passWord" name="password" placeholder="Password" maxlength="20"
+                           required oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkEmpty()">
+                    <input class="form-control" th:if="${status}!='SAVED' and ${status}!='FAILED' "  type="password" id="passWord" name="password" placeholder="Password" maxlength="20"
+                           required oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkEmpty()">
+                </div>
+                <div class="form-group container" id="btnGroup">
+                    <div class="row">
+                        <button class="btn btn-block btn-outline-primary btn-sm offset-9 col-3" type="button" id="btnSignUp"
+                                data-toggle="modal" data-target="#signUpModal">Sign up</button>
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-block btn-primary  col-12"  type="button" onclick="login()"  id="btnSubmit">Sign In</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="row" id="loginRow">
-            <div class="col-lg-4 offset-lg-4 col-sm-8 offset-sm-2">
-                <form id="loginForm" onsubmit="return false">
-                    <h3 class="loginTitle">
-                        SignIn
-                    </h3>
+</div>
+<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signUpTitle">Sign Up for PetC!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="signUpform" onsubmit="return false">
                     <div class="form-group">
-                        <label class="sr-only">Username</label>
-                        <input class="form-control" th:if="${status}=='SAVED' or ${status}=='FAILED' " th:value="${loginName}" type="text" id="userName" name="username" placeholder="Username" maxlength="12"
-                               required oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkEmpty();" autofocus>
-                       <input class="form-control"  th:if="${status}!='SAVED' and ${status}!='FAILED'"  type="text" id="userName" name="username" placeholder="Username" maxlength="12"
-                               required oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkEmpty();" autofocus>
+                        <input class="form-control" type="text" id="newUsername" name="username" placeholder="Username" required maxlength="12"
+                               oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
                     </div>
                     <div class="form-group">
-                        <label class="sr-only">Password</label>
-                        <input class="form-control" th:if="${status}=='SAVED' or ${status}=='FAILED' " th:value="${loginPassword}" type="password" id="passWord" name="password" placeholder="Password" maxlength="20"
-                               required oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkEmpty()">
-                         <input class="form-control" th:if="${status}!='SAVED' and ${status}!='FAILED' "  type="password" id="passWord" name="password" placeholder="Password" maxlength="20"
-                               required oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkEmpty()">
+                        <input class="form-control" type="password" id="newPassword" name="password" placeholder="Password" required maxlength="20"
+                               oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
                     </div>
-                    <div class="form-group container" id="btnGroup">
-                        <div class="row">
-                            <button class="btn btn-block btn-outline-primary btn-sm offset-9 col-3" type="button" id="btnSignUp"
-                                    data-toggle="modal" data-target="#signUpModal">Sign up</button>
-                        </div>
-                        <div class="row">
-                            <button class="btn btn-block btn-primary  col-12"  type="button" onclick="login()"  id="btnSubmit">Sign In</button>
-                        </div>
+                    <div class="form-group">
+                        <input class="form-control" type="tel" id="newPhone" name="phone" placeholder="Phone Number" required maxlength="11"
+                               oninvalid="setCustomValidity('Phone Number cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="signUpTitle">Sign Up for PetC!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="signUpform" onsubmit="return false">
-                        <div class="form-group">
-                            <input class="form-control" type="text" id="newUsername" name="username" placeholder="Username" required maxlength="12"
-                                   oninvalid="setCustomValidity('Username cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="password" id="newPassword" name="password" placeholder="Password" required maxlength="20"
-                                   oninvalid="setCustomValidity('Password cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="tel" id="newPhone" name="phone" placeholder="Phone Number" required maxlength="11"
-                                   oninvalid="setCustomValidity('Phone Number cannot be empty')" oninput="setCustomValidity('');checkSignupEmpty()">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-outline-info" type="button" id="accept" onclick="signup()" disabled >Accept</button>
-                </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-info" type="button" id="accept" onclick="signup()" disabled >Accept</button>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="expireModal" tabindex="-1" role="dialog" >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">User Identity Expired</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h3 th:if="${msg}!=null" th:text="${msg}">Please Sign In Again</h3>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" id="ok" data-dismiss="modal" >OK</button>
-                </div>
+</div>
+<div class="modal fade" id="expireModal" tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">User Identity Expired</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 th:if="${msg}!=null" th:text="${msg}">Please Sign In Again</h3>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" id="ok" data-dismiss="modal" >OK</button>
             </div>
         </div>
     </div>
+</div>
 
-    <script th:if="${status}!='SAVED' and ${status}!='DEFAULT'">
-        $("#expireModal").modal();
-    </script>
+<script th:if="${status}!='SAVED' and ${status}!='DEFAULT'">
+    $("#expireModal").modal();
+</script>
 </body>
 </html>

@@ -4,21 +4,20 @@
 
     <!-- TO DO: nav bar, image upload, href add -->
     <meta charset="UTF-8">
-    <title>Fosterage</title>
+    <title>Adoption</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/popper.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/masonry.pkgd.min.js"></script>
     <script src="../js/imagesloaded.pkgd.min.js"></script>
-    <script src="../js/bootstrap-datepicker.js"></script>
     <script src="../js/fileinput.min.js"></script>
-    <script src="../js/fosterage.js"></script>
+    <script src="../js/adoption.js"></script>
 
-    <link rel="stylesheet" href="../css/bootstrap-datepicker.min.css"/>
+
     <link rel="stylesheet" href="../css/fileinput.min.css"/>
     <link rel="stylesheet" href="../css/bootstrap.css"/>
-    <link rel="stylesheet" href="../css/fosterage.css"/>
+    <link rel="stylesheet" href="../css/adoption.css"/>
     <link rel="stylesheet" href="../css/titleGroup.css"/>
     <!--Access this page through GET request with param of sort, filter and page-->
 </head>
@@ -27,7 +26,7 @@
     <div class="row pageBanner">
         <div class="logoGroup">
             <img src="../staticImg/petC.png"  class="logo"/>
-            <img src="../staticImg/fosterage.png" class="titleLogo"/>
+            <img src="../staticImg/adoption.png" class="titleLogo"/>
         </div>
     </div>
     <div class="col-lg-10 offset-lg-1 offset-sm-0 col-sm-12 columnGrid">
@@ -162,7 +161,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Publish Your Requirement</h5>
+                <h5 class="modal-title">Find your pet a good family </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -171,7 +170,7 @@
                 <form id="publishForm" onsubmit="return false;"  role="form">
                     <div class="form-group">
                         <label for="newTitle">Title</label>
-                        <textarea class="form-control" name="newTitle" id="newTitle" maxlength="140" placeholder="Describe your requirement briefly"
+                        <textarea class="form-control" name="newTitle" id="newTitle" maxlength="140" placeholder="Describe your pet briefly"
                                   required oninput="counterTitle();"></textarea>
                         <small id="titleCounter">0/140</small>
                     </div>
@@ -202,15 +201,11 @@
                             <option>Other</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="newDate">Start Date</label>
-                        <input class="form-control" type="text" readonly required placeholder="The date you want to start"  id="newDate"
-                               name="newDate"/>
-                    </div>
+                    <!-- no need for date in adoption part -->
 
                     <div class="form-group">
                         <label for="newContent">Details</label>
-                        <textarea class="form-control" name="newContent" id='newContent' maxlength="800" placeholder="Details about your pet and requirement"
+                        <textarea class="form-control" name="newContent" id='newContent' maxlength="800" placeholder="Details about your pet and other details"
                                   required oninput="counterDetail();"></textarea>
                         <small id="detailCounter">0/800</small>
                     </div>

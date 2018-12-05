@@ -14,7 +14,7 @@ $(document).ready(function () {
     });
 
     $("#imgInput").fileinput({
-        uploadUrl:"/uploadImage",
+        uploadUrl:"/uploadImageFoster",   //differ from adopt
         msgFilesTooLess:"You should choose at least 1 image",
         msgFilesTooMany:"You should choose no more than 3 images",
         allowedFileExtensions:["jpg","jpeg","png"],
@@ -24,6 +24,11 @@ $(document).ready(function () {
         maxFileSize:3000,
         uploadAsync: false,
         msgSizeTooLarge:"The image should be no more than 3MB",
+        fileActionSettings:{
+            showUpload:false,
+            showRemove:true,
+            showZoom:false,
+        },
         showClose:false,
         showCancel:false,
         showUpload: false,                              //http://plugins.krajee.com/file-input#ajax-sync  FOR HELP
@@ -58,6 +63,8 @@ $(document).ready(function () {
 
     $("#imgInput").on("filebatchuploaderror",function(event,data,msg){ //upload failed
         console.log(msg);                                          //http://plugins.krajee.com/file-input/plugin-events#filebatchuploaderror FOR HELP
+        $("#imgInput").fileinput('unlock');
+
         //in design
 
     });
@@ -79,22 +86,27 @@ $(".grid-item").imagesLoaded().progress(function () {
 function filterSubmit(){
     $("#searchForm").submit();
 }
-function inputCheck(){
-    if($("#newTitle").val()==''){
+function inputCheck() {
+    if ($("#newTitle").val() == '') {
         $("#errorText").append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'></span>Title cannot be empty</small>");
         return false;
     }
-    if($("#newContent").val()==''){
+    if ($("#newDate").val() == '') {
+        $("#errorText").append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'></span>Date cannot be empty</small>");
+        return false;
+    }
+    if ($("#newContent").val() == '') {
         $("#errorText").append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'></span>Details cannot be empty</small>");
         return false;
     }
+    return true;
 }
+
 
 
 function publishSubmit(){
     $("#errorText").children("small").remove();
     if(!inputCheck()) return;
-    $("#imgInput").lock();
-    $("#imgInput").upload(); //upload images first
-    $("#imgInput").unlock();
+    console.log("start");
+    $("#imgInput").fileinput('upload').fileinput('lock');//upload images first
 }

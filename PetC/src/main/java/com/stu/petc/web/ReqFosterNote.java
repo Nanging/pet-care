@@ -14,7 +14,7 @@ public class ReqFosterNote {
 	private String newRegionSelect;
 	private String newKindSelect;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "MM/dd/yyyy")
 	private Date newDate;
 	
 	private String newContent;

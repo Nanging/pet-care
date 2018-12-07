@@ -48,11 +48,12 @@
                 <img class="addSearch" src="../staticImg/search.png"/>
             </div>
             <div th:each="FosterNote : ${list}">
-                <div class="grid-item  grid-item--width2">
+                <div class="grid-item  grid-item--width2" >
                     <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
                     <div class="title">
                         <h3 class="titleText" th:text="${FosterNote.title}">This is a sample tile</h3>
                     </div>
+                    <a th:href="@{'/foster/detail/'+${FosterNote.id}}" th:method="GET">link</a>
                 </div>
             </div>
 

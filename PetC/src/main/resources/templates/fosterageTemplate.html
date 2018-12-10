@@ -49,7 +49,8 @@
             </div>
             <div th:each="FosterNote : ${list}">
                 <!-- put the target url in the data-detailTarget -->
-                <div class="grid-item  grid-item--width2" th:attr="data-detailTarget='@{'/foster/detail/'+${FosterNote.id}}'" onclick="showDetail(this)">
+                <div class="grid-item  grid-item--width2" th:attr="data-detailTarget=@{'/foster/detail/'+${FosterNote.id}}" 
+					 onclick="showDetail(this)">
                     <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
                     <div class="title">
                         <h3 class="titleText" th:text="${FosterNote.title}">This is a sample tile</h3>

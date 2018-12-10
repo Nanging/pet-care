@@ -14,6 +14,11 @@ import com.stu.petc.service.UserRedisService;
 
 @Controller
 public class UserController {
+
+    @RequestMapping("/main")
+    public String main(){
+        return "main";
+    }
 //    @Autowired
 //    private UserRedisService userRedisService;
 ///** 

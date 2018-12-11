@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- visual design in progress, it sucks and needs more optimization -->
+    <!-- temperately for data implement use only -->
+    <!-- access this page with GET method and implement with thymeleaf (access should be denied if not logged in)-->
+    <!-- this page is gonna to be shown inside a modal of fosterageTemplate page (maybe) -->
+    <meta charset="UTF-8">
+
+    <!-- remember to change the title with the foster requirement title -->
+    <title>Adoption Detail</title>
+</head>
+<body>
+<h1 id="detailTitle">Sample Title</h1>
+<label for="region">Sample Region</label>
+<h3 id="region">JiaDing</h3>
+<div id="slides" class="banner" >
+    <ul>
+        <li id="Slider1" style="background-image: url('../staticImg/IMG_6344.JPG')">
+
+        </li>
+        <li id="Slider2" style="background-image: url('../staticImg/IMG_6344.JPG')">
+
+        </li>
+        <li id="Slider3" style="background-image: url('../staticImg/IMG_6344.JPG')">
+
+        </li>
+    </ul>
+</div>
+<!-- details -->
+<p th:if="${adopt!=null}" th:text="${adopt.text}">Details Details Details Details Details Details Details Details Details Details
+    Details Details Details Details Details Details Details Details Details Details Details
+    Details Details Details Details Details Details </p>
+
+
+<button>Offer</button>
+</body>
+</html>

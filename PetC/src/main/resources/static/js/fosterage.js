@@ -92,7 +92,9 @@ $(document).ready(function () {
     $("#detailModal").on("hidden.bs.modal",function(e){
         $("#detailModal .modal-body").html("");
     })
-
+    $(".grid-item").imagesLoaded().progress(function () {
+        $(".grid").masonry("layout");
+    });
 
 
 })
@@ -105,9 +107,7 @@ function counterDetail() {
     $("#detailCounter").text(""+$("#newContent").val().length+"/800");
 }
 
-$(".grid-item").imagesLoaded().progress(function () {
-    $(".grid").masonry("layout");
-});
+
 
 function filterSubmit(){
     $("#searchForm").submit();

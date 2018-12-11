@@ -5,7 +5,6 @@ $(document).ready(function () {
         columnWidth: 160,
         gutter: 10,
     });
-    var now = new Date();
 
     $("#imgInput").fileinput({
         uploadUrl:"/uploadImageAdopt",   //differ from foster
@@ -46,10 +45,25 @@ $(document).ready(function () {
             success:function(result){
                 console.log(result);
                 //to be done
+                if(true) { //should use response code here
+                    $("#publishModal").modal("hide");
+                    $("#msgTitle").text("Success");
+                    $("#msgContent").text("Your publish has been submitted successfully!");
+                    $("#msgModal").modal("show");
+                    $("#publishForm").reset();
+                    $("#imgInput").fileinput("clear");
+                }
+                else{
+                    $("#errorText").children("small").remove();
+                    $("#errorText").append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'></span>"+result.msg+"</small>")
+                }
             },
             error:function (result) {
                 console.log(result);
                 //to be done
+                $("#errorText").children("small").remove();
+                $("#errorText").append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'></span>404 Error!</small>");
+
             }
 
         })
@@ -58,11 +72,19 @@ $(document).ready(function () {
     $("#imgInput").on("filebatchuploaderror",function(event,data,msg){ //upload failed
         console.log(msg);                                          //http://plugins.krajee.com/file-input/plugin-events#filebatchuploaderror FOR HELP
         $("#imgInput").fileinput('unlock');
-
+        $("#errorText").children("small").remove();
+        $("#errorText").append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'></span>"+msg+"</small>");
         //in design
 
     });
 
+    $("#detailModal").on("hidden.bs.modal",function(e){
+        $("#detailModal .modal-body").html("");
+    })
+    //after the detailbox close, reset it
+    $(".grid-item").imagesLoaded().progress(function () {
+        $(".grid").masonry("layout");
+    });
 })
 
 function counterTitle() {
@@ -73,9 +95,7 @@ function counterDetail() {
     $("#detailCounter").text(""+$("#newContent").val().length+"/800");
 }
 
-$(".grid-item").imagesLoaded().progress(function () {
-    $(".grid").masonry("layout");
-});
+
 
 function filterSubmit(){
     $("#searchForm").submit();
@@ -91,7 +111,14 @@ function inputCheck() {
     }
     return true;
 }
+function showDetail(tar){
+    console.log("click");
+    var link=tar.getAttribute('data-detailTarget');
+    $("#detailModal .modal-body").load(link,function () {
+        $("#detailModal").modal("show");
+    });
 
+}
 
 
 function publishSubmit(){

@@ -1,0 +1,52 @@
+
+<div id="mainContentBody" class="container" xmlns:th="http://www.thymeleaf.org">
+    <script src="../js/shareDetail.js"></script>
+    <link rel="stylesheet" href="../css/AFDetail.css"/>
+    <link rel="stylesheet" href="../css/comment.css"/>
+    <p id="identity">0000001</p>
+    <h1 id="detailTitle" class="textCustom">Sample Title</h1>
+    <label for="author">Author:</label>
+    <h3 id="author" class="textCustom">Sample User</h3>
+    <div id="slides" class="banner" >
+        <ul>
+            <!-- put the picture url here, use th:each -->
+            <li id="Slider1" style="background-image: url('../staticImg/IMG_6344.JPG')">
+
+            </li>
+            <li id="Slider2" style="background-image: url('../staticImg/IMG_6344.JPG')">
+
+            </li>
+            <li id="Slider3" style="background-image: url('../staticImg/IMG_6344.JPG')">
+
+            </li>
+        </ul>
+    </div>
+    <!-- details -->
+    <p th:if="${adopt!=null}" th:text="${adopt.text}">Details Details Details Details Details Details Details Details Details Details
+        Details Details Details Details Details Details Details Details Details Details Details
+        Details Details Details Details Details Details </p>
+
+
+
+    <div id="btnContainer">
+        <button class="btn btn-primary btn-block" id="endorseBtn" onclick="endorse()">Endorse</button>
+        <button class="btn btn-secondary btn-block" id="commentBtn"  onclick="comment()">Comment</button>
+    </div>
+    <div class="collapse" id="clps">
+        <form id="commentForm"  onsubmit="return false" >
+            <div class="form-group">
+                <label for="commentBox">Comment</label>
+                <textarea class="form-control" id="commentBox" name="newComment" placeholder="Write your comment here"
+                          maxlength="400" oninput="wordCount()"></textarea>
+                <small id="commentCounter">0/400</small>
+            </div>
+            <div id="submitGroup" class="form-group">
+                <button class="btn btn-outline-primary" type="button" id="commentSubmit" onclick="commentSubmit()" >Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="commentContainer">
+    <!--show the comment list here, may be 10 comments per page? -->
+</div>

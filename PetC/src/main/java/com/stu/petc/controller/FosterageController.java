@@ -37,6 +37,7 @@ import com.stu.petc.mapper.FosterMapper;
  *
  */
 import com.stu.petc.service.FosterFilerService;
+import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqFosterNote;
 @Controller
 public class FosterageController {
@@ -96,12 +97,13 @@ public class FosterageController {
 	}
 	
 	@PostMapping("/publishFoster")
-	public String uploadFosterData(@RequestBody ReqFosterNote reqFosterNote) {
+	@ResponseBody
+	public LoginResponse uploadFosterData(@RequestBody ReqFosterNote reqFosterNote) {
 		
 		System.out.println("-----------------");
 		System.out.println(reqFosterNote);
 		
-		return "fosterageTemplate.html";
+		return new LoginResponse(0, "success", null);
 	}
 	
 	@GetMapping("/data")

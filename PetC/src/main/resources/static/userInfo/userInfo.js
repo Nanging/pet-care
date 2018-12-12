@@ -35,21 +35,42 @@ function showInfo(tar) {
     s["id"]=link;
     console.log(s);
     var data=JSON.stringify(s);
-    console.log(data);
-    $("#infoModal").modal("show");
+    console.log(data)
+    var content=$("#infoTable");
+    content.text("");
+    content.append("<table class=\"table table-striped\">\n" +
+        "                              <thead>\n" +
+        "                              <tr>\n" +
+        "                                  <td>Name</td>\n" +
+        "                                  <td>Phone Number</td>\n" +
+        "                                  <td>Confirm</td>\n" +
+        "                              </tr>\n" +
+        "                              </thead>\n" +
+        "                              <tbody>\n" +
+        "                              <tr>\n" +
+        "                                  <td>帖子相关人的名字</td>\n" +
+        "                                  <td>贴子相关的人的手机号码</td>\n" +
+        "                                  <td th:attr=\"data-infomationTarget=@{'/id'}\"><a class=\"glyphicon glyphicon-ok-circle\" onclick=\"confirm()\"></a></td>\n" +
+        "                              </tr>\n" +
+        "                              </tbody>\n" +
+        "                          </table>");
     $.ajax({
         url:link,
         type:"POST",
         contentType: "application/json;charset=utf-8",
         dataType:'json',
         data: data,
-        success:function () {
-            console.log(success);
+        success:function (result) {
+            var content=$("#infoTable");
+            content.text("");
+            // 返回一个string在content里添加
+            content.append("");
         },
         error:function () {
             console.log("fail");
         }
     })
+    $("#infoModal").modal("show");
 }
 
 function deleteData(tar) {

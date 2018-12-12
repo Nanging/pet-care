@@ -252,8 +252,26 @@
           <div class="modal fade" id="infoModal" tabindex="-1" role="dialog">
               <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                   <div class="modal-content">
-                      <div class="modal-body">
-                          Info
+                      <div class="modal-header">
+                          Contact Infomation
+                      </div>
+                      <div class="modal-body" id="infoTable">
+                          <table class="table table-striped">
+                              <thead>
+                              <tr>
+                                  <td>Name</td>
+                                  <td>Phone Number</td>
+                                  <td>Confirm</td>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                                  <td>帖子相关人的名字</td>
+                                  <td>贴子相关的人的手机号码</td>
+                                  <td th:attr="data-infomationTarget=@{'/id'}"><a class="glyphicon glyphicon-ok-circle" onclick="confirm()"></a></td>
+                              </tr>
+                              </tbody>
+                          </table>
                       </div>
                       <div class="modal-footer">
 

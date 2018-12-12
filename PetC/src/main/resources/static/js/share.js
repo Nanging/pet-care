@@ -7,7 +7,7 @@ $(document).ready(function () {
     });
 
     $("#imgInput").fileinput({
-        uploadUrl:"/uploadImageAdopt",   //differ from foster
+        uploadUrl:"/uploadImageShare",   //differ from foster
         msgFilesTooLess:"You should choose at least 1 image",
         msgFilesTooMany:"You should choose no more than 3 images",
         allowedFileExtensions:["jpg","jpeg","png"],
@@ -37,7 +37,7 @@ $(document).ready(function () {
         })
         console.log(s);
         $.ajax({
-            url: "/publishFoster",  //tartget url
+            url: "/publishShare",  //tartget url
             type: "POST",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
@@ -92,7 +92,7 @@ function counterTitle() {
     $("#titleCounter").text(""+$("#newTitle").val().length+"/140");
 }
 function counterDetail() {
-    $("#detailCounter").text(""+$("#newContent").val().length+"/800");
+    $("#detailCounter").text(""+$("#newContent").val().length+"/2000");
 }
 
 
@@ -106,7 +106,7 @@ function inputCheck() {
         return false;
     }
     if ($("#newContent").val() == '') {
-        $("#errorText").append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'></span>Details cannot be empty</small>");
+        $("#errorText").append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'></span>Content cannot be empty</small>");
         return false;
     }
     return true;

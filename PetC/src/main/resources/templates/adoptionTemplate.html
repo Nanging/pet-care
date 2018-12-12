@@ -46,20 +46,25 @@
             <div class="grid-item" data-toggle="modal" data-target="#searchModal">
                 <img class="addSearch" src="../staticImg/search.png"/>
             </div>
-            <div th:each="FosterNote : ${list}">
-                <div class="grid-item  grid-item--width2">
+
+
+            <div th:each="AdoptNote : ${list}">
+                <!-- put the target url in the data-detailTarget -->
+                <div class="grid-item  grid-item--width2" th:attr="data-detailTarget=@{'/adopt/detail/'+${AdoptNote.id}}"
+                     onclick="showDetail(this)">
                     <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
                     <div class="title">
-                        <h3 class="titleText" th:text="${FosterNote.title}">This is a sample tile</h3>
+                        <h3 class="titleText" th:text="${AdoptNote.title}">This is a sample tile</h3>
                     </div>
                 </div>
             </div>
 
 
+
             <!-- --below--Sample blocks, use a 20-size array to implement it through thymeleaf -->
 
             <div class="grid-item  grid-item--width2">
-                <img class="sample1" src="../staticImg/Sample1080_1920.jpg"/>
+                <img class="sample1" src="../staticImg/Sample1080_1920.jpg" data-detailTarget="AdoptionDetailPage.html" onclick="showDetail(this)"/>
                 <div class="title">
                     <h3 class="titleText">This is a very looooooooooooooooong great great long big fat wow great looong sample tile</h3>
                 </div>
@@ -175,7 +180,7 @@
                         <small id="titleCounter">0/140</small>
                     </div>
                     <div class="form-group">
-                        <label for="regionSelect">Select region</label>
+                        <label for="newRegionSelect">Select region</label>
                         <select class="form-control" id="newRegionSelect" name="newRegionSelect">
                             <option>JiaDing</option>
                             <option>YangPu</option>
@@ -190,7 +195,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="kindSelect">Select pet kind</label>
+                        <label for="newKindSelect">Select pet kind</label>
                         <select class="form-control" id="newKindSelect" name="newKindSelect">
                             <option>Cats</option>
                             <option>Dogs</option>
@@ -225,23 +230,34 @@
     </div>
 </div>
 
-<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
             <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-
             </div>
         </div>
     </div>
 
 </div>
+
+<div class="modal fade" id="msgModal" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="msgTitle">Msg</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="msgContent"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" data-dismiss="modal" >OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

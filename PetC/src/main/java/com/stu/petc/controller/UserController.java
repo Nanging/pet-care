@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -14,6 +15,21 @@ import com.stu.petc.service.UserRedisService;
 
 @Controller
 public class UserController {
+
+    @RequestMapping("/main")
+    public String main(){
+        return "main";
+    }
+
+    @RequestMapping("/userInfo")
+    public String userInfo(){
+        return "userInfo";
+    }
+
+    @PostMapping("/foster/detail/id")
+    public String test(){
+        return "userInfo";
+    }
 //    @Autowired
 //    private UserRedisService userRedisService;
 ///** 

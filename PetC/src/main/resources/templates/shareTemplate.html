@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-
-    <!-- TO DO: nav bar, image upload, href add -->
     <meta charset="UTF-8">
-    <title>Fosterage</title>
+    <title>Share</title>
+    <meta charset="UTF-8">
+    <title>Adoption</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/popper.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/masonry.pkgd.min.js"></script>
     <script src="../js/imagesloaded.pkgd.min.js"></script>
-    <script src="../js/bootstrap-datepicker.js"></script>
     <script src="../js/fileinput.min.js"></script>
-    <script src="../js/fosterage.js"></script>
+    <script src="../js/share.js"></script>
 
-    <link rel="stylesheet" href="../css/bootstrap-datepicker.min.css"/>
+
     <link rel="stylesheet" href="../css/fileinput.min.css"/>
     <link rel="stylesheet" href="../css/bootstrap.css"/>
-    <link rel="stylesheet" href="../css/fosterage.css"/>
+    <link rel="stylesheet" href="../css/share.css"/>
     <link rel="stylesheet" href="../css/titleGroup.css"/>
-    <!--Access this page through GET request with param of sort, filter and page-->
 </head>
 <body>
 <div class="container-fluid">
     <div class="row pageBanner">
         <div class="logoGroup">
             <img src="../staticImg/petC.png"  class="logo"/>
-            <img src="../staticImg/fosterage.png" class="titleLogo"/>
+            <img src="../staticImg/share.png" class="titleLogo"/>
         </div>
     </div>
     <div class="col-lg-10 offset-lg-1 offset-sm-0 col-sm-12 columnGrid">
@@ -47,25 +45,25 @@
             <div class="grid-item" data-toggle="modal" data-target="#searchModal">
                 <img class="addSearch" src="../staticImg/search.png"/>
             </div>
-            <div th:each="FosterNote : ${list}">
+
+
+            <div th:each="ShareNote : ${list}">
                 <!-- put the target url in the data-detailTarget -->
-                <div class="grid-item  grid-item--width2" th:attr="data-detailTarget=@{'/foster/detail/'+${FosterNote.id}}" 
-					 onclick="showDetail(this)">
+                <div class="grid-item  grid-item--width2" th:attr="data-detailTarget=@{'/share/detail/'+${ShareNote.id}}"
+                     onclick="showDetail(this)">
                     <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
                     <div class="title">
-                        <h3 class="titleText" th:text="${FosterNote.title}">This is a sample tile</h3>
+                        <h3 class="titleText" th:text="${ShareNote.title}">This is a sample tile</h3>
                     </div>
-                    <!--
-                    <a th:href="@{'/foster/detail/'+${FosterNote.id}}" th:method="GET">link</a>
-                    -->
                 </div>
             </div>
 
 
+
             <!-- --below--Sample blocks, use a 20-size array to implement it through thymeleaf -->
 
-            <div class="grid-item  grid-item--width2" data-detailTarget="fosterageDetailPage.html" onclick="showDetail(this)">
-                <img class="sample1" src="../staticImg/Sample1080_1920.jpg"/>
+            <div class="grid-item  grid-item--width2">
+                <img class="sample1" src="../staticImg/Sample1080_1920.jpg" data-detailTarget="shareDetailPage.html" onclick="showDetail(this)"/>
                 <div class="title">
                     <h3 class="titleText">This is a very looooooooooooooooong great great long big fat wow great looong sample tile</h3>
                 </div>
@@ -110,7 +108,6 @@
     </div>
 </div>
 
-<!-- The filter modal, use the form GET method to request the certain page -->
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" >
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -122,22 +119,6 @@
                     <div class="form-group">
                         <label for="searchText">Search for specific title</label>
                         <input placeholder="Empty for no specification" id="searchText" name="searchText" maxlength="20" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="regionSelect">Select region</label>
-                        <select class="form-control" id="regionSelect" name="regionSelect">
-                            <option>All</option>
-                            <option>JiaDing</option>
-                            <option>YangPu</option>
-                            <option>SongJiang</option>
-                            <option>Jing'An</option>
-                            <option>HuangPu</option>
-                            <option>ChongMing</option>
-                            <option>PuTuo</option>
-                            <option>FengXian</option>
-                            <option>JinShan</option>
-                            <option>HongKou</option>
-                        </select>
                     </div>
                     <div class="form-group">
                         <label for="kindSelect">Select pet kind</label>
@@ -161,13 +142,11 @@
     </div>
 </div>
 
-
-<!-- The publish modal, use ajax to post the publish information -->
 <div class="modal fade" id="publishModal" tabindex="-1" role="dialog" data-backdrop="static" >
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Publish Your Requirement</h5>
+                <h5 class="modal-title">Share your experience! </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -176,28 +155,14 @@
                 <form id="publishForm" onsubmit="return false;"  role="form">
                     <div class="form-group">
                         <label for="newTitle">Title</label>
-                        <textarea class="form-control" name="newTitle" id="newTitle" maxlength="140" placeholder="Describe your requirement briefly"
+                        <textarea class="form-control" name="newTitle" id="newTitle" maxlength="140" placeholder="Put your title here"
                                   required oninput="counterTitle();"></textarea>
                         <small id="titleCounter">0/140</small>
                     </div>
                     <div class="form-group">
-                        <label for="newRegionSelect">Select region</label>
-                        <select class="form-control" id="newRegionSelect" name="newRegionSelect">
-                            <option>JiaDing</option>
-                            <option>YangPu</option>
-                            <option>SongJiang</option>
-                            <option>Jing'An</option>
-                            <option>HuangPu</option>
-                            <option>ChongMing</option>
-                            <option>PuTuo</option>
-                            <option>FengXian</option>
-                            <option>JinShan</option>
-                            <option>HongKou</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="newKindSelect">Select pet kind</label>
+                        <label for="newKindSelect">Select pet kind you'd like to share about (remain All if not specified)</label>
                         <select class="form-control" id="newKindSelect" name="newKindSelect">
+                            <option>All</option>
                             <option>Cats</option>
                             <option>Dogs</option>
                             <option>Birds</option>
@@ -207,21 +172,16 @@
                             <option>Other</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="newDate">Start Date</label>
-                        <input class="form-control" type="text" readonly required placeholder="The date you want to start"  id="newDate"
-                               name="newDate"/>
-                    </div>
 
                     <div class="form-group">
-                        <label for="newContent">Details</label>
-                        <textarea class="form-control" name="newContent" id='newContent' maxlength="800" placeholder="Details about your pet and requirement"
+                        <label for="newContent">Content</label>
+                        <textarea class="form-control" name="newContent" id='newContent' maxlength="2000" placeholder="Let's talk about your experience and sharing"
                                   required oninput="counterDetail();"></textarea>
-                        <small id="detailCounter">0/800</small>
+                        <small id="detailCounter">0/2000</small>
                     </div>
                 </form>
                 <div >
-                    <label for="imgInput">Put your photos here (at most 3)</label>
+                    <label for="imgInput">Put your images here (at most 3)</label>
                     <input type="file" id="imgInput" name="imgInput[]" multiple/>
                 </div>
                 <div id="errorText">
@@ -235,15 +195,19 @@
     </div>
 </div>
 
-<!-- The modal used to show detail page -->
-<div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg"  role="document">
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="modal-body">
-
             </div>
         </div>
     </div>
+
 </div>
 
 <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" data-backdrop="static">

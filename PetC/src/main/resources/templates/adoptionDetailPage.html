@@ -1,14 +1,14 @@
+
 <div id="mainContentBody" class="container" xmlns:th="http://www.thymeleaf.org">
-    <script src="../js/fosterDetail.js"></script>
     <link rel="stylesheet" href="../css/AFDetail.css"/>
     <p id="identity">0000001</p>
     <h1 id="detailTitle" class="textCustom">Sample Title</h1>
     <label for="author">Publisher</label>
     <h3 id="author" class="textCustom">Sample User</h3>
-    <label for="startDate">Start Date</label>
-    <h3 id="startDate" class="textCustom">01/01/8102</h3>
     <label for="region">Region</label>
     <h3 id="region" class="textCustom">JiaDing</h3>
+    <label for="phone">Phone</label>
+    <h3 id="phone" class="textCustom">13911111111</h3>
     <div id="slides" class="banner" >
         <ul>
             <!-- put the picture url here, use th:each -->
@@ -24,10 +24,7 @@
         </ul>
     </div>
     <!-- details -->
-    <p th:if="${foster!=null}" th:text="${foster.text}">Details Details Details Details Details Details Details Details Details Details
+    <p th:if="${adopt!=null}" th:text="${adopt.text}">Details Details Details Details Details Details Details Details Details Details
         Details Details Details Details Details Details Details Details Details Details Details
         Details Details Details Details Details Details </p>
-
-
-    <button id="offerBtn" class="btn btn-outline-primary btn-block" onclick="offerClick()">Offer</button>
 </div>

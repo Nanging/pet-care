@@ -1,0 +1,17 @@
+#mainContentBody{
+    margin-top: 10px;
+    padding: 10px;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: grey;
+}
+#identity{
+    display:none;
+}
+.textCustom{
+    padding-left: 5px;
+    border-left-style: solid;
+    border-left-width: 5px;
+    border-left-color:dodgerblue;
+}

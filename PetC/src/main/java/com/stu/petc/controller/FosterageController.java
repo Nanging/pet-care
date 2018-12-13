@@ -29,7 +29,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stu.petc.beans.FosterNote;
+import com.stu.petc.beans.User;
 import com.stu.petc.mapper.FosterMapper;
+import com.stu.petc.mapper.UserMapper;
 /**
  * post?
  * wrong position
@@ -47,14 +49,17 @@ public class FosterageController {
 	@Autowired
 	FosterMapper mapper;
 	
-	@RequestMapping("/9961")
-	public String main() {
-		return "fosterageTemplate";
-	}
+	@Autowired
+	UserMapper userMapper;
+	
 	@RequestMapping("/foster/detail/{id}")
 	public String getFosterDetail(@PathVariable("id") Integer id,Map<String, Object> model) {
 		FosterNote fosterNote = mapper.getFosterByID(id);
 		System.out.println(fosterNote+"-"+id);
+		
+		User user = userMapper.getUserByID(fosterNote.getEditor());
+		
+		model.put("publisher", user.getUsername());
 		model.put("foster", fosterNote);
 		return "fosterageDetailPage";
 	}
@@ -106,7 +111,7 @@ public class FosterageController {
 		return new LoginResponse(0, "success", null);
 	}
 	
-	@GetMapping("/data")
+	@GetMapping("/fosterage")
 	public String getData(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String regionSelect,@RequestParam(defaultValue="All") String kindSelect,Model map) {
 
 		System.out.println(service.doFiler(searchText, regionSelect, kindSelect));

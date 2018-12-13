@@ -51,6 +51,6 @@ public class UserInfoController {
 			}
 			model.addObject("fosterList", fosterList);
 		}
-		return "UserInfo";
+		return "userInfo";
 	}
 }

@@ -1,14 +1,14 @@
 
 <div id="mainContentBody" class="container" xmlns:th="http://www.thymeleaf.org">
     <link rel="stylesheet" href="../css/AFDetail.css"/>
-    <p id="identity">0000001</p>
-    <h1 id="detailTitle" class="textCustom">Sample Title</h1>
+    <p id="identity" th:text="${adoption.id}">0000001</p>
+    <h1 id="detailTitle" class="textCustom" th:text="${adoption.title}">Sample Title</h1>
     <label for="author">Publisher</label>
-    <h3 id="author" class="textCustom">Sample User</h3>
+    <h3 id="author" class="textCustom" th:text="${publisher}">Sample User</h3>
     <label for="region">Region</label>
-    <h3 id="region" class="textCustom">JiaDing</h3>
+    <h3 id="region" class="textCustom" th:text="${adoption.location}">JiaDing</h3>
     <label for="phone">Phone</label>
-    <h3 id="phone" class="textCustom">13911111111</h3>
+    <h3 id="phone" class="textCustom" th:text="${phone}">13911111111</h3>
     <div id="slides" class="banner" >
         <ul>
             <!-- put the picture url here, use th:each -->

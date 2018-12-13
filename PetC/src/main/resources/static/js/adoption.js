@@ -37,7 +37,7 @@ $(document).ready(function () {
         })
         console.log(s);
         $.ajax({
-            url: "/publishFoster",  //tartget url
+            url: "/publishAdoption",  //tartget url
             type: "POST",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',

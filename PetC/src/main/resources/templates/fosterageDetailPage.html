@@ -1,14 +1,14 @@
 <div id="mainContentBody" class="container" xmlns:th="http://www.thymeleaf.org">
     <script src="../js/fosterDetail.js"></script>
     <link rel="stylesheet" href="../css/AFDetail.css"/>
-    <p id="identity">0000001</p>
-    <h1 id="detailTitle" class="textCustom">Sample Title</h1>
-    <label for="author">Publisher</label>
-    <h3 id="author" class="textCustom">Sample User</h3>
+    <p id="identity" th:text="${foster.id}">0000001</p>
+    <h1 id="detailTitle" class="textCustom" th:text="${foster.title}">Sample Title</h1>
+    <label for="author" >Publisher</label>
+    <h3 id="author" class="textCustom" th:text="${publisher}">Sample User</h3>
     <label for="startDate">Start Date</label>
-    <h3 id="startDate" class="textCustom">01/01/8102</h3>
+    <h3 id="startDate" class="textCustom">2018/01/01</h3>
     <label for="region">Region</label>
-    <h3 id="region" class="textCustom">JiaDing</h3>
+    <h3 id="region" class="textCustom" th:text="${foster.location}">JiaDing</h3>
     <div id="slides" class="banner" >
         <ul>
             <!-- put the picture url here, use th:each -->

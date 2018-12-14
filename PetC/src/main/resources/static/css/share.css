@@ -73,7 +73,7 @@
     margin: 0;
     left: 0;
     right: 0;
-    word-break: break-all;
+    word-break: break-word;
     max-height: 40%;
 }
 
@@ -84,7 +84,7 @@
     left:0;
     right:0;
     padding:10px;
-    height:45px;
+    height:36px;
 }
 .like{
     position: absolute;

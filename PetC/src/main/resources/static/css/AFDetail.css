@@ -16,3 +16,16 @@
     border-left-color:dodgerblue;
 }
 
+.carousel-item{
+    width: 100%;
+    height:460px;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+#imageShow{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

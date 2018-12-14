@@ -9,20 +9,30 @@
     <h3 id="region" class="textCustom" th:text="${adoption.location}">JiaDing</h3>
     <label for="phone">Phone</label>
     <h3 id="phone" class="textCustom" th:text="${phone}">13911111111</h3>
-    <div id="slides" class="banner" >
-        <ul>
-            <!-- put the picture url here, use th:each -->
-            <li id="Slider1" style="background-image: url('../staticImg/IMG_6344.JPG')">
 
-            </li>
-            <li id="Slider2" style="background-image: url('../staticImg/IMG_6344.JPG')">
+    <div id="imageShow" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
 
-            </li>
-            <li id="Slider3" style="background-image: url('../staticImg/IMG_6344.JPG')">
-
-            </li>
-        </ul>
+            <!-- implement the url with thymeleaf, AND DO KEEP the .active class for the FIRST div, and ONLY FOR the FIRST div -->
+            <div class="carousel-item active" style="background-image: url('../staticImg/IMG_6344.JPG')">
+            </div>
+            <div class="carousel-item" style="background-image: url('../staticImg/IMG_6346.JPG')">
+            </div>
+            <div class="carousel-item " style="background-image: url('../staticImg/Sample1080_1920.jpg')">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#imageShow" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#imageShow" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
+
+
+
     <!-- details -->
     <p th:if="${adopt!=null}" th:text="${adopt.text}">Details Details Details Details Details Details Details Details Details Details
         Details Details Details Details Details Details Details Details Details Details Details

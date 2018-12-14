@@ -23,4 +23,12 @@ public class FosterFilerService {
 	public FosterNote getFosterByID(Integer id) {
 		return mapper.getFosterByID(id);
 	}
+	
+	public Integer getMaxId() {
+		return mapper.getMaxId();
+	}
+	
+	public void addFoster(Integer id, String title, Integer editor, String type, String location, String text) {
+		mapper.addFoster(id, title, editor, type, location, text);
+	}
 }

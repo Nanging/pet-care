@@ -6,11 +6,13 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.tools.Tool;
 import javax.websocket.server.PathParam;
@@ -51,14 +53,34 @@ public class FosterageController {
 	UserMapper userMapper;
 	
 	@RequestMapping("/foster/detail/{id}")
-	public String getFosterDetail(@PathVariable("id") Integer id,Map<String, Object> model) {
+	public String getFosterDetail(@PathVariable("id") Integer id,Map<String, Object> model) throws FileNotFoundException {
 		FosterNote fosterNote = service.getFosterByID(id);
 		System.out.println(fosterNote+"-"+id);
+		
+		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/" + String.valueOf(id) + "/";
+		System.out.println(basepath);
+		
+		ArrayList<String> paths = new ArrayList<String>();
+		File directory = new File(basepath);
+		if(directory.isDirectory()){
+			File []files = directory.listFiles();
+			for(File fileIndex:files){
+				if(fileIndex.isDirectory()){
+				
+				}else {
+				// if is file
+				paths.add("../staticImg/forsterage/" + String.valueOf(id) + "/" + fileIndex.getName());
+				}
+			}
+		}
+		
+		System.out.println("paths:" + paths);
 		
 		User user = userMapper.getUserByID(fosterNote.getEditor());
 		System.out.println(Tools.DateFormat(fosterNote.getPublish_date()));
 		model.put("publisher", user.getUsername());
 		model.put("foster", fosterNote);
+		model.put("paths", paths);
 		return "fosterageDetailPage";
 	}
 	
@@ -72,7 +94,8 @@ public class FosterageController {
 			return -1;
 		}
 		
-		String basePath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/";
+		int nextId = service.getMaxId() + 1;
+		String basePath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/" + String.valueOf(nextId) + "/";
         System.out.println("------------------");
 		System.out.println("basePath:" + basePath);
 		
@@ -101,10 +124,29 @@ public class FosterageController {
 	
 	@PostMapping("/publishFoster")
 	@ResponseBody
-	public LoginResponse uploadFosterData(@RequestBody ReqFosterNote reqFosterNote) {
+	public LoginResponse uploadFosterData(@RequestBody ReqFosterNote reqFosterNote,HttpServletRequest request) {
 		
 		System.out.println("-----------------");
 		System.out.println(reqFosterNote);
+		
+		String username="";
+		Cookie[] cookies = request.getCookies();
+		if (null != cookies) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginStatus")) {
+					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+						/**
+						 * check user
+						 */
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+					}
+				}
+			}
+		}
+		int editor = userMapper.getUserByName(username).getUser_id();
+		int nextId = service.getMaxId() + 1;
+		service.addFoster(nextId,reqFosterNote.getNewTitle(), editor,reqFosterNote.getNewKindSelect(),reqFosterNote.getNewRegionSelect(),reqFosterNote.getNewContent());
 		
 		return new LoginResponse(0, "success", null);
 	}

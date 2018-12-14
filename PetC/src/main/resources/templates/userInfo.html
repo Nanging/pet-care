@@ -76,7 +76,7 @@
                                       <div class="caption">
                                           <h3>Adoption Name</h3>
                                           <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Info    </a>      <a href="#" class="btn btn-danger" role="button">Delete</a></p></p>
+                                          <p><a href="#" class="btn btn-primary" role="button">Info    </a>      <a href="#" class="btn btn-danger" role="button">Delete</a></p>
                                       </div>
                                   </div>
                               </div>
@@ -113,15 +113,15 @@
                           </div>
                       </div>
                       <!--Fosterage infomation-->
-                      <div class="masonry-container tab-pane fade" id="Fosterage">
+                      <div th:each="foster : ${fosterlist}" class="masonry-container tab-pane fade" id="Fosterage">
                           <!--<div id="fosterageInfo" th:each="FosterNote : ${list}">-->
                           <div id="fosterageInfo">
                           <div class="col-md-4 col-sm-6 item" >
                                   <div class="thumbnail">
                                       <img src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/foster/detail/id'}" onclick="showDetail(this)">
                                       <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
+                                          <h3 th:text="${foster.title}">Adoption Name</h3>
+                                          <p th:text="${foster.text}>General Infomation </p>
                                           <p><a href="#" class="btn btn-primary" th:attr="data-detailTarget=@{'/foster/detail/id2'}" onclick="showInfo(this)" role="button">Info </a>
                                               <a href="#" class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
                                       </div>

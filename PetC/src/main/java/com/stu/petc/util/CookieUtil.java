@@ -13,9 +13,29 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class CookieUtil {
+		public static String getCurrentUser(HttpServletRequest request) {
+			String username = "";
+			Cookie[] cookies = request.getCookies();
+			if (null!=cookies) {
+				for (Cookie cookie : cookies) {
+					if (cookie.getName().equals("loginStatus")) {
+						if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+							/**
+							 * check user
+							 */
+							String[] token = cookie.getValue().split("_");
+							username = token[0];
+						}
+					}
+				}		
+			}
+			return username;
+		}
 	
+	
+		
 
 	    public static final int COOKIE_MAX_AGE = 7 * 24 * 3600;
 	    public static final int COOKIE_HALF_HOUR = 30 * 60;

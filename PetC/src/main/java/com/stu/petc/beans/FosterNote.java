@@ -1,13 +1,14 @@
 package com.stu.petc.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class FosterNote implements Serializable{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2607544457360783004L;
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String title;
 	private Integer editor;
@@ -16,12 +17,14 @@ public class FosterNote implements Serializable{
 	private String text;
 	private Integer actor;
 	private Integer state;
+	private List<User> candidates;
 	
 	
 	@Override
 	public String toString() {
 		return "FosterNote [id=" + id + ", title=" + title + ", editor=" + editor + ", type=" + type + ", location="
-				+ location + ", text=" + text + ", actor=" + actor + ", state=" + state + "]";
+				+ location + ", text=" + text + ", actor=" + actor + ", state=" + state + ", candidates=" + candidates
+				+ "]";
 	}
 	public Integer getId() {
 		return id;
@@ -70,6 +73,15 @@ public class FosterNote implements Serializable{
 	}
 	public void setState(Integer state) {
 		this.state = state;
+	}
+	public List<User> getCandidates() {
+		return candidates;
+	}
+	public void setCandidates(List<User> candidates) {
+		this.candidates = candidates;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	

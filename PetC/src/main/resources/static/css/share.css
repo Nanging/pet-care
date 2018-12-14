@@ -77,6 +77,29 @@
     max-height: 40%;
 }
 
+.likeNComment{
+    position: absolute;
+    background-color: rgba(0,0,0,0.35);
+    top: 0;
+    left:0;
+    right:0;
+    padding:10px;
+    height:45px;
+}
+.like{
+    position: absolute;
+    right: 60%;
+    color: #FFFFFF;
+    transition:color 0.5s;
+}
+.commentNumber{
+    position:absolute;
+    left:60%;
+    color:#FFFFFF;
+    transition:color 0.5s;
+
+}
+
 #errorText{
     margin-top:10px;
 }
@@ -87,6 +110,15 @@
 
 
 }
+
+.grid-item--width2:hover >.likeNComment >.like{
+    color: #ff96b4;
+}
+.grid-item--width2:hover >.likeNComment >.commentNumber{
+    color: #ff96b4;
+}
+
+
 #newContent{
     min-height: 240px;
 }

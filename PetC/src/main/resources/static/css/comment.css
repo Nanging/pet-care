@@ -12,4 +12,6 @@
 #commentBox{
     min-height: 140px;
 }
-
+.commentCard{
+    margin: 10px;
+}

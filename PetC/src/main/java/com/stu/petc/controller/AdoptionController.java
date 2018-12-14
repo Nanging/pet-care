@@ -31,16 +31,13 @@ import com.stu.petc.web.ReqAdoptionNote;
 public class AdoptionController {
 	@Autowired
 	AdoptionFilerService service;
-	
-	@Autowired
-	AdoptionMapper mapper;
-	
+
 	@Autowired
 	UserMapper userMapper;
 	
 	@RequestMapping("/adopt/detail/{id}")
 	public String getAdoptionDetail(@PathVariable("id") Integer id,Map<String, Object> model) {
-		AdoptionNote adoptionNote = mapper.getAdoptionByID(id);
+		AdoptionNote adoptionNote = service.getAdoptionByID(id);
 		System.out.println(adoptionNote+"-"+id);
 		
 		User user = userMapper.getUserByID(adoptionNote.getEditor());

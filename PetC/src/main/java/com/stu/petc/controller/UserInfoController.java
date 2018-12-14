@@ -47,7 +47,7 @@ public class UserInfoController {
 			int id = mapper.getIDByName(username);
 			List<FosterNote> fosterList = mapper.getAllFosterByUser(id);
 			for (FosterNote fosterNote : fosterList) {
-				fosterNote.setCandidates(mapper.getFosterageCandidates(fosterNote.getId()));
+				
 				System.out.println(fosterNote);
 			}
 			model.addObject("fosterList", fosterList);

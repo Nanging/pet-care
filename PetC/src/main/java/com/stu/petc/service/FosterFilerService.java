@@ -20,4 +20,7 @@ public class FosterFilerService {
 		List<FosterNote> rawList = mapper.getFoster(searchText,regionSelect, kindSelect);
 		return rawList;
 	}
+	public FosterNote getFosterByID(Integer id) {
+		return mapper.getFosterByID(id);
+	}
 }

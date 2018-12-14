@@ -1,6 +1,8 @@
 package com.stu.petc.beans;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class FosterNote implements Serializable{
@@ -17,15 +19,7 @@ public class FosterNote implements Serializable{
 	private String text;
 	private Integer actor;
 	private Integer state;
-	private List<User> candidates;
-	
-	
-	@Override
-	public String toString() {
-		return "FosterNote [id=" + id + ", title=" + title + ", editor=" + editor + ", type=" + type + ", location="
-				+ location + ", text=" + text + ", actor=" + actor + ", state=" + state + ", candidates=" + candidates
-				+ "]";
-	}
+	private Timestamp publish_date;
 	public Integer getId() {
 		return id;
 	}
@@ -74,15 +68,24 @@ public class FosterNote implements Serializable{
 	public void setState(Integer state) {
 		this.state = state;
 	}
-	public List<User> getCandidates() {
-		return candidates;
+	public Timestamp getPublish_date() {
+		return publish_date;
 	}
-	public void setCandidates(List<User> candidates) {
-		this.candidates = candidates;
+	public void setPublish_date(Timestamp publish_date) {
+		this.publish_date = publish_date;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	@Override
+	public String toString() {
+		return "FosterNote [id=" + id + ", title=" + title + ", editor=" + editor + ", type=" + type + ", location="
+				+ location + ", text=" + text + ", actor=" + actor + ", state=" + state + ", publish_date="
+				+ publish_date + ", getId()=" + getId() + ", getTitle()=" + getTitle() + ", getEditor()=" + getEditor()
+				+ ", getType()=" + getType() + ", getLocation()=" + getLocation() + ", getText()=" + getText()
+				+ ", getActor()=" + getActor() + ", getState()=" + getState() + ", getPublish_date()="
+				+ getPublish_date() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
+
+
 	
 	
 }

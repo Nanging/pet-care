@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.tools.Tool;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,26 +40,23 @@ import com.stu.petc.mapper.UserMapper;
  *
  */
 import com.stu.petc.service.FosterFilerService;
+import com.stu.petc.util.Tools;
 import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqFosterNote;
 @Controller
 public class FosterageController {
 	@Autowired
 	FosterFilerService service;
-	
-	@Autowired
-	FosterMapper mapper;
-	
 	@Autowired
 	UserMapper userMapper;
 	
 	@RequestMapping("/foster/detail/{id}")
 	public String getFosterDetail(@PathVariable("id") Integer id,Map<String, Object> model) {
-		FosterNote fosterNote = mapper.getFosterByID(id);
+		FosterNote fosterNote = service.getFosterByID(id);
 		System.out.println(fosterNote+"-"+id);
 		
 		User user = userMapper.getUserByID(fosterNote.getEditor());
-		
+		System.out.println(Tools.DateFormat(fosterNote.getPublish_date()));
 		model.put("publisher", user.getUsername());
 		model.put("foster", fosterNote);
 		return "fosterageDetailPage";
@@ -112,8 +110,8 @@ public class FosterageController {
 	}
 	
 	@GetMapping("/fosterage")
-	public String getData(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String regionSelect,@RequestParam(defaultValue="All") String kindSelect,Model map) {
-
+	public String getFosterage(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String regionSelect,@RequestParam(defaultValue="All") String kindSelect,Model map) {
+		
 		System.out.println(service.doFiler(searchText, regionSelect, kindSelect));
 		map.addAttribute("list", service.doFiler(searchText, regionSelect, kindSelect));
 		return "fosterageTemplate";

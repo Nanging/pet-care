@@ -17,4 +17,8 @@ public class AdoptionFilerService {
 		List<AdoptionNote> rawList = mapper.getAdoption(searchText, regionSelect, kindSelect);
 		return rawList;
 	}
+	public AdoptionNote getAdoptionByID(Integer id) {
+
+		return mapper.getAdoptionByID(id);
+	}
 }

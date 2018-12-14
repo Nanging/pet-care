@@ -1,18 +1,23 @@
 package com.stu.petc.beans;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class AdoptionNote {
+public class ShareNote implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String title;
 	private Integer editor;
 	private String type;
-	private String location;
-	private String text;
-	private Integer actor;
-	private Integer state;
+	private String content;
 	private Timestamp publish_date;
+	private Integer likes;
+	private Integer comments;
 	public Integer getId() {
 		return id;
 	}
@@ -37,29 +42,11 @@ public class AdoptionNote {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getLocation() {
-		return location;
+	public String getContent() {
+		return content;
 	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
-	public String getText() {
-		return text;
-	}
-	public void setText(String text) {
-		this.text = text;
-	}
-	public Integer getActor() {
-		return actor;
-	}
-	public void setActor(Integer actor) {
-		this.actor = actor;
-	}
-	public Integer getState() {
-		return state;
-	}
-	public void setState(Integer state) {
-		this.state = state;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public Timestamp getPublish_date() {
 		return publish_date;
@@ -67,12 +54,24 @@ public class AdoptionNote {
 	public void setPublish_date(Timestamp publish_date) {
 		this.publish_date = publish_date;
 	}
+	public Integer getLikes() {
+		return likes;
+	}
+	public void setLikes(Integer likes) {
+		this.likes = likes;
+	}
+	public Integer getComments() {
+		return comments;
+	}
+	public void setComments(Integer comments) {
+		this.comments = comments;
+	}
 	@Override
 	public String toString() {
-		return "AdoptionNote [id=" + id + ", title=" + title + ", editor=" + editor + ", type=" + type + ", location="
-				+ location + ", text=" + text + ", actor=" + actor + ", state=" + state + ", publish_date="
-				+ publish_date + "]";
+		return "ShareNote [id=" + id + ", title=" + title + ", editor=" + editor + ", type=" + type + ", content="
+				+ content + ", publish_date=" + publish_date + ", likes=" + likes + ", comments=" + comments + "]";
 	}
 
+	
 	
 }

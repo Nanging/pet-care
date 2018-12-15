@@ -152,10 +152,31 @@ public class FosterageController {
 	}
 	
 	@GetMapping("/fosterage")
-	public String getFosterage(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String regionSelect,@RequestParam(defaultValue="All") String kindSelect,Model map) {
+	public String getFosterage(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String regionSelect,@RequestParam(defaultValue="All") String kindSelect,Model map) throws FileNotFoundException {
 		
-		System.out.println(service.doFiler(searchText, regionSelect, kindSelect));
-		map.addAttribute("list", service.doFiler(searchText, regionSelect, kindSelect));
+		List<FosterNote> fosterNotes = service.doFiler(searchText, regionSelect, kindSelect);
+		System.out.println(fosterNotes);
+		
+		for(FosterNote fosterNote:fosterNotes) {
+			String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/" + String.valueOf(fosterNote.getId()) + "/";
+			File directory = new File(basepath);
+			if(directory.isDirectory()){
+				File []files = directory.listFiles();
+				for(File fileIndex:files){
+					if(fileIndex.isDirectory()){
+					
+					}else {
+					// if is file
+					fosterNote.setTitleimg("../staticImg/forsterage/" + String.valueOf(fosterNote.getId()) + "/" + fileIndex.getName());
+					System.out.println(String.valueOf(fosterNote.getId()) + ":" + fosterNote.getTitleimg());
+					break;
+					}
+				}
+			}
+		}
+		
+		map.addAttribute("list", fosterNotes);
+		
 		return "fosterageTemplate";
 	}
 }

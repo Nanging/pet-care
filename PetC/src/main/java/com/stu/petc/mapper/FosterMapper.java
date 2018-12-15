@@ -36,6 +36,9 @@ public interface FosterMapper {
 	@Select("select * from foster where state = 0 limit #{begin}, #{end}")
 	public List<FosterNote> getFosterList(Integer begin, Integer end);
 	
+	@Select("select * from foster where editor = #{user_id}")
+	public List<FosterNote> getFosterListByUser(Integer user_id);
+	
 	@Select("select title from foster where state = 0 limit #{begin}, #{end}")
 	public List<String> getTitleList(Integer begin, Integer end);
 	

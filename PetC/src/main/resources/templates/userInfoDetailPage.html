@@ -1,0 +1,100 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+    <!--<meta charset="utf-8">-->
+    <!--<title>Bootstrap 实例 - 折叠面板</title>-->
+    <!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td class="text-center">帖子相关人的名字</td>
+                        <!--帖子未确认前显示如下信息-->
+                        <td><a class="glyphicon glyphicon-ok-sign" onclick="confirm(this)"></a>
+                            <a class="glyphicon glyphicon-info-sign" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseOne">
+
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </h4>
+        </div>
+        <!--详细信息-->
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+              <!--3333333333333333333333333333333333333333这里可以填对帖子感兴趣的人详细的信息。可以放名字，性别，感兴趣的事，个人介绍，评分-->
+                <div class="tab-pane fade in active">
+                    <div>
+                        <h1>Tom</h1>
+                        <p>Personal Infomation<br>
+                            Personal Infomation<br>
+                            Personal Infomation<br>
+                            Personal Infomation<br>
+                            Personal Infomation<br>
+                            Personal Infomation</p>
+                    </div>
+                    <div class="page-header"></div>
+                    <div>
+                        <h1>Personal Infomation</h1>
+                        <p>Phone Number: <a>12345678910</a></p>
+                        <p>other infomation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="panel-heading">-->
+            <!--<h4 class="panel-title">-->
+                <!--<table class="table table-striped">-->
+                    <!--<tbody>-->
+                    <!--<tr>-->
+                        <!--<td class="text-center">帖子相关人的名字</td>-->
+                        <!--&lt;!&ndash;帖子未确认前显示如下按钮&ndash;&gt;-->
+                        <!--&lt;!&ndash;确认后显示已确认&ndash;&gt;-->
+                        <!--<td><a class="glyphicon glyphicon-ok-sign" onclick="confirm(this)"></a>-->
+                            <!--<a class="glyphicon glyphicon-info-sign" data-toggle="collapse" data-parent="#accordion"-->
+                               <!--href="#collapseThree">-->
+
+                            <!--</a>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</h4>-->
+        <!--</div>-->
+        <!--<div id="collapseThree" class="panel-collapse collapse">-->
+            <!--<div class="panel-body">-->
+                <!--&lt;!&ndash;3333333333333333333333333333333333333333这里可以填对帖子感兴趣的人详细的信息。可以放名字，性别，感兴趣的事，个人介绍，评分&ndash;&gt;-->
+                <!--<div class="tab-pane fade in active" id="Personal">-->
+                    <!--<div>-->
+                        <!--<h1>Bob</h1>-->
+                        <!--<p>Personal Infomation<br>-->
+                            <!--Personal Infomation<br>-->
+                            <!--Personal Infomation<br>-->
+                            <!--Personal Infomation<br>-->
+                            <!--Personal Infomation<br>-->
+                            <!--Personal Infomation</p>-->
+                    <!--</div>-->
+                    <!--<div class="page-header"></div>-->
+                    <!--<div id="personalInfo">-->
+                        <!--<h1>Personal Infomation</h1>-->
+                        <!--<p>Phone Number: <a>12345678910</a></p>-->
+                        <!--<p>other infomation</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>
+
+<!--</body>-->
+<!--</html>-->

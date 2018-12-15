@@ -72,7 +72,7 @@
                           <div class="adoptionInfo">
                               <div class="col-md-4 col-sm-6 item">
                                   <div class="thumbnail">
-                                      <img src="images/img3.jpg" alt="">
+                                      <img src="../staticImg/1.jpg" alt="">
                                       <div class="caption">
                                           <h3>Adoption Name</h3>
                                           <p>General Infomation </p>
@@ -80,95 +80,65 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/1.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/img6.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/img8.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
                           </div>
                       </div>
                       <!--Fosterage infomation-->
-                      <div th:each="foster : ${fosterlist}" class="masonry-container tab-pane fade" id="Fosterage">
-                          <!--<div id="fosterageInfo" th:each="FosterNote : ${list}">-->
-                          <div id="fosterageInfo">
-                          <div class="col-md-4 col-sm-6 item" >
-                                  <div class="thumbnail">
-                                      <img src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/foster/detail/id'}" onclick="showDetail(this)">
-                                      <div class="caption">
-                                          <h3 th:text="${foster.title}">Adoption Name</h3>
-                                          <p th:text="${foster.text}>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" th:attr="data-detailTarget=@{'/foster/detail/id2'}" onclick="showInfo(this)" role="button">Info </a>
-                                              <a href="#" class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/1.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/img6.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/img6.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/img8.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+                      <!--<div th:each="foster : ${fosterlist}" class="masonry-container tab-pane fade" id="Fosterage">-->
+                          <!--&lt;!&ndash;<div id="fosterageInfo" th:each="FosterNote : ${list}">&ndash;&gt;-->
+                          <!--<div id="fosterageInfo">-->
+                          <!--<div class="col-md-4 col-sm-6 item" >-->
+                                  <!--<div class="thumbnail">-->
+                                      <!--<img src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/foster/detail/id'}" onclick="showDetail(this)">-->
+                                      <!--<div class="caption">-->
+                                          <!--<h3 th:text="${foster.title}">Adoption Name</h3>-->
+                                          <!--<p th:text="${foster.text}>General Infomation </p>-->
+                                          <!--<p><a href="#" class="btn btn-primary" th:attr="data-detailTarget=@{'/foster/detail/id2'}" onclick="showInfo(this)" role="button">Info </a>-->
+                                              <!--<a href="#" class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>-->
+                                      <!--</div>-->
+                                  <!--</div>-->
+                              <!--</div>-->
+                              <!--<div class="col-md-4 col-sm-6 item">-->
+                                  <!--<div class="thumbnail">-->
+                                      <!--<img src="images/1.jpg" alt="">-->
+                                      <!--<div class="caption">-->
+                                          <!--<h3>Adoption Name</h3>-->
+                                          <!--<p>General Infomation </p>-->
+                                          <!--<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>-->
+                                      <!--</div>-->
+                                  <!--</div>-->
+                              <!--</div>-->
+                              <!--<div class="col-md-4 col-sm-6 item">-->
+                                  <!--<div class="thumbnail">-->
+                                      <!--<img src="images/img6.jpg" alt="">-->
+                                      <!--<div class="caption">-->
+                                          <!--<h3>Adoption Name</h3>-->
+                                          <!--<p>General Infomation </p>-->
+                                          <!--<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>-->
+                                      <!--</div>-->
+                                  <!--</div>-->
+                              <!--</div>-->
+                              <!--<div class="col-md-4 col-sm-6 item">-->
+                                  <!--<div class="thumbnail">-->
+                                      <!--<img src="images/img6.jpg" alt="">-->
+                                      <!--<div class="caption">-->
+                                          <!--<h3>Adoption Name</h3>-->
+                                          <!--<p>General Infomation </p>-->
+                                          <!--<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>-->
+                                      <!--</div>-->
+                                  <!--</div>-->
+                              <!--</div>-->
+                              <!--<div class="col-md-4 col-sm-6 item">-->
+                                  <!--<div class="thumbnail">-->
+                                      <!--<img src="images/img8.jpg" alt="">-->
+                                      <!--<div class="caption">-->
+                                          <!--<h3>Adoption Name</h3>-->
+                                          <!--<p>General Infomation </p>-->
+                                          <!--<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>-->
+                                      <!--</div>-->
+                                  <!--</div>-->
+                              <!--</div>-->
+                          <!--</div>-->
+                      <!--</div>-->
                       <!--Share infomation-->
                       <div class="masonry-container tab-pane fade" id="Share">
                           <div id="shareInfo">
@@ -202,46 +172,19 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/1.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/img6.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/img8.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
                           </div>
                       </div>
                   </div>
+               </div>
           </div>
-      </div>
           <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
               <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                   <div class="modal-content">
+                      <div class="modal-header">
+                          detailModal
+                      </div>
                       <div class="modal-body">
-                          detail
+
                       </div>
                       <div class="modal-footer">
 
@@ -253,25 +196,10 @@
               <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                   <div class="modal-content">
                       <div class="modal-header">
-                          Contact Infomation
+                          infoModal
                       </div>
                       <div class="modal-body" id="infoTable">
-                          <table class="table table-striped">
-                              <thead>
-                              <tr>
-                                  <td>Name</td>
-                                  <td>Phone Number</td>
-                                  <td>Confirm</td>
-                              </tr>
-                              </thead>
-                              <tbody>
-                              <tr>
-                                  <td>帖子相关人的名字</td>
-                                  <td>贴子相关的人的手机号码</td>
-                                  <td>Confirmed</td>
-                              </tr>
-                              </tbody>
-                          </table>
+
                       </div>
                       <div class="modal-footer">
 
@@ -279,6 +207,7 @@
                   </div>
               </div>
           </div>
+      </div>
 </body>
 <script>
     $('#myTab a').click(function (e) {

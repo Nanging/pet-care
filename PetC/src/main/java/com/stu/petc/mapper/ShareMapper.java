@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
 
 import com.stu.petc.beans.FosterNote;
 import com.stu.petc.beans.ShareNote;
@@ -30,7 +31,18 @@ public interface ShareMapper {
 	@Select("select title from share limit #{begin}, #{end}")
 	public List<String> getTitleList(Integer begin, Integer end);
 	
-
+	@Update("update share set share.like = share.like + 1 where id = #{id};")
+	public Integer updateLike(Integer id);
+	
+	@Insert("insert into share_like (share_id,user_id)values(#{share_id},#{user_id})")
+	public Integer addLike(Integer share_id,Integer user_id);
+	
+	@Update("update share set share.comment = share.comment + 1 where id = #{id};")
+	public Integer updateComment(Integer id);
+	
+	@Insert("insert into share_comment (share_id,commenter,comment)values(#{share_id},#{commenter},#{comment})")
+	public Integer addComment(Integer share_id,Integer commenter,String comment);
+	
 	
 	@SelectProvider(type=SqlProvider.class,method="getShare")
 	public List<ShareNote> getShare(String title,String type);
@@ -40,4 +52,6 @@ public interface ShareMapper {
 	
 	@Select("select count(*) from share_comment where share_id = #{id}")
 	public Integer getCommentsNumber(Integer id);
+	
+	
 }

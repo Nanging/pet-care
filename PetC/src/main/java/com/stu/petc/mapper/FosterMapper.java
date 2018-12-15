@@ -15,12 +15,18 @@ import com.stu.petc.util.SqlProvider;;
 
 @Mapper
 public interface FosterMapper {
-	@Insert("insert into foster (title,editor,type,location,text)values(#{title},#{editor},#{type},#{location},#{text})")
-	public Integer add(FosterNote newFoster);
+//	@Insert("insert into foster (title,editor,type,location,text)values(#{title},#{editor},#{type},#{location},#{text})")
+//	public Integer add(FosterNote newFoster);
+	
+	@Select("select max(id) from foster")
+	public Integer getMaxId();
+	
+	@Insert("insert into foster (id,title,editor,type,location,text)values(#{id},#{title},#{editor},#{type},#{location},#{text})")
+	public Integer addFoster(Integer id, String title, Integer editor, String type, String location, String text);
 	
 	@Delete("delete from foster where id=#{arg1}")
 	public Integer deleteFosterByID(Integer id);
-	
+
 //	@Update("update user set username=#{username},password=#{password},user_tel=#{user_tel} where user_id=#{user_id}")
 //	public Integer update(User user);
 //	

@@ -72,103 +72,45 @@
                           <div class="adoptionInfo">
                               <div class="col-md-4 col-sm-6 item">
                                   <div class="thumbnail">
-                                      <img src="../staticImg/1.jpg" alt="">
+                                      <img src="../staticImg/1.jpg" alt="" data-detailTarget="adoptionDetailPage.html" onclick="showDetail(this)">
                                       <div class="caption">
                                           <h3>Adoption Name</h3>
                                           <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Info    </a>      <a href="#" class="btn btn-danger" role="button">Delete</a></p>
+                                          <p><a href="#" class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Info    </a>
+                                              <a href="#" class="btn btn-danger" th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
                                       </div>
                                   </div>
                               </div>
                           </div>
                       </div>
                       <!--Fosterage infomation-->
-                      <!--<div th:each="foster : ${fosterlist}" class="masonry-container tab-pane fade" id="Fosterage">-->
-                          <!--&lt;!&ndash;<div id="fosterageInfo" th:each="FosterNote : ${list}">&ndash;&gt;-->
-                          <!--<div id="fosterageInfo">-->
-                          <!--<div class="col-md-4 col-sm-6 item" >-->
-                                  <!--<div class="thumbnail">-->
-                                      <!--<img src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/foster/detail/id'}" onclick="showDetail(this)">-->
-                                      <!--<div class="caption">-->
-                                          <!--<h3 th:text="${foster.title}">Adoption Name</h3>-->
-                                          <!--<p th:text="${foster.text}>General Infomation </p>-->
-                                          <!--<p><a href="#" class="btn btn-primary" th:attr="data-detailTarget=@{'/foster/detail/id2'}" onclick="showInfo(this)" role="button">Info </a>-->
-                                              <!--<a href="#" class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>-->
-                                      <!--</div>-->
-                                  <!--</div>-->
-                              <!--</div>-->
-                              <!--<div class="col-md-4 col-sm-6 item">-->
-                                  <!--<div class="thumbnail">-->
-                                      <!--<img src="images/1.jpg" alt="">-->
-                                      <!--<div class="caption">-->
-                                          <!--<h3>Adoption Name</h3>-->
-                                          <!--<p>General Infomation </p>-->
-                                          <!--<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>-->
-                                      <!--</div>-->
-                                  <!--</div>-->
-                              <!--</div>-->
-                              <!--<div class="col-md-4 col-sm-6 item">-->
-                                  <!--<div class="thumbnail">-->
-                                      <!--<img src="images/img6.jpg" alt="">-->
-                                      <!--<div class="caption">-->
-                                          <!--<h3>Adoption Name</h3>-->
-                                          <!--<p>General Infomation </p>-->
-                                          <!--<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>-->
-                                      <!--</div>-->
-                                  <!--</div>-->
-                              <!--</div>-->
-                              <!--<div class="col-md-4 col-sm-6 item">-->
-                                  <!--<div class="thumbnail">-->
-                                      <!--<img src="images/img6.jpg" alt="">-->
-                                      <!--<div class="caption">-->
-                                          <!--<h3>Adoption Name</h3>-->
-                                          <!--<p>General Infomation </p>-->
-                                          <!--<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>-->
-                                      <!--</div>-->
-                                  <!--</div>-->
-                              <!--</div>-->
-                              <!--<div class="col-md-4 col-sm-6 item">-->
-                                  <!--<div class="thumbnail">-->
-                                      <!--<img src="images/img8.jpg" alt="">-->
-                                      <!--<div class="caption">-->
-                                          <!--<h3>Adoption Name</h3>-->
-                                          <!--<p>General Infomation </p>-->
-                                          <!--<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>-->
-                                      <!--</div>-->
-                                  <!--</div>-->
-                              <!--</div>-->
-                          <!--</div>-->
-                      <!--</div>-->
+                      <div class="masonry-container tab-pane fade" id="Fosterage">
+                          <!--<div id="fosterageInfo" th:each="FosterNote : ${list}">-->
+                          <div id="fosterageInfo">
+                              <div class="col-md-4 col-sm-6 item" >
+                                  <div class="thumbnail">
+                                      <img src="../staticImg/1.jpg" alt="" data-detailTarget="fosterageDetailPage.html" onclick="showDetail(this)">
+                                      <div class="caption">
+                                          <h3>Fosterage Name</h3>
+                                          <p>General Infomation </p>
+                                          <p><a href="#" class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Info </a>
+                                              <a href="#" class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                       <!--Share infomation-->
                       <div class="masonry-container tab-pane fade" id="Share">
                           <div id="shareInfo">
                               <div class="col-md-4 col-sm-6 item">
                                   <div class="thumbnail">
-                                      <img src="images/img3.jpg" alt="">
+                                      <img src="../staticImg/img3.jpg" alt="" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)">
                                       <div class="caption">
-                                          <h3>Adoption Name</h3>
+                                          <h3>Share Name</h3>
                                           <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/1.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="images/img6.jpg" alt="">
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                          <p><a href="#" class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Detail</a>
+                                              <a href="#" class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
                                       </div>
                                   </div>
                               </div>

@@ -1,6 +1,8 @@
 function showDetail(tar) {
     console.log("click");
     var link=tar.getAttribute('data-detailTarget');
+    alert(link);
+    console.log(link);
     $("#detailModal .modal-body").load(link,function () {
         $("#detailModal").show();
     })
@@ -9,6 +11,7 @@ function showDetail(tar) {
 function showInfo(tar) {
     console.log("click Info");
     var link=tar.getAttribute('data-detailTarget');
+    console.log(link);
     $("#infoModal .modal-body").load(link,function () {
         $("#infoModal").show();
     })
@@ -40,6 +43,7 @@ function deleteData(tar) {
 function confirm(tar) {
     console.log("click Info");
     var link=tar.getAttribute('data-detailTarget');
+    console.log(link);
     $("#infoModal .modal-body").load(link,function () {
         $("#infoModal").show();
     })

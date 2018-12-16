@@ -20,6 +20,8 @@ public class FosterNote implements Serializable{
 	private Integer actor;
 	private Integer state;
 	private Timestamp publish_date;
+	private String titleimg;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -74,18 +76,22 @@ public class FosterNote implements Serializable{
 	public void setPublish_date(Timestamp publish_date) {
 		this.publish_date = publish_date;
 	}
+	
+	public String getTitleimg() {
+		return titleimg;
+	}
+	public void setTitleimg(String titleimg) {
+		this.titleimg = titleimg;
+	}
 	@Override
 	public String toString() {
 		return "FosterNote [id=" + id + ", title=" + title + ", editor=" + editor + ", type=" + type + ", location="
 				+ location + ", text=" + text + ", actor=" + actor + ", state=" + state + ", publish_date="
-				+ publish_date + ", getId()=" + getId() + ", getTitle()=" + getTitle() + ", getEditor()=" + getEditor()
-				+ ", getType()=" + getType() + ", getLocation()=" + getLocation() + ", getText()=" + getText()
-				+ ", getActor()=" + getActor() + ", getState()=" + getState() + ", getPublish_date()="
-				+ getPublish_date() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ publish_date + ", titleimg=" + titleimg + ", getId()=" + getId() + ", getTitle()=" + getTitle()
+				+ ", getEditor()=" + getEditor() + ", getType()=" + getType() + ", getLocation()=" + getLocation()
+				+ ", getText()=" + getText() + ", getActor()=" + getActor() + ", getState()=" + getState()
+				+ ", getPublish_date()=" + getPublish_date() + ", getTitleimg()=" + getTitleimg() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
-
-	
-	
 }

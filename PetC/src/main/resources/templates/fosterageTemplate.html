@@ -51,7 +51,8 @@
                 <!-- put the target url in the data-detailTarget -->
                 <div class="grid-item  grid-item--width2" th:attr="data-detailTarget=@{'/foster/detail/'+${FosterNote.id}}" 
 					 onclick="showDetail(this)">
-                    <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
+					<img class="sample0" th:if="${FosterNote.titleimg} == null"    src="../staticImg/Sample1920_1080.jpg"/>
+                    <img class="sample0" th:if="${FosterNote.titleimg} != null" th:src="@{${FosterNote.titleimg}}"/>
                     <div class="title">
                         <h3 class="titleText" th:text="${FosterNote.title}">This is a sample tile</h3>
                     </div>

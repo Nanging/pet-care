@@ -1,7 +1,6 @@
 function showDetail(tar) {
     console.log("click");
     var link=tar.getAttribute('data-detailTarget');
-    alert(link);
     console.log(link);
     $("#detailModal .modal-body").load(link,function () {
         $("#detailModal").show();

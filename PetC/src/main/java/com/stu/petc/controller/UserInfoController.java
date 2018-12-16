@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,7 +29,7 @@ public class UserInfoController {
 	UserInfoService service;
 	
 	@RequestMapping("/user/info")
-	public String userInfo(HttpServletRequest request,ModelAndView model) {
+	public String userInfo(HttpServletRequest request,Model map) {
 		String username = "";
 		Cookie[] cookies = request.getCookies();
 		if (null!=cookies) {
@@ -60,9 +61,9 @@ public class UserInfoController {
 			for (ShareNote shareNote : shareList) {
 				System.out.println(shareNote);
 			}
-			model.addObject("fosterList", fosterList);
-			model.addObject("shareList", shareList);
-			model.addObject("adoptionList", adoptionList);
+			map.addAttribute("fosterList", fosterList);
+			map.addAttribute("shareList", shareList);
+			map.addAttribute("adoptionList", adoptionList);
 			
 		}
 		return "userInfo";

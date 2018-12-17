@@ -1,5 +1,7 @@
 package com.stu.petc.service;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,12 @@ import com.stu.petc.beans.AdoptionNote;
 import com.stu.petc.beans.FosterNote;
 import com.stu.petc.beans.FosterageCandidate;
 import com.stu.petc.beans.ShareNote;
+import com.stu.petc.beans.User;
 import com.stu.petc.mapper.AdoptionMapper;
 import com.stu.petc.mapper.FosterMapper;
 import com.stu.petc.mapper.ShareMapper;
 import com.stu.petc.mapper.UserInfoMapper;
+import com.stu.petc.mapper.UserMapper;
 
 @Service
 public class UserInfoService {
@@ -25,6 +29,8 @@ public class UserInfoService {
 	AdoptionMapper adoptionMapper;
 	@Autowired
 	UserInfoMapper userInfoMapper;
+	@Autowired
+	UserMapper userMapper;
 	public List<FosterNote> getFosterageList() {
 		return null;
 	}
@@ -75,4 +81,21 @@ public class UserInfoService {
 		// TODO Auto-generated method stub
 		return userInfoMapper.getAdoptionCandidates(id);
 	}
+	
+	public AdoptionNote getAdoptionByID(Integer id) {
+		return adoptionMapper.getAdoptionByID(id);
+	}
+	
+	public FosterNote getFosterByID(Integer id) {
+		return fosterMapper.getFosterByID(id);
+	}
+	
+	public ShareNote getShareByID(Integer id) {
+		return shareMapper.getShareByID(id);
+	}
+	
+	public User getUserByID(Integer id) {
+		return userMapper.getUserByID(id);
+	}
+	
 }

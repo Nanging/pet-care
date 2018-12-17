@@ -15,6 +15,7 @@
             <div class="carousel-item " th:each="path:${paths}" th:style="'background-image: url('+ @{${path}} +')'" th:if="${pathStat.index} eq '0'" th:class="'carousel-item active'">
             </div>
             <div class="carousel-item " th:each="path:${paths}" th:style="'background-image: url('+ @{${path}} +')'" th:if="${pathStat.index} gt '0'">
+            </div>
         </div>
         <a class="carousel-control-prev" href="#imageShow" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

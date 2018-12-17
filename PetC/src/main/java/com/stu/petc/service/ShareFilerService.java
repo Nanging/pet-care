@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stu.petc.beans.FosterNote;
+import com.stu.petc.beans.ShareCommenter;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.mapper.ShareMapper;
 @Service
@@ -34,6 +35,9 @@ public class ShareFilerService {
 	
 	public void addShare(Integer id, String title, Integer editor, String type, String content) {
 		mapper.addShare(id, title, editor, type, content);
+	}
+	public List<ShareCommenter> getShareCommenters(Integer shareid){
+		return mapper.getShareCommenters(shareid);
 	}
 	
 }

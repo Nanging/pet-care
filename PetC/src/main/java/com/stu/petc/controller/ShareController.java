@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.stu.petc.beans.AdoptionNote;
 import com.stu.petc.beans.FosterNote;
+import com.stu.petc.beans.ShareCommenter;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.beans.User;
 import com.stu.petc.mapper.FosterMapper;
@@ -67,11 +68,11 @@ public class ShareController {
 		}
 		
 		User user = userMapper.getUserByID(shareNote.getEditor());
-		
+		List<ShareCommenter> commenters = service.getShareCommenters(id);
 		model.put("publisher", user.getUsername());
 		model.put("share", shareNote);
 		model.put("paths", paths);
-		
+		model.put("commenters", commenters);
 		return "shareDetailPage";
 	}
 	

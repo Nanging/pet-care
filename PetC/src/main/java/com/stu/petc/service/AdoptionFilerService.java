@@ -21,4 +21,13 @@ public class AdoptionFilerService {
 
 		return mapper.getAdoptionByID(id);
 	}
+	
+	public Integer getMaxId() {
+		return mapper.getMaxId();
+	}
+	
+	public void addAdoption(Integer id, String title, Integer editor, String type, String location, String text) {
+		mapper.addAdoption(id, title, editor, type, location, text);
+	}
+	
 }

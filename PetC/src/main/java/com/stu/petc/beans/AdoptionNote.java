@@ -13,6 +13,8 @@ public class AdoptionNote {
 	private Integer actor;
 	private Integer state;
 	private Timestamp publish_date;
+	private String titleimg;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -67,11 +69,18 @@ public class AdoptionNote {
 	public void setPublish_date(Timestamp publish_date) {
 		this.publish_date = publish_date;
 	}
+	
+	public String getTitleimg() {
+		return titleimg;
+	}
+	public void setTitleimg(String titleimg) {
+		this.titleimg = titleimg;
+	}
 	@Override
 	public String toString() {
 		return "AdoptionNote [id=" + id + ", title=" + title + ", editor=" + editor + ", type=" + type + ", location="
 				+ location + ", text=" + text + ", actor=" + actor + ", state=" + state + ", publish_date="
-				+ publish_date + "]";
+				+ publish_date + ", titleimg=" + titleimg + "]";
 	}
 
 	

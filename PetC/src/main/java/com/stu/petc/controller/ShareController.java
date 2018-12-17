@@ -46,6 +46,6 @@ public class ShareController {
 		
 		model.put("publisher", user.getUsername());
 		model.put("share", shareNote);
-		return "fosterageDetailPage";
+		return "shareDetailPage";
 	}
 }

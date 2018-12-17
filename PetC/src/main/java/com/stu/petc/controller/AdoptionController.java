@@ -2,8 +2,11 @@ package com.stu.petc.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.stu.petc.beans.AdoptionNote;
+import com.stu.petc.beans.FosterNote;
 import com.stu.petc.beans.User;
 import com.stu.petc.mapper.AdoptionMapper;
 import com.stu.petc.mapper.UserMapper;
@@ -36,15 +40,35 @@ public class AdoptionController {
 	UserMapper userMapper;
 	
 	@RequestMapping("/adopt/detail/{id}")
-	public String getAdoptionDetail(@PathVariable("id") Integer id,Map<String, Object> model) {
+	public String getAdoptionDetail(@PathVariable("id") Integer id,Map<String, Object> model) throws FileNotFoundException {
 		AdoptionNote adoptionNote = service.getAdoptionByID(id);
 		System.out.println(adoptionNote+"-"+id);
+		
+		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/" + String.valueOf(id) + "/";
+		System.out.println(basepath);
+		
+		ArrayList<String> paths = new ArrayList<String>();
+		File directory = new File(basepath);
+		if(directory.isDirectory()){
+			File []files = directory.listFiles();
+			for(File fileIndex:files){
+				if(fileIndex.isDirectory()){
+				
+				}else {
+				// if is file
+				paths.add("../staticImg/adoption/" + String.valueOf(id) + "/" + fileIndex.getName());
+				}
+			}
+		}
+		
+		System.out.println("paths:" + paths);
 		
 		User user = userMapper.getUserByID(adoptionNote.getEditor());
 		
 		model.put("publisher", user.getUsername());
 		model.put("phone", user.getUser_tel());
 		model.put("adoption", adoptionNote);
+		model.put("paths", paths);
 		return "adoptionDetailPage";
 	}
 	
@@ -58,7 +82,8 @@ public class AdoptionController {
 			return -1;
 		}
 		
-		String basePath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/";
+		int nextId = service.getMaxId() + 1;
+		String basePath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/" + String.valueOf(nextId) + "/";
         System.out.println("------------------");
 		System.out.println("basePath:" + basePath);
 		
@@ -87,19 +112,59 @@ public class AdoptionController {
 	
 	@PostMapping("/publishAdoption")
 	@ResponseBody
-	public LoginResponse uploadAdoptionData(@RequestBody ReqAdoptionNote reqAdoptionNote) {
+	public LoginResponse uploadAdoptionData(@RequestBody ReqAdoptionNote reqAdoptionNote, HttpServletRequest request) {
 		
 		System.out.println("-----------------");
 		System.out.println(reqAdoptionNote);
+		
+		String username="";
+		Cookie[] cookies = request.getCookies();
+		if (null != cookies) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginStatus")) {
+					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+						/**
+						 * check user
+						 */
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+					}
+				}
+			}
+		}
+		int editor = userMapper.getUserByName(username).getUser_id();
+		int nextId = service.getMaxId() + 1;
+		service.addAdoption(nextId,reqAdoptionNote.getNewTitle(), editor,reqAdoptionNote.getNewKindSelect(),reqAdoptionNote.getNewRegionSelect(),reqAdoptionNote.getNewContent());
 		
 		return new LoginResponse(0, "success", null);
 	}
 	
 	@GetMapping("/adoption")
-	public String getData(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String regionSelect,@RequestParam(defaultValue="All") String kindSelect,Model map) {
+	public String getData(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String regionSelect,@RequestParam(defaultValue="All") String kindSelect,Model map) throws FileNotFoundException {
 
-		System.out.println(service.doFiler(searchText, regionSelect, kindSelect));
-		map.addAttribute("list", service.doFiler(searchText, regionSelect, kindSelect));
+		List<AdoptionNote> adoptionNotes = service.doFiler(searchText, regionSelect, kindSelect);
+		System.out.println(adoptionNotes);
+		
+		for(AdoptionNote adoptionNote:adoptionNotes) {
+			String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/";
+			File directory = new File(basepath);
+			if(directory.isDirectory()){
+				File []files = directory.listFiles();
+				for(File fileIndex:files){
+					if(fileIndex.isDirectory()){
+					
+					}else {
+					// if is file
+					adoptionNote.setTitleimg("../staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/" + fileIndex.getName());
+					System.out.println(String.valueOf(adoptionNote.getId()) + ":" + adoptionNote.getTitleimg());
+					break;
+					}
+				}
+			}
+		}
+		
+		map.addAttribute("list", adoptionNotes);
+		
 		return "adoptionTemplate";
 	}
 	

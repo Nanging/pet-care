@@ -13,8 +13,14 @@ import com.stu.petc.util.SqlProvider;
 
 @Mapper
 public interface AdoptionMapper {
-	@Insert("insert into adoption (title,editor,type,location,text)values(#{title},#{editor},#{type},#{location},#{text})")
-	public Integer add(AdoptionNote newAdoption);
+//	@Insert("insert into adoption (title,editor,type,location,text)values(#{title},#{editor},#{type},#{location},#{text})")
+//	public Integer add(AdoptionNote newAdoption);
+	
+	@Select("select max(id) from adoption")
+	public Integer getMaxId();
+	
+	@Insert("insert into adoption (id,title,editor,type,location,text)values(#{id},#{title},#{editor},#{type},#{location},#{text})")
+	public Integer addAdoption(Integer id, String title, Integer editor, String type, String location, String text);
 	
 	@Delete("delete from adoption where id=#{arg1}")
 	public Integer deleteAdoptionByID(Integer id);

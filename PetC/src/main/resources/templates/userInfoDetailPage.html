@@ -9,14 +9,15 @@
 <!--</head>-->
 <!--<body>-->
 
-<div class="panel-group" id="accordion">
+<div class="panel-group" id="accordion"  xmlns:th="http://www.thymeleaf.org">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <table class="table table-striped">
-                    <tbody>
+                    <tbody th:each="candidate : ${list}">
+                    
                     <tr>
-                        <td class="text-center">帖子相关人的名字</td>
+                        <td class="text-center" th:text="${candidate.applier}">帖子相关人的名字</td>
                         <!--帖子未确认前显示如下信息-->
                         <td><a class="glyphicon glyphicon-ok-sign" onclick="confirm(this)"></a>
                             <a class="glyphicon glyphicon-info-sign" data-toggle="collapse" data-parent="#accordion"

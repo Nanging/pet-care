@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stu.petc.beans.AdoptionCandidate;
 import com.stu.petc.beans.AdoptionNote;
 import com.stu.petc.beans.FosterNote;
+import com.stu.petc.beans.FosterageCandidate;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.mapper.UserInfoMapper;
 import com.stu.petc.mapper.UserMapper;
@@ -91,6 +93,22 @@ public class UserInfoController {
 		
 		service.deleteShareByID(id);
 		return "SUCCESS";
+	}
+	
+	@RequestMapping("/foster/show/{id}")
+	public String showFosterageCandidates(@PathVariable("id") Integer id,Model map) {
+		List<FosterageCandidate> list = service.getFosterageCandidates(id);
+		map.addAttribute("candidate", list);
+		map.addAttribute("type", "fosterage");
+		return "userInfoDetailPage";
+	}
+	
+	@RequestMapping("/adoption/show/{id}")
+	public String showAdoptionCandidates(@PathVariable("id") Integer id,Model map) {
+		List<AdoptionCandidate> list = service.getAdoptionCandidates(id);
+		map.addAttribute("candidate", list);
+		map.addAttribute("type", "adoption");
+		return "userInfoDetailPage";
 	}
 	
 }

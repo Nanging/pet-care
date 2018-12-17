@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stu.petc.beans.AdoptionCandidate;
 import com.stu.petc.beans.AdoptionNote;
 import com.stu.petc.beans.FosterNote;
+import com.stu.petc.beans.FosterageCandidate;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.mapper.AdoptionMapper;
 import com.stu.petc.mapper.FosterMapper;
@@ -63,5 +65,14 @@ public class UserInfoService {
 	public Integer deleteShareByID(int id) {
 		return shareMapper.deleteShareByID(id);
 	}
+
+	public List<FosterageCandidate> getFosterageCandidates(Integer id) {
+		// TODO Auto-generated method stub
+		return userInfoMapper.getFosterageCandidates(id);
+	}
 	
+	public List<AdoptionCandidate> getAdoptionCandidates(Integer id) {
+		// TODO Auto-generated method stub
+		return userInfoMapper.getAdoptionCandidates(id);
+	}
 }

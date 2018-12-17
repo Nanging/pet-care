@@ -1,11 +1,10 @@
 function showDetail(tar) {
     console.log("click");
     var link=tar.getAttribute('data-detailTarget');
-    $("#detailModal").modal("show");
-    // console.log(link);
-    // $("#detailModal .modal-body").load(link,function () {
-    //     $("#detailModal").modal("show");
-    // })
+    console.log(link);
+    $("#detailModal .modal-body").load(link,function () {
+        $("#detailModal").modal("show");
+    })
 }
 
 function showInfo(tar) {

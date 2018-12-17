@@ -100,7 +100,7 @@ public class UserInfoController {
 		List<FosterageCandidate> list = service.getFosterageCandidates(id);
 		map.addAttribute("candidate", list);
 		map.addAttribute("type", "fosterage");
-		return "userInfoDetailPage";
+		return "userDetailPage";
 	}
 	
 	@RequestMapping("/adoption/show/{id}")
@@ -108,7 +108,7 @@ public class UserInfoController {
 		List<AdoptionCandidate> list = service.getAdoptionCandidates(id);
 		map.addAttribute("candidate", list);
 		map.addAttribute("type", "adoption");
-		return "userInfoDetailPage";
+		return "userDetailPage";
 	}
 	
 }

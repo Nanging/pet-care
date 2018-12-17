@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>userInfo</title>
-    <link rel="stylesheet" type="text/css" href="../userInfo/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../userInfo/userInfo.css">
-    <script src="../userInfo/jquery-2.2.3.min.js"></script>
-    <script src="../userInfo/bootstrap.js"></script>
-    <script src="../userInfo/masonry.pkgd.min.js"></script>
-    <script src="../userInfo/imagesloaded.pkgd.min.js"></script>
-    <script src="../userInfo/userInfo.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="../css/main.css" type="text/css" rel="stylesheet" media="all">
+    <link href="../css/flexslider.css" type="text/css" rel="stylesheet"  media="all">
+    <link href="../css/font-awesome.css" type="text/css" rel="stylesheet">
+    <script src="../js/modernizr.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/userInfo.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/masonry.pkgd.min.js"></script>
+    <script src="../js/imagesloaded.pkgd.min.js"></script>
+    <script src="../js/userInfo.js"></script>
 
 
 </head>
 <body>
       <div class="container">
-          <div class="page-header">
-          </div>
           <div class="row">
               <div class="col-md-3 GeneralInfo">
                   <div>
@@ -34,19 +43,25 @@
 
               <div class="col-md-8 tab-pane" id="detailInfo">
                   <ul id="myTab" class="nav nav-tabs">
-                      <li class="active">
-                          <a href="#Personal" role="tab" data-toggle="tab">
+                      <li class="nav-item">
+                          <a class="nav-link active" href="#Personal" role="tab" data-toggle="tab">
                               Personal
                           </a>
                       </li>
-                      <li><a href="#Adoption" role="tab" data-toggle="tab">Adoption</a></li>
-                      <li><a href="#Fosterage" role="tab" data-toggle="tab">Fosterage</a></li>
-                      <li><a href="#Share" role="tab" data-toggle="tab">Share</a></li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#Adoption" role="tab" data-toggle="tab">Adoption</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#Fosterage" role="tab" data-toggle="tab">Fosterage</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#Share" role="tab" data-toggle="tab">Share</a>
+                      </li>
                   </ul>
                   <div class="page-header"></div>
                   <div id="myTabContent" class="tab-content">
                       <!--Personal infomation-->
-                      <div class="tab-pane fade in active" id="Personal">
+                      <div class="tab-pane fade show active" id="Personal">
                           <div id="aboutMe">
                           <h1>About Me</h1>
                           <p>Personal Infomation<br>
@@ -71,12 +86,12 @@
                       <div class="masonry-container tab-pane fade" id="Adoption">
                           <div class="adoptionInfo" th:each="AdoptNote : ${adoptionList}">
                               <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/user/adopt/detail/'+${AdoptNote.id}}" onclick="showDetail(this)">
+                                  <div class="card">
+                                      <img class="card-img-top" src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/user/adopt/detail/'+${AdoptNote.id}}" onclick="showDetail(this)">
                                       <!--在自己个人页面显示detail页面时，页面的按钮不显示-->
-                                      <div class="caption">
-                                          <h3>Adoption Name</h3>
-                                          <p>General Infomation </p>
+                                      <div class="card-body">
+                                          <h5 class="card-title">Adoption Name</h5>
+                                          <p class="card-text">General Infomation </p>
                                           <p><a href="#" class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Info    </a>
                                               <a href="#" class="btn btn-danger" th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
                                       </div>
@@ -89,11 +104,11 @@
                           <!--<div id="fosterageInfo" th:each="FosterNote : ${list}">-->
                           <div id="fosterageInfo" th:each="FosterNote : ${fosterList}">
                               <div class="col-md-4 col-sm-6 item" >
-                                  <div class="thumbnail">
-                                      <img src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/user/foster/detail/'+${FosterNote.id}}" onclick="showDetail(this)">
-                                      <div class="caption">
-                                          <h3>Fosterage Name</h3>
-                                          <p>General Infomation </p>
+                                  <div class="card">
+                                      <img class="card-img-top" src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/user/foster/detail/'+${FosterNote.id}}" onclick="showDetail(this)">
+                                      <div class="card-body">
+                                          <h5 class="card-title">Fosterage Name</h5>
+                                          <p class="card-text">General Infomation </p>
                                           <p><a href="#" class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Info </a>
                                               <a href="#" class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
                                       </div>
@@ -105,11 +120,11 @@
                       <div class="masonry-container tab-pane fade" id="Share">
                           <div id="shareInfo"  th:each="ShareNote : ${shareList}">
                               <div class="col-md-4 col-sm-6 item">
-                                  <div class="thumbnail">
-                                      <img src="../staticImg/img3.jpg" alt="" th:attr="data-detailTarget=@{'/user/share/detail/'+${ShareNote.id}}" onclick="showInfo(this)">
-                                      <div class="caption">
-                                          <h3>Share Name</h3>
-                                          <p>General Infomation </p>
+                                  <div class="card">
+                                      <img class="card-img-top" src="../staticImg/img3.jpg" alt="" th:attr="data-detailTarget=@{'/user/share/detail/'+${ShareNote.id}}" onclick="showInfo(this)">
+                                      <div class="card-body">
+                                          <h5 class="card-title">Share Name</h5>
+                                          <p class="card-text">General Infomation </p>
                                           <p><a href="#" class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Detail</a>
                                               <a href="#" class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
                                       </div>
@@ -137,6 +152,45 @@
               </div>
           </div>
       </div>
+      <a href="#navi" class="navi-trigger"> <span class="navi-icon"> <svg x="0px" y="0px" width="54px" height="54px" viewBox="0 0 54 54"></svg> </span> </a>
+      <!-- Hidden Navi Menu -->
+      <!--这个模板可以套用-->
+      <div id="navi" class="navi">
+          <div class="navigation-wrapper">
+              <div class="half-block">
+                  <nav>
+                      <ul class="primary-navi">
+                          <li><a href="/main" class="selected">Home</a></li>
+                          <li><a href="/share">Share</a></li>
+                          <li><a href="/adoption">Adoption</a></li>
+                          <li><a href="/fosterage">Fosterage</a></li>
+                          <li><a href="/login">Sign In</a></li>
+                          <!--若用户登录点击显示用户个人信息页，否则显示登录页面-->
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+      </div>
+      <script>
+          jQuery(document).ready(function($){
+              var isLateralNavAnimating = false;
+
+              //open/close lateral navigation
+              $('.navi-trigger').on('click', function(event){
+                  event.preventDefault();
+                  //stop if nav animation is running
+                  if( !isLateralNavAnimating ) {
+                      if($(this).parents('.csstransitions').length > 0 ) isLateralNavAnimating = true;
+
+                      $('body').toggleClass('navigation-is-open');
+                      $('.navigation-wrapper').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+                          //animation is over
+                          isLateralNavAnimating = false;
+                      });
+                  }
+              });
+          });
+      </script>
 </body>
 <script>
     $('#myTab a').click(function (e) {

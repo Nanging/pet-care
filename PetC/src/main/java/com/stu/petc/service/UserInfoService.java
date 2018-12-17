@@ -53,4 +53,15 @@ public class UserInfoService {
 		// TODO Auto-generated method stub
 		return userInfoMapper.getAllShareByUser(id);
 	}
+	
+	public Integer deleteFosterageByID(int id) {
+		return fosterMapper.deleteFosterByID(id);
+	}
+	public Integer deleteAdoptionByID(int id) {
+		return adoptionMapper.deleteAdoptionByID(id);
+	}
+	public Integer deleteShareByID(int id) {
+		return shareMapper.deleteShareByID(id);
+	}
+	
 }

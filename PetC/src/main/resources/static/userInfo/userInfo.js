@@ -1,10 +1,11 @@
 function showDetail(tar) {
     console.log("click");
     var link=tar.getAttribute('data-detailTarget');
-    console.log(link);
-    $("#detailModal .modal-body").load(link,function () {
-        $("#detailModal").modal();
-    })
+    $("#detailModal").modal("show");
+    // console.log(link);
+    // $("#detailModal .modal-body").load(link,function () {
+    //     $("#detailModal").modal("show");
+    // })
 }
 
 function showInfo(tar) {
@@ -12,7 +13,7 @@ function showInfo(tar) {
     var link=tar.getAttribute('data-detailTarget');
     console.log(link);
     $("#infoModal .modal-body").load(link,function () {
-        $("#infoModal").modal();
+        $("#infoModal").modal("show");
     })
 }
 
@@ -40,10 +41,11 @@ function deleteData(tar) {
 }
 
 function confirm(tar) {
+    alert("confirm");
     console.log("click Info");
     var link=tar.getAttribute('data-detailTarget');
     console.log(link);
     $("#infoModal .modal-body").load(link,function () {
-        $("#infoModal").modal();
+        $("#infoModal").modal("show");
     })
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stu.petc.beans.FosterNote;
+import com.stu.petc.beans.ShareCommenter;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.mapper.ShareMapper;
 @Service
@@ -26,5 +27,8 @@ public class ShareFilerService {
 	public ShareNote getShareByID(Integer id) {
 		// TODO Auto-generated method stub
 		return mapper.getShareByID(id);
+	}
+	public List<ShareCommenter> getCommenterListByID(Integer id) {
+		return mapper.getShareCommenters(id);
 	}
 }

@@ -1,5 +1,6 @@
 package com.stu.petc.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.stu.petc.beans.FosterNote;
+import com.stu.petc.beans.ShareCommenter;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.beans.User;
 import com.stu.petc.mapper.FosterMapper;
@@ -43,9 +45,10 @@ public class ShareController {
 		System.out.println(shareNote+"-"+id);
 		
 		User user = userMapper.getUserByID(shareNote.getEditor());
-		
+		List<ShareCommenter> commenters = service.getCommenterListByID(id);
 		model.put("publisher", user.getUsername());
 		model.put("share", shareNote);
+		model.put("commenters", commenters);
 		return "shareDetailPage";
 	}
 }

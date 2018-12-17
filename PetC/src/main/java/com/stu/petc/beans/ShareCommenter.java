@@ -10,6 +10,7 @@ public class ShareCommenter implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer commenter; 
+	private	String username;
 	private String comment;
 	private Timestamp comment_date;
 	public Integer getCommenter() {
@@ -17,6 +18,12 @@ public class ShareCommenter implements Serializable {
 	}
 	public void setCommenter(Integer commenter) {
 		this.commenter = commenter;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getComment() {
 		return comment;
@@ -32,8 +39,9 @@ public class ShareCommenter implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "ShareCommenter [commenter=" + commenter + ", comment=" + comment + ", comment_date=" + comment_date
-				+ "]";
+		return "ShareCommenter [commenter=" + commenter + ", username=" + username + ", comment=" + comment
+				+ ", comment_date=" + comment_date + "]";
 	}
+	
 	
 }

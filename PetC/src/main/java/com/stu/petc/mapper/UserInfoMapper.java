@@ -19,7 +19,9 @@ public interface UserInfoMapper {
 	@Select("select * from foster where editor= #{useid} order by state")
 	public List<FosterNote> getAllFosterByUser(Integer useid);
 	
-	@Select("select applier,apply_time from foster_apply where foster_id = #{fosterageid} )")
+	@Select("select foster_apply.applier,user.username,user.user_tel,foster_apply.apply_time "
+			+ "from foster_apply, user "
+			+ "where foster_apply.foster_id = #{fosterageid} and user.user_id = foster_apply.applier ")
 	public List<FosterageCandidate> getFosterageCandidates(Integer fosterageid);
 	
 	@Select("select * from foster where id in ("
@@ -31,7 +33,9 @@ public interface UserInfoMapper {
 	@Select("select * from adoption where editor= #{useid} order by state")
 	public List<AdoptionNote> getAllAdoptionByUser(Integer useid);
 	
-	@Select("select applier,apply_time from adoption_apply where adoption_id = #{adoptionid} )")
+	@Select("select adoption_apply.applier,user.username,user.user_tel,adoption_apply.apply_time "
+			+ "from adoption_apply, user "
+			+ "where adoption_apply.adoption_id = #{adoptionid} and user.user_id = adoption_apply.applier ")
 	public List<AdoptionCandidate> getAdoptionCandidates(Integer adoptionid);
 	
 	@Select("select * from adoption where id in ("
@@ -43,7 +47,9 @@ public interface UserInfoMapper {
 	@Select("select * from share where editor= #{useid}")
 	public List<ShareNote> getAllShareByUser(Integer useid);
 
-	@Select("select commenter,comment,comment_date from share_comment where share_id = #{shareid} )")
+	@Select("select share_comment.commenter,user.username,share_comment.comment,share_comment.comment_date "
+			+ "from share_comment, user "
+			+ "where share_comment.share_id = #{shareid} and user.user_id = share_comment.commenter ")
 	public List<ShareCommenter> getShareCommenters(Integer shareid);
 	
 	@Select("select * from share where id in ("

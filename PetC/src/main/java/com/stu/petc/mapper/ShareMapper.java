@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 
 import com.stu.petc.beans.FosterNote;
+import com.stu.petc.beans.ShareCommenter;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.util.SqlProvider;
 
@@ -53,5 +54,16 @@ public interface ShareMapper {
 	@Select("select count(*) from share_comment where share_id = #{id}")
 	public Integer getCommentsNumber(Integer id);
 	
+	@Select("select * from share where editor= #{useid}")
+	public List<ShareNote> getAllShareByUser(Integer useid);
+
+	@Select("select share_comment.commenter,user.username,share_comment.comment,share_comment.comment_date "
+			+ "from share_comment, user "
+			+ "where share_comment.share_id = #{shareid} and user.user_id = share_comment.commenter ")
+	public List<ShareCommenter> getShareCommenters(Integer shareid);
+	
+	@Select("select * from share where id in ("
+			+ "select share_id from share_comment where commenter = #{useid} )")
+	public List<ShareNote> getAllCommentedShareByUser(Integer useid);
 	
 }

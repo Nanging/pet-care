@@ -54,8 +54,8 @@
                     <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
                     <div class="likeNComment">
                         <!-- add a SPACE ' ' at the begin of the text for better view effect -->
-                        <h5 class="like" th:text="ShareNote.likes"><span class="glyphicon glyphicon-heart"></span> here</h5>
-                        <h5 class="commentNumber" th:text="ShareNote.comments"><span class="glyphicon glyphicon-comment"></span> here</h5>
+                        <h5 class="like" th:text="${ShareNote.likes}"><span class="glyphicon glyphicon-heart"></span> here</h5>
+                        <h5 class="commentNumber" th:text="${ShareNote.comments}"><span class="glyphicon glyphicon-comment"></span> here</h5>
                     </div>
                     <div class="title">
                         <h3 class="titleText" th:text="${ShareNote.title}">This is a sample tile</h3>

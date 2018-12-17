@@ -1,21 +1,20 @@
-<div id="userDetailPage" xmlns:th="http://www.thymeleaf.org">
+<div id="mainContentBody" xmlns:th="http://www.thymeleaf.org">
+    <script src="../js/fosterDetail.js"></script>
     <link rel="stylesheet" href="../css/AFDetail.css"/>
-    <p id="identity">0000001</p>
-    <h1 id="category" class="textCustom">Category(adoption/fosterage/share)</h1>
-    <label for="detailTitle">Title</label>
-    <h3 id="detailTitle" class="textCustom" >Sample Title</h3>
+    <p id="identity" th:text="${foster.id}">0000001</p>
+    <h1 id="detailTitle" class="textCustom" th:text="${foster.title}">Sample Title</h1>
     <label for="author" >Publisher</label>
-    <h3 id="author" class="textCustom">Sample User</h3>
+    <h3 id="author" class="textCustom" th:text="${publisher}">Sample User</h3>
     <label for="startDate">Start Date</label>
-    <h3 id="startDate" class="textCustom">2018/01/01</h3>
+    <h3 id="startDate" class="textCustom" th:text="${foster.publish_date}">2018/01/01</h3>
     <label for="region">Region</label>
-    <h3 id="region" class="textCustom">JiaDing</h3>
+    <h3 id="region" class="textCustom" th:text="${foster.location}">JiaDing</h3>
 
     <div id="imageShow" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item ">
+            <div class="carousel-item " th:each="path:${paths}" th:style="'background-image: url('+ @{${path}} +')'" th:if="${pathStat.index} eq '0'" th:class="'carousel-item active'">
             </div>
-            <div class="carousel-item ">
+            <div class="carousel-item " th:each="path:${paths}" th:style="'background-image: url('+ @{${path}} +')'" th:if="${pathStat.index} gt '0'">
             </div>
         </div>
         <a class="carousel-control-prev" href="#imageShow" role="button" data-slide="prev">
@@ -29,7 +28,7 @@
     </div>
 
     <!-- details -->
-    <p>Details Details Details Details Details Details Details Details Details Details
+    <p th:if="${foster!=null}" th:text="${foster.text}">Details Details Details Details Details Details Details Details Details Details
         Details Details Details Details Details Details Details Details Details Details Details
         Details Details Details Details Details Details </p>
 

@@ -72,7 +72,7 @@
                           <div class="adoptionInfo" th:each="AdoptNote : ${adoptionList}">
                               <div class="col-md-4 col-sm-6 item">
                                   <div class="thumbnail">
-                                      <img src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/adopt/detail/'+${AdoptNote.id}}" onclick="showDetail(this)">
+                                      <img src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/user/adopt/detail/'+${AdoptNote.id}}" onclick="showDetail(this)">
                                       <!--在自己个人页面显示detail页面时，页面的按钮不显示-->
                                       <div class="caption">
                                           <h3>Adoption Name</h3>
@@ -90,7 +90,7 @@
                           <div id="fosterageInfo" th:each="FosterNote : ${fosterList}">
                               <div class="col-md-4 col-sm-6 item" >
                                   <div class="thumbnail">
-                                      <img src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/foster/detail/'+${FosterNote.id}}" onclick="showDetail(this)">
+                                      <img src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/user/foster/detail/'+${FosterNote.id}}" onclick="showDetail(this)">
                                       <div class="caption">
                                           <h3>Fosterage Name</h3>
                                           <p>General Infomation </p>
@@ -106,7 +106,7 @@
                           <div id="shareInfo"  th:each="ShareNote : ${shareList}">
                               <div class="col-md-4 col-sm-6 item">
                                   <div class="thumbnail">
-                                      <img src="../staticImg/img3.jpg" alt="" th:attr="data-detailTarget=@{'/share/detail/'+${ShareNote.id}}" onclick="showInfo(this)">
+                                      <img src="../staticImg/img3.jpg" alt="" th:attr="data-detailTarget=@{'/user/share/detail/'+${ShareNote.id}}" onclick="showInfo(this)">
                                       <div class="caption">
                                           <h3>Share Name</h3>
                                           <p>General Infomation </p>

@@ -72,22 +72,42 @@ public class UserInfoController {
 		}
 		return "userInfo";
 	}
+	@RequestMapping("/user/adopt/detail/{id}")
+	public String getAdoptionDetail(@PathVariable("id") Integer id){
+		
+		return "userAdoptionDetailPage";
+	}
+	@RequestMapping("/user/foster/detail/{id}")
+	public String getFosterageDetail(@PathVariable("id") Integer id){
+		System.out.println("id="+id);
+		return "userFosterageDetailPage";
+	}
+	@RequestMapping("/user/share/detail/{id}")
+	public String getShareDetail(@PathVariable("id") Integer id){
+		System.out.println("id="+id);
+		return "userShareDetailPage";
+	}
 	
-	@RequestMapping("/foster/delete/{id}")
+	
+	
+	
+	
+	
+	@RequestMapping("/user/foster/delete/{id}")
 	@ResponseBody
 	public String deleteFosterage(@PathVariable("id") Integer id) {
 		
 		service.deleteFosterageByID(id);
 		return "SUCCESS";
 	}
-	@RequestMapping("/adoption/delete/{id}")
+	@RequestMapping("/user/adoption/delete/{id}")
 	@ResponseBody
 	public String deleteAdoption(@PathVariable("id") Integer id) {
 		
 		service.deleteAdoptionByID(id);
 		return "SUCCESS";
 	}
-	@RequestMapping("/share/delete/{id}")
+	@RequestMapping("/user/share/delete/{id}")
 	@ResponseBody
 	public String deleteShare(@PathVariable("id") Integer id) {
 		
@@ -95,7 +115,7 @@ public class UserInfoController {
 		return "SUCCESS";
 	}
 	
-	@RequestMapping("/foster/show/{id}")
+	@RequestMapping("/user/foster/show/{id}")
 	public String showFosterageCandidates(@PathVariable("id") Integer id,Model map) {
 		List<FosterageCandidate> list = service.getFosterageCandidates(id);
 		map.addAttribute("candidate", list);
@@ -103,7 +123,7 @@ public class UserInfoController {
 		return "userInfoDetailPage";
 	}
 	
-	@RequestMapping("/adoption/show/{id}")
+	@RequestMapping("/user/adoption/show/{id}")
 	public String showAdoptionCandidates(@PathVariable("id") Integer id,Model map) {
 		List<AdoptionCandidate> list = service.getAdoptionCandidates(id);
 		map.addAttribute("candidate", list);

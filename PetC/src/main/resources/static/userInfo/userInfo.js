@@ -4,7 +4,7 @@ function showDetail(tar) {
     alert(link);
     console.log(link);
     $("#detailModal .modal-body").load(link,function () {
-        $("#detailModal").show();
+        $("#detailModal").modal();
     })
 }
 
@@ -13,7 +13,7 @@ function showInfo(tar) {
     var link=tar.getAttribute('data-detailTarget');
     console.log(link);
     $("#infoModal .modal-body").load(link,function () {
-        $("#infoModal").show();
+        $("#infoModal").modal();
     })
 }
 
@@ -45,6 +45,6 @@ function confirm(tar) {
     var link=tar.getAttribute('data-detailTarget');
     console.log(link);
     $("#infoModal .modal-body").load(link,function () {
-        $("#infoModal").show();
+        $("#infoModal").modal();
     })
 }

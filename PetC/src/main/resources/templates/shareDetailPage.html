@@ -4,19 +4,17 @@
     <link rel="stylesheet" href="../css/AFDetail.css"/>
     <link rel="stylesheet" href="../css/comment.css"/>
     <p id="identity">0000001</p>
-    <h1 id="detailTitle" class="textCustom">Sample Title</h1>
+    <h1 id="detailTitle" class="textCustom" th:text="${share.title}">Sample Title</h1>
     <label for="author">Author:</label>
-    <h3 id="author" class="textCustom">Sample User</h3>
+    <h3 id="author" class="textCustom" th:text="${publisher}">Sample User</h3>
 
     <div id="imageShow" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
 
             <!-- implement the url with thymeleaf, AND DO KEEP the .active class for the FIRST div, and ONLY FOR the FIRST div -->
-            <div class="carousel-item active" style="background-image: url('../staticImg/IMG_6344.JPG')">
+            <div class="carousel-item " th:each="path:${paths}" th:style="'background-image: url('+ @{${path}} +')'" th:if="${pathStat.index} eq '0'" th:class="'carousel-item active'">
             </div>
-            <div class="carousel-item" style="background-image: url('../staticImg/IMG_6346.JPG')">
-            </div>
-            <div class="carousel-item " style="background-image: url('../staticImg/Sample1080_1920.jpg')">
+            <div class="carousel-item " th:each="path:${paths}" th:style="'background-image: url('+ @{${path}} +')'" th:if="${pathStat.index} gt '0'">
             </div>
         </div>
         <a class="carousel-control-prev" href="#imageShow" role="button" data-slide="prev">

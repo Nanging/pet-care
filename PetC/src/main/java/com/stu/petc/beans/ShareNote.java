@@ -18,6 +18,8 @@ public class ShareNote implements Serializable{
 	private Timestamp publish_date;
 	private Integer likes;
 	private Integer comments;
+	private String titleimg;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -66,10 +68,17 @@ public class ShareNote implements Serializable{
 	public void setComments(Integer comments) {
 		this.comments = comments;
 	}
+	public String getTitleimg() {
+		return titleimg;
+	}
+	public void setTitleimg(String titleimg) {
+		this.titleimg = titleimg;
+	}
 	@Override
 	public String toString() {
 		return "ShareNote [id=" + id + ", title=" + title + ", editor=" + editor + ", type=" + type + ", content="
-				+ content + ", publish_date=" + publish_date + ", likes=" + likes + ", comments=" + comments + "]";
+				+ content + ", publish_date=" + publish_date + ", likes=" + likes + ", comments=" + comments
+				+ ", titleimg=" + titleimg + "]";
 	}
 
 	

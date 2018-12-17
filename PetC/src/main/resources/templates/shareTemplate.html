@@ -51,11 +51,12 @@
                 <!-- put the target url in the data-detailTarget -->
                 <div class="grid-item  grid-item--width2" th:attr="data-detailTarget=@{'/share/detail/'+${ShareNote.id}}"
                      onclick="showDetail(this)">
-                    <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
+                    <img class="sample0" th:if="${ShareNote.titleimg} == null"    src="../staticImg/Sample1920_1080.jpg"/>
+                    <img class="sample0" th:if="${ShareNote.titleimg} != null" th:src="@{${ShareNote.titleimg}}"/>
                     <div class="likeNComment">
                         <!-- add a SPACE ' ' at the begin of the text for better view effect -->
-                        <h5 class="like" th:text="${ShareNote.likes}"><span class="glyphicon glyphicon-heart"></span> here</h5>
-                        <h5 class="commentNumber" th:text="${ShareNote.comments}"><span class="glyphicon glyphicon-comment"></span> here</h5>
+                        <h5 class="like"><span class="glyphicon glyphicon-heart"></span><span th:text="' ' + ${ShareNote.likes}"></span></h5>
+                        <h5 class="commentNumber"><span class="glyphicon glyphicon-comment"></span><span th:text="' ' + ${ShareNote.comments}"></span></h5>
                     </div>
                     <div class="title">
                         <h3 class="titleText" th:text="${ShareNote.title}">This is a sample tile</h3>
@@ -67,36 +68,7 @@
 
             <!-- --below--Sample blocks, use a 20-size array to implement it through thymeleaf -->
 
-            <div class="grid-item  grid-item--width2">
-                <img class="sample1" src="../staticImg/Sample1080_1920.jpg" data-detailTarget="shareDetailPage.html" onclick="showDetail(this)"/>
-                <div class="likeNComment">
-                    <h5 class="like"><span class="glyphicon glyphicon-heart"></span> 5</h5>
-                    <h5 class="commentNumber"><span class="glyphicon glyphicon-comment"></span> 3</h5>
-                </div>
-                <div class="title">
-                    <h3 class="titleText">This is a very looooooooooooooooong great great long big fat wow great looong sample tile</h3>
-                </div>
-            </div>
-
-
-            <div class="grid-item  grid-item--width2">
-                <img class="sample2" src="../staticImg/Sample1280_1280.jpg"/>
-            </div>
-            <div class="grid-item  grid-item--width2">
-                <img class="sample1" src="../staticImg/Sample1080_1920.jpg"/>
-            </div>
-            <div class="grid-item  grid-item--width2">
-                <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
-            </div>
-            <div class="grid-item  grid-item--width2">
-                <img class="sample0" src="../staticImg/Sample1920_1080.jpg"/>
-            </div>
-            <div class="grid-item  grid-item--width2">
-                <img class="sample2" src="../staticImg/Sample1280_1280.jpg"/>
-            </div>
-            <div class="grid-item  grid-item--width2">
-                <img class="sample1" src="../staticImg/Sample1080_1920.jpg"/>
-            </div>
+           
             <!-- --above-- Sample blocks, use a 20-size array to implement it through thymeleaf -->
 
             <!-- detail display in progress! -->

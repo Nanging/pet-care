@@ -15,13 +15,18 @@ import com.stu.petc.util.SqlProvider;
 
 @Mapper
 public interface ShareMapper {
-	@Insert("insert into share (title,editor,type,content)values(#{title},#{editor},#{type},#{content})")
-	public Integer addShare(ShareNote newShare);
+//	@Insert("insert into share (title,editor,type,content)values(#{title},#{editor},#{type},#{content})")
+//	public Integer addShare(ShareNote newShare);
 	
+	@Select("select max(id) from share")
+	public Integer getMaxId();
+	
+	@Insert("insert into share (id,title,editor,type,content)values(#{id},#{title},#{editor},#{type},#{content})")
+	public Integer addShare(Integer id,String title, Integer editor, String type, String content);
+
 	@Delete("delete from share where id=#{arg1}")
 	public Integer deleteShareByID(Integer id);
 	
-
 	@Select("select * from share where id = #{id}")
 	public ShareNote getShareByID(Integer id);
 	

@@ -27,4 +27,13 @@ public class ShareFilerService {
 		// TODO Auto-generated method stub
 		return mapper.getShareByID(id);
 	}
+	
+	public Integer getMaxId() {
+		return mapper.getMaxId();
+	}
+	
+	public void addShare(Integer id, String title, Integer editor, String type, String content) {
+		mapper.addShare(id, title, editor, type, content);
+	}
+	
 }

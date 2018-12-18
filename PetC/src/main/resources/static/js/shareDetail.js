@@ -24,7 +24,7 @@ function endorse(){
             console.log(result);
 
             if(result.code==0){
-                $("#endorseBtn").disable();
+                $("#endorseBtn").attr("disabled",true);
                 $("#btnContainer").append("<small style='color:lawngreen'><span class='glyphicon glyphicon-check'></span>Endorsed</small>");
             }
             else{

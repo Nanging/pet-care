@@ -45,14 +45,12 @@
                         <p>Phone Number: <a th:text="${Candidate.user_tel}">12345678910</a></p>
                         <p>other infomation</p>
                         <p>Score: <a th:text="${Candidate.user_score}">12345678910</a></p>
+                        <p>date: <a th:text="${#dates.format(Candidate.apply_time, 'yyyy-MM-dd HH:mm:ss')}">0/0/0/0/0</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="panel-group" id="accordion"  xmlns:th="http://www.thymeleaf.org">
-
 </div>
 <!--</body>-->
 <!--</html>-->

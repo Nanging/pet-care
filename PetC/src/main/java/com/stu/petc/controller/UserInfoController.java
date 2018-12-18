@@ -137,7 +137,7 @@ public class UserInfoController {
 		System.out.println("paths:" + paths);
 		
 		User user = service.getUserByID(fosterNote.getEditor());
-		System.out.println(Tools.DateFormat(fosterNote.getPublish_date()));
+//		System.out.println(Tools.DateFormat(fosterNote.getPublish_date()));
 		model.put("publisher", user.getUsername());
 		model.put("foster", fosterNote);
 		model.put("paths", paths);

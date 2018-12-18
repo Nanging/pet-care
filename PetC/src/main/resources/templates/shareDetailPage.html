@@ -3,7 +3,7 @@
     <script src="../js/shareDetail.js"></script>
     <link rel="stylesheet" href="../css/AFDetail.css"/>
     <link rel="stylesheet" href="../css/comment.css"/>
-    <p id="identity">0000001</p>
+    <p id="identity" th:text="${share.id}">0000001</p>
     <h1 id="detailTitle" class="textCustom" th:text="${share.title}">Sample Title</h1>
     <label for="author">Author:</label>
     <h3 id="author" class="textCustom" th:text="${publisher}">Sample User</h3>
@@ -56,33 +56,24 @@
 
 
 
-        <div id="commentContainer" class="container">
+        <div id="commentContainer" class="container" th:each="commenter : ${commenters}">
+        
 
             <!-- sample comment -->
             <div class="card commentCard">
-                <h5 class="card-header"><span class="glyphicon glyphicon-comment"></span> User: </h5>
+                <h5 class="card-header" th:text="${commenter.username}"><span class="glyphicon glyphicon-comment"></span> User: </h5>
                 <div class="card-body">
-                    <p class="card-text">This is very very very freaking awesome!! I'm really really really really serious you know.</p>
+                    <p class="card-text" th:text="${commenter.comment}">This is very very very freaking awesome!! I'm really really really really serious you know.</p>
 
                 </div>
-                <div class="card-footer">
+                <div class="card-footer" th:text="${#dates.format(commenter.comment_date, 'yyyy-MM-dd HH:mm:ss')}">
                     2018/12/12
                     <!-- publish time -->
                 </div>
             </div>
 
 
-            <div class="card commentCard">
-                <h5 class="card-header"><span class="glyphicon glyphicon-comment"></span> User: </h5>
-                <div class="card-body">
-                    <p class="card-text">This is very very very freaking awesome!! I'm really really really really serious you know.</p>
 
-                </div>
-                <div class="card-footer">
-                    2018/12/12
-                    <!-- publish time -->
-                </div>
-            </div>
             <!-- sample comment -->
 
         </div>

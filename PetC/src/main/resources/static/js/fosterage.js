@@ -54,7 +54,7 @@ $(document).ready(function () {
                 //to be done
 
                 //check the response json!!!!!!!!!!!!!!!!!!!!!!!!!!
-                if(true) { //should use response code here
+                if(result.code==0) { //should use response code here
                     $("#publishModal").modal("hide");
                     $("#msgTitle").text("Success");
                     $("#msgContent").text("Your publish has been submitted successfully!");

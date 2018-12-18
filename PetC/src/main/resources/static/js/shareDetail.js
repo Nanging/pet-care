@@ -64,6 +64,8 @@ function commentSubmit(){
             if(result.code==0){
                 $("#commentBox").val("");
                 $("#submitGroup").append("<small style='color:lawngreen'><span class='glyphicon glyphicon-check'></span>Comment submitted</small>");
+                var link="/share/detail/"+$("#identity").text();
+                $("#mainContentBody").parent().load(link);
             }
             else{
                 $("#submitGroup").append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'></span>Comment submit refused</small>");

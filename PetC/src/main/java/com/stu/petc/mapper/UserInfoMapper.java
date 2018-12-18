@@ -20,7 +20,7 @@ public interface UserInfoMapper {
 	@Select("select * from foster where editor= #{useid} order by state")
 	public List<FosterNote> getAllFosterByUser(Integer useid);
 	
-	@Select("select foster_apply.applier,user.username,user.user_tel,foster_apply.apply_time "
+	@Select("select foster_apply.applier,user.username,user.user_tel,user.user_score,foster_apply.apply_time "
 			+ "from foster_apply, user "
 			+ "where foster_apply.foster_id = #{fosterageid} and user.user_id = foster_apply.applier ")
 	public List<FosterageCandidate> getFosterageCandidates(Integer fosterageid);
@@ -34,7 +34,7 @@ public interface UserInfoMapper {
 	@Select("select * from adoption where editor= #{useid} order by state")
 	public List<AdoptionNote> getAllAdoptionByUser(Integer useid);
 	
-	@Select("select adoption_apply.applier,user.username,user.user_tel,adoption_apply.apply_time "
+	@Select("select adoption_apply.applier,user.username,user.user_tel,user.user_score,adoption_apply.apply_time "
 			+ "from adoption_apply, user "
 			+ "where adoption_apply.adoption_id = #{adoptionid} and user.user_id = adoption_apply.applier ")
 	public List<AdoptionCandidate> getAdoptionCandidates(Integer adoptionid);

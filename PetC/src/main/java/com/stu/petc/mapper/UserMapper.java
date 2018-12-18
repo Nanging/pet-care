@@ -22,6 +22,9 @@ public interface UserMapper {
 	@Update("update user set username=#{username},password=#{password},user_tel=#{user_tel} where user_id=#{user_id}")
 	public Integer update(User user);
 	
+	@Update("update user set user_tel = #{user_tel} where user_id=#{userid}")
+	public Integer changeUserTle(Integer userid,String user_tel);
+	
 	@Select("select * from user where user_id = #{user_id}")
 	public User getUserByID(Integer user_id);
 	

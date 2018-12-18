@@ -22,10 +22,17 @@ public class PetCApplication {
 
 		ConfigurableApplicationContext context = SpringApplication.run(PetCApplication.class, args);
 		
-//		System.out.println(Encoder.encryptBasedDes("123"));
-//		System.out.println(Encoder.decryptBasedDes(Encoder.encryptBasedDes("123")));
-//		FosterMapper mapper = new F
-//		
+//		System.out.println("[Bob]:"+Encoder.encryptBasedDes("123"));
+//		System.out.println("[Ken]:"+Encoder.encryptBasedDes("123"));
+//		System.out.println("[John]:"+Encoder.encryptBasedDes("798"));
+//		System.out.println("[Jame]:"+Encoder.encryptBasedDes("abc"));
+//		System.out.println("[ZhaoWei]:"+Encoder.encryptBasedDes("123"));
+//		System.out.println("[Zhangsan]:"+Encoder.encryptBasedDes("1234"));
+//		System.out.println("[Yangguangda]:"+Encoder.encryptBasedDes("123456"));
+//		System.out.println("[Lisi]:"+Encoder.encryptBasedDes("lisi123"));
+//		System.out.println("[Wangwu]:"+Encoder.encryptBasedDes("helloworld"));
+//		System.out.println("[Tom]:"+Encoder.encryptBasedDes("tomcat"));
+//		System.out.println(Encoder.decryptBasedDes(Encoder.encryptBasedDes("123")));	
 //		context.close();
 	}
 }

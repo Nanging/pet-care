@@ -105,4 +105,7 @@ public class UserInfoService {
 	public Integer confirmAdoptionApplier(Integer adoptionid, Integer applier) {
 		return userInfoMapper.confirmAdoptionApplier(adoptionid, applier);
 	}
+	public Integer scoreFosterageForApplier(Integer applier, Integer score) {
+		return userInfoMapper.scoreFosterageForApplier(applier,score);
+	}
 }

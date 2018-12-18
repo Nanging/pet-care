@@ -66,5 +66,8 @@ public interface UserInfoMapper {
 	
 	@Update("update adoption set actor = #{applier} where id=#{adoptionid}")
 	public Integer confirmAdoptionApplier(Integer adoptionid, Integer applier);
+
+	@Update("update user set user_score = user_score + #{score} where user_id =#{applier}")
+	public Integer scoreFosterageForApplier(Integer applier, Integer score);
 	
 }

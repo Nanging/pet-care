@@ -235,6 +235,12 @@ public class UserInfoController {
 		return "confirm";
 	}
 	
-	
+	@RequestMapping("/user/fosterage/score/{applier}/{score}")
+	@ResponseBody
+	public String scoreFosterage(@PathVariable("applier") Integer applier,@PathVariable("score") Integer score,Model map) {
+		System.out.println("get /"+applier);
+		service.scoreFosterageForApplier(applier, score);
+		return "score";
+	}
 	
 }

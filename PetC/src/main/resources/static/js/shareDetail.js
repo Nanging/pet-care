@@ -12,6 +12,7 @@ $(document).ready(function () {
 function endorse(){
     var s={};
     //in design!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    s["targetID"]=$("#identity").text();
     $.ajax({
         url: "/endorse",  //tartget url
         type: "POST",

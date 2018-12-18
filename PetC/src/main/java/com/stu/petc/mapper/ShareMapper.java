@@ -37,13 +37,13 @@ public interface ShareMapper {
 	@Select("select title from share limit #{begin}, #{end}")
 	public List<String> getTitleList(Integer begin, Integer end);
 	
-	@Update("update share set share.like = share.like + 1 where id = #{id};")
+	@Update("update share set share.like = share.like + 1 where id = #{id}")
 	public Integer updateLike(Integer id);
 	
 	@Insert("insert into share_like (share_id,user_id)values(#{share_id},#{user_id})")
 	public Integer addLike(Integer share_id,Integer user_id);
 	
-	@Update("update share set share.comment = share.comment + 1 where id = #{id};")
+	@Update("update share set share.comment = share.comment + 1 where id = #{id}")
 	public Integer updateComment(Integer id);
 	
 	@Insert("insert into share_comment (share_id,commenter,comment)values(#{share_id},#{commenter},#{comment})")
@@ -70,5 +70,8 @@ public interface ShareMapper {
 	@Select("select * from share where id in ("
 			+ "select share_id from share_comment where commenter = #{useid} )")
 	public List<ShareNote> getAllCommentedShareByUser(Integer useid);
+	
+	@Select("select count(*) from share_like where share_id = #{id} and user_id = #{user_id}")
+	public Integer checkLike(Integer id,Integer user_id);
 	
 }

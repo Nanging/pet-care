@@ -39,5 +39,18 @@ public class ShareFilerService {
 	public List<ShareCommenter> getShareCommenters(Integer shareid){
 		return mapper.getShareCommenters(shareid);
 	}
-	
+	public void	 addComment(Integer share_id, Integer user_id, String comment) {
+		mapper.addComment(share_id, user_id, comment);
+		mapper.updateComment(share_id);
+	}
+	public void addEndorse(Integer share_id, Integer user_id) {
+		mapper.updateLike(share_id);
+		mapper.addLike(share_id, user_id);
+	}
+	public boolean checkEndorse(Integer share_id, Integer user_id) {
+		if (mapper.checkLike(share_id, user_id)==0) {
+			return true;
+		}
+		return false;
+	}
 }

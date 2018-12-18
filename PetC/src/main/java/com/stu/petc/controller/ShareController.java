@@ -34,6 +34,8 @@ import com.stu.petc.service.FosterFilerService;
 import com.stu.petc.service.ShareFilerService;
 import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqAdoptionNote;
+import com.stu.petc.web.ReqComment;
+import com.stu.petc.web.ReqEndorse;
 import com.stu.petc.web.ReqShareNote;
 
 @Controller
@@ -69,6 +71,8 @@ public class ShareController {
 		
 		User user = userMapper.getUserByID(shareNote.getEditor());
 		List<ShareCommenter> commenters = service.getShareCommenters(id);
+		boolean like = service.checkEndorse(id, user.getUser_id());
+		model.put("like", like);
 		model.put("publisher", user.getUsername());
 		model.put("share", shareNote);
 		model.put("paths", paths);
@@ -141,6 +145,69 @@ public class ShareController {
 		
 		return new LoginResponse(0, "success", null);
 	}
+	
+	
+	@PostMapping("/endorse")
+	@ResponseBody
+	public LoginResponse publishEndorse(@RequestBody ReqEndorse reqEndorse, HttpServletRequest request) {
+		
+		System.out.println("-----------------");
+		System.out.println(reqEndorse);
+		
+		String username="";
+		Cookie[] cookies = request.getCookies();
+		if (null != cookies) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginStatus")) {
+					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+						/**
+						 * check user
+						 */
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+					}
+				}
+			}
+		}
+		int user_id = userMapper.getUserByName(username).getUser_id();
+//		int nextId = service.getMaxId() + 1;
+		int share_id = reqEndorse.getTargetID();
+		if (service.checkEndorse(share_id, user_id)) {
+			service.addEndorse(share_id, user_id);
+		}
+		
+		return new LoginResponse(0, "success", null);
+	}
+	@PostMapping("/publishComment")
+	@ResponseBody
+	public LoginResponse publishComment(@RequestBody ReqComment	 reqComment, HttpServletRequest request) {
+		
+		System.out.println("-----------------");
+		System.out.println(reqComment);
+		
+		String username="";
+		Cookie[] cookies = request.getCookies();
+		if (null != cookies) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginStatus")) {
+					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+						/**
+						 * check user
+						 */
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+					}
+				}
+			}
+		}
+		int user_id = userMapper.getUserByName(username).getUser_id();
+//		int nextId = service.getMaxId() + 1;
+		int share_id = reqComment.getTargetID();
+		String comment = reqComment.getNewComment();
+		service.addComment(share_id, user_id, comment);
+		return new LoginResponse(0, "success", null);
+	}
+	
 	
 	@GetMapping("/share")
 	public String getShare(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String kindSelect,Model map) throws FileNotFoundException {

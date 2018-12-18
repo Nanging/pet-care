@@ -203,6 +203,7 @@ public class UserInfoController {
 	
 	@RequestMapping("/user/foster/show/{id}")
 	public String showFosterageCandidates(@PathVariable("id") Integer id,Model map) {
+		System.out.println("get "+id);
 		List<FosterageCandidate> list = service.getFosterageCandidates(id);
 		map.addAttribute("candidate", list);
 		map.addAttribute("type", "fosterage");

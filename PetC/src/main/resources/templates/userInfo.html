@@ -109,7 +109,9 @@
                                       <div class="card-body">
                                           <h5 class="card-title">Fosterage Name</h5>
                                           <p class="card-text">General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Info </a>
+                                          <p><a href="#" class="btn btn-primary"
+                                          th:attr="data-detailTarget=@{'/user/foster/show/'+${FosterNote.id}}" 
+                                          onclick="showInfo(this)" role="button">Info </a>
                                               <a href="#" class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
                                       </div>
                                   </div>

@@ -98,4 +98,11 @@ public class UserInfoService {
 		return userMapper.getUserByID(id);
 	}
 	
+	public Integer confirmFosterageApplier(Integer fosterageid, Integer applier) {
+		return userInfoMapper.confirmFosterageApplier(fosterageid, applier);
+	}
+	
+	public Integer confirmAdoptionApplier(Integer adoptionid, Integer applier) {
+		return userInfoMapper.confirmAdoptionApplier(adoptionid, applier);
+	}
 }

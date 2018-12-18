@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.stu.petc.beans.AdoptionCandidate;
 import com.stu.petc.beans.AdoptionNote;
@@ -60,5 +61,10 @@ public interface UserInfoMapper {
 	@Select("select user_id from user where username = #{username}")
 	public Integer getIDByName(String username);
 	
+	@Update("update foster set actor = #{applier} where id=#{fosterageid}")
+	public Integer confirmFosterageApplier(Integer fosterageid, Integer applier);
+	
+	@Update("update adoption set actor = #{applier} where id=#{adoptionid}")
+	public Integer confirmAdoptionApplier(Integer adoptionid, Integer applier);
 	
 }

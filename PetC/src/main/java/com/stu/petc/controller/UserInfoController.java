@@ -205,7 +205,7 @@ public class UserInfoController {
 	public String showFosterageCandidates(@PathVariable("id") Integer id,Model map) {
 		System.out.println("get "+id);
 		List<FosterageCandidate> list = service.getFosterageCandidates(id);
-		map.addAttribute("candidate", list);
+		map.addAttribute("candidates", list);
 		map.addAttribute("type", "fosterage");
 		return "userInfoDetailPage";
 	}
@@ -213,9 +213,28 @@ public class UserInfoController {
 	@RequestMapping("/user/adoption/show/{id}")
 	public String showAdoptionCandidates(@PathVariable("id") Integer id,Model map) {
 		List<AdoptionCandidate> list = service.getAdoptionCandidates(id);
-		map.addAttribute("candidate", list);
+		map.addAttribute("id", id);
+		map.addAttribute("candidates", list);
 		map.addAttribute("type", "adoption");
 		return "userInfoDetailPage";
 	}
+	
+	@RequestMapping("/user/fosterage/confirm/{id}/{applier}")
+	@ResponseBody
+	public String confirmFosterageCandidates(@PathVariable("id") Integer id,@PathVariable("applier") Integer applier,Model map) {
+		System.out.println("get "+id+"/"+applier);
+		service.confirmFosterageApplier(id, applier);
+		return "confirm";
+	}
+	
+	@RequestMapping("/user/adoption/show/{id}/{applier}")
+	@ResponseBody
+	public String confirmAdoptionCandidates(@PathVariable("id") Integer id,@PathVariable("applier") Integer applier,Model map) {
+		System.out.println("get "+id+"/"+applier);
+		service.confirmAdoptionApplier(id, applier);
+		return "confirm";
+	}
+	
+	
 	
 }

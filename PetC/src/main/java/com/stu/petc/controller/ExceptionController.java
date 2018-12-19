@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ExceptionController {
 	
-	@RequestMapping("/error")
-	@ResponseBody
-	public String error() {
-		
-		return "error";
-	}
+//	@RequestMapping("/error")
+//	@ResponseBody
+//	public String error() {
+//		
+//		return "error";
+//	}
 	
 }

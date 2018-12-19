@@ -1,0 +1,425 @@
+.navi h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+body a{
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    text-decoration:none;
+    outline:none;
+
+}
+
+.navi a{
+    cursor:default;
+}
+
+body a:hover{
+    text-decoration:none;
+}
+
+/*.navi .navigation-wrapper {*/
+/*padding: 41px 19%;*/
+/*}*/
+.navi .primary-navi > li {
+    margin: 1.5em 0;
+}
+
+
+.navi .primary-navi a {
+    font-size: 1.5em;
+    color: black;
+    display: inline-block;
+    font-weight: 300;
+}
+
+div.main {
+    position: relative;
+    z-index: 2;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background:#fff;
+    min-height: 100vh;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 0.7s;
+    -moz-transition: -moz-transform 0.7s;
+    -o-transition: transform 0.7s;
+    -ms-transition: transform 0.7s;
+    transition: transform 0.7s;
+    -webkit-transition-timing-function: cubic-bezier(0.91, 0.01, 0.6, 0.99);
+    -moz-transition-timing-function: cubic-bezier(0.91, 0.01, 0.6, 0.99);
+    -o-transition-timing-function: cubic-bezier(0.91, 0.01, 0.6, 0.99);
+    -ms-transition-timing-function: cubic-bezier(0.91, 0.01, 0.6, 0.99);
+    transition-timing-function: cubic-bezier(0.91, 0.01, 0.6, 0.99);
+}
+.navigation-is-open div.main {
+    -webkit-transform: translateX(-20%);
+    -moz-transform: translateX(-20%);
+    -ms-transform: translateX(-20%);
+    -o-transform: translateX(-20%);
+    transform: translateX(-20%);
+
+}
+
+.navi-trigger {
+    position: fixed;
+    z-index: 3;
+    right: 10%;
+    top: 23px;
+    height: 50px;
+    width: 50px;
+    background-color: #ccccd6;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    -webkit-transition: -webkit-transform 0.5s;
+    -moz-transition: -moz-transform 0.5s;
+    -o-transition: transform 0.5s;
+    -ms-transition: transform 0.5s;
+    transition: transform 0.5s;
+}
+
+
+.navi-trigger .navi-icon {
+    /* Nav icon created in CSS */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    width: 22px;
+    height: 2px;
+    background-color: #FFF;
+}
+
+
+.navi-trigger .navi-icon::before,
+.navi-trigger .navi-icon:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 0.5s, width 0.5s, top 0.3s;
+    -moz-transition: -moz-transform 0.5s, width 0.5s, top 0.3s;
+    transition: transform 0.5s, width 0.5s, top 0.3s;
+}
+
+.navi-trigger .navi-icon::before {
+    -webkit-transform-origin: right top;
+    -moz-transform-origin: right top;
+    -ms-transform-origin: right top;
+    -o-transform-origin: right top;
+    transform-origin: right top;
+    -webkit-transform: translateY(-6px);
+    -moz-transform: translateY(-6px);
+    -ms-transform: translateY(-6px);
+    -o-transform: translateY(-6px);
+    transform: translateY(-6px);
+}
+
+.navi-trigger .navi-icon::after {
+    -webkit-transform-origin: right bottom;
+    -moz-transform-origin: right bottom;
+    -ms-transform-origin: right bottom;
+    -o-transform-origin: right bottom;
+    transform-origin: right bottom;
+    -webkit-transform: translateY(6px);
+    -moz-transform: translateY(6px);
+    -ms-transform: translateY(6px);
+    -o-transform: translateY(6px);
+    transform: translateY(6px);
+}
+
+.navi-trigger:hover .navi-icon::after { top: 2px; }
+
+.navi-trigger:hover .navi-icon::before { top: -2px; }
+
+.navi-trigger svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.navigation-is-open .navi-trigger {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.navigation-is-open .navi-trigger .navi-icon::after,
+.navigation-is-open .navi-trigger .navi-icon::before {
+    /* fFrom Hamburger to Arrow */
+    width: 50%;
+    -webkit-transition: -webkit-transform 0.5s, width 0.5s;
+    -moz-transition: -moz-transform 0.5s, width 0.5s;
+    -o-transition: -o-transform 0.5s, width 0.5s;
+    -ms-transition: -ms-transform 0.5s, width 0.5s;
+    transition: transform 0.5s, width 0.5s;
+}
+.navigation-is-open .navi-trigger .navi-icon::before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.navigation-is-open .navi-trigger .navi-icon::after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.navigation-is-open .navi-trigger:hover .navi-icon::after,
+.navigation-is-open .navi-trigger:hover .navi-icon::before { top: 0; }
+
+.navi {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #ccccd6;
+    visibility: hidden;
+    -webkit-transition: visibility 0s 0.7s;
+    -moz-transition: visibility 0s 0.7s;
+    -o-transition: visibility 0s 0.7s;
+    -ms-transition: visibility 0s 0.7s;
+    transition: visibility 0s 0.7s;
+}
+.navi .navigation-wrapper {
+    /* Navigation content */
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 40px 5% 040px calc(5% + 80px);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-transition: -webkit-transform 0.7s;
+    -moz-transition: -moz-transform 0.7s;
+    -o-transition: transform 0.7s;
+    -ms-transition: transform 0.7s;
+    transition: transform 0.7s;
+    -webkit-transition-timing-function: cubic-bezier(0.86, 0.01, 0.77, 0.78);
+    -moz-transition-timing-function: cubic-bezier(0.86, 0.01, 0.77, 0.78);
+    -o-transition-timing-function: cubic-bezier(0.86, 0.01, 0.77, 0.78);
+    -ms-transition-timing-function: cubic-bezier(0.86, 0.01, 0.77, 0.78);
+    transition-timing-function: cubic-bezier(0.86, 0.01, 0.77, 0.78);
+}
+.navigation-is-open .navi {
+    visibility: visible;
+    -webkit-transition: visibility 0s 0s;
+    -moz-transition: visibility 0s 0s;
+    -o-transition: visibility 0s 0s;
+    -ms-transition: visibility 0s 0s;
+    transition: visibility 0s 0s;
+}
+
+.navigation-is-open .navi .navigation-wrapper {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: -webkit-transform 0.5s;
+    -moz-transition: -moz-transform 0.5s;
+    -o-transition: transform 0.5s;
+    -ms-transition: transform 0.5s;
+    transition: transform 0.5s;
+    -webkit-transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
+    -moz-transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
+    -o-transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
+    -ms-transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
+    transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
+}
+.navi .primary-navi { margin-top: 60px; }
+
+.navi .primary-navi > li{
+    margin: 2em 0;
+    display: block;
+    font-size: 1.2vw;
+}
+.navi .primary-navi a {
+    font-size: 1.5em;
+    color: black;
+    display: inline-block;
+    font-weight: 300;
+}
+.navi .primary-navi a.selected { color: #ffffff; }
+.navi .primary-navi a:hover {
+    color: #ffffff;
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+    letter-spacing: 3px;
+}
+
+
+.navi .navigation-wrapper { padding: 80px 5%; }
+
+.navi .navigation-wrapper::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+.navi .half-block {
+    float: right;
+    text-align: right;
+}
+.navi .primary-navi { margin-top: 0; }
+
+.navi h2 {
+    font-size: 3em;
+    margin-bottom: 1.5em;
+    color: #fff;
+    letter-spacing: 9px;
+}
+
+@media(max-width:1280px){
+
+
+    .navi-trigger {
+        right: 6%;
+    }
+
+
+}
+
+@media(max-width:1080px){
+
+    .navi-trigger {
+        top: 19px;
+    }
+}
+
+@media(max-width:1024px){
+
+
+    .navi h2 {
+        letter-spacing: 5px;
+    }
+}
+
+
+@media(max-width:991px){
+
+
+    .navi-trigger {
+        top: 16px;
+        height: 45px;
+        width: 45px;
+        right: 13%;
+    }
+
+}
+
+@media(max-width:800px){
+    .navi-trigger {
+        right: 5%;
+    }
+    .navi h2 {
+        font-size: 2.5em;
+    }
+}
+
+
+@media(max-width:640px){
+    .navi-trigger .navi-icon {
+        width: 19px;
+    }
+    .navi-trigger {
+        top: 15px;
+        height: 40px;
+        width: 40px;
+    }
+
+}
+
+
+@media(max-width:480px){
+
+    .navi-trigger {
+        top: 12px;
+    }
+
+    .navi h2 {
+        font-size: 2.2em;
+    }
+    .navi .primary-navi a {
+        font-size: 1.3em;
+    }
+}
+
+
+@media(max-width:320px) {
+
+
+    .navi-trigger {
+        top: 10px;
+        height: 35px;
+        width: 35px;
+    }
+
+    .navi-trigger .navi-icon {
+        width: 17px;
+    }
+
+    .navi h2 {
+        font-size: 2em;
+        margin-bottom: 1em;
+    }
+
+    .navi .primary-navi > li {
+        margin: 1.5em 0;
+    }
+}
+
+
+
+
+
+

@@ -17,12 +17,14 @@
 
     <link rel="stylesheet" href="../css/fileinput.min.css"/>
     <link rel="stylesheet" href="../css/bootstrap.css"/>
-    <link rel="stylesheet" href="../css/adoption.css"/>
+
     <link rel="stylesheet" href="../css/titleGroup.css"/>
+    <link rel="stylesheet" href="../css/navi.css"/>
+    <link rel="stylesheet" href="../css/adoption.css"/>
     <!--Access this page through GET request with param of sort, filter and page-->
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid main">
     <div class="row pageBanner">
         <div class="logoGroup">
             <img src="../staticImg/petC.png"  class="logo"/>
@@ -233,6 +235,25 @@
             <div class="modal-footer">
                 <button class="btn btn-primary" type="button" data-dismiss="modal" >OK</button>
             </div>
+        </div>
+    </div>
+</div>
+
+
+
+<a href="#navi" class="navi-trigger"> <span class="navi-icon"> <svg x="0px" y="0px" width="54px" height="54px" viewBox="0 0 54 54"></svg> </span> </a>
+<div id="navi" class="navi">
+    <div class="navigation-wrapper">
+        <div class="half-block">
+            <nav>
+                <ul class="primary-navi">
+                    <li><a href="/main">Home</a></li>
+                    <li><a href="/share">Share</a></li>
+                    <li><a href="/adoption"  class="selected">Adoption</a></li>
+                    <li><a href="/fosterage">Fosterage</a></li>
+                    <li><a href="/login">Sign In</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

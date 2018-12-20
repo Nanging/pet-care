@@ -18,6 +18,8 @@ public interface AdoptionMapper {
 	
 	@Select("select max(id) from adoption")
 	public Integer getMaxId();
+	@Select("select count(*) from adoption")
+	public Integer getTotalNumber();
 	
 	@Insert("insert into adoption (id,title,editor,type,location,text)values(#{id},#{title},#{editor},#{type},#{location},#{text})")
 	public Integer addAdoption(Integer id, String title, Integer editor, String type, String location, String text);
@@ -35,6 +37,6 @@ public interface AdoptionMapper {
 	public List<String> getTitleList(Integer begin, Integer end);
 	
 	@SelectProvider(type=SqlProvider.class,method="getAdoption")
-	public List<AdoptionNote> getAdoption(String title,String location,String type);
+	public List<AdoptionNote> getAdoption(String title,String location,String type,Integer page);
 	
 }

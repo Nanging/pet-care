@@ -36,6 +36,8 @@ import com.stu.petc.util.Tools;
 @Controller
 public class UserInfoController {
 
+	
+	
 	@Autowired
 	UserInfoService service;
 	
@@ -60,6 +62,7 @@ public class UserInfoController {
 			System.out.println("[NUEXPECT ERROR]");
 		}else {
 			int id = service.getIDByName(username);
+			User user = service.getUserByID(id);
 			List<FosterNote> fosterList = service.getAllFosterByUser(id);
 			for (FosterNote fosterNote : fosterList) {
 				System.out.println(fosterNote);
@@ -72,6 +75,9 @@ public class UserInfoController {
 			for (ShareNote shareNote : shareList) {
 				System.out.println(shareNote);
 			}
+//			map.addAllAttributes(attributeValues)
+			map.addAttribute("username", username);
+			map.addAttribute("tel", user.getUser_tel());
 			map.addAttribute("fosterList", fosterList);
 			map.addAttribute("shareList", shareList);
 			map.addAttribute("adoptionList", adoptionList);

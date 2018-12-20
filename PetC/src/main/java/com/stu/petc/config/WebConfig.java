@@ -51,7 +51,7 @@ public class WebConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
 		registry.addInterceptor(createLoginHandlerInterceptor()).addPathPatterns("/login");
-		registry.addInterceptor(createUserHandlerInterceptor()).addPathPatterns(new String[] {"/main","/foster/**","/share/**","/user/**"}).excludePathPatterns("/login");
+		registry.addInterceptor(createUserHandlerInterceptor()).addPathPatterns(new String[] {"/foster/**","/share/**","/user/**"}).excludePathPatterns("/login");
 //		WebMvcConfigurer.super.addInterceptors(registry);
 	}
 

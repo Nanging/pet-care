@@ -3,7 +3,10 @@ package com.stu.petc.util;
 import java.util.List;
 
 public class SqlProvider {
-	public String getFoster(String title,String location,String type){
+	
+	private int noteNumber = 20;
+	
+	public String getFoster(String title,String location,String type,Integer page){
 		StringBuffer sql = new StringBuffer("select * from foster where state = 0");
 		if (!"All".equals(location)) {
 			sql.append(" and location=#{location}");
@@ -15,9 +18,14 @@ public class SqlProvider {
 		if (title!=null&&!"".equals(title)) {
 			sql.append(" and title LIKE '%"+title+"%'");
 		}
+		if (page<1) {
+			page = 1;
+		}
+		int offset = 20*(page-1);
+		sql.append(" limit "+offset+" , "+noteNumber);
 		return sql.toString();
 	}
-	public String getAdoption(String title,String location,String type){
+	public String getAdoption(String title,String location,String type,Integer page){
 		StringBuffer sql = new StringBuffer("select * from adoption where state = 0");
 		if (!"All".equals(location)) {
 			sql.append(" and location=#{location}");
@@ -29,9 +37,14 @@ public class SqlProvider {
 		if (title!=null&&!"".equals(title)) {
 			sql.append(" and title LIKE '%"+title+"%'");
 		}
+		if (page<1) {
+			page = 1;
+		}
+		int offset = 20*(page-1);
+		sql.append(" limit "+offset+" , "+noteNumber);
 		return sql.toString();
 	}
-	public String getShare(String title,String type){
+	public String getShare(String title,String type,Integer page){
 		StringBuffer sql = new StringBuffer("select * from share where 0 = 0");
 		if (!"All".equals(type)) {
 			sql.append(" and type=#{type}");
@@ -40,6 +53,11 @@ public class SqlProvider {
 		if (title!=null&&!"".equals(title)) {
 			sql.append(" and title LIKE '%"+title+"%'");
 		}
+		if (page<1) {
+			page = 1;
+		}
+		int offset = 20*(page-1);
+		sql.append(" limit "+offset+" , "+noteNumber);
 		return sql.toString();
 	}
 }

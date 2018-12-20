@@ -21,6 +21,9 @@ public interface FosterMapper {
 	@Select("select max(id) from foster")
 	public Integer getMaxId();
 	
+	@Select("select count(*) from foster")
+	public Integer getTotalNumber();
+	
 	@Insert("insert into foster (id,title,editor,type,location,text)values(#{id},#{title},#{editor},#{type},#{location},#{text})")
 	public Integer addFoster(Integer id, String title, Integer editor, String type, String location, String text);
 	
@@ -45,7 +48,7 @@ public interface FosterMapper {
 
 	
 	@SelectProvider(type=SqlProvider.class,method="getFoster")
-	public List<FosterNote> getFoster(String title,String location,String type);
+	public List<FosterNote> getFoster(String title,String location,String type,Integer page);
 	
 	@Update("update foster set unread = unread + 1 where id =#{id}")
 	public Integer updateFosterageUnread(Integer id);

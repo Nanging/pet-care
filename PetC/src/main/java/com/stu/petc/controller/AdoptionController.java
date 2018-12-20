@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import com.stu.petc.beans.User;
 import com.stu.petc.mapper.AdoptionMapper;
 import com.stu.petc.mapper.UserMapper;
 import com.stu.petc.service.AdoptionFilerService;
+import com.stu.petc.service.UserRedisService;
 import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqAdoptionNote;
 
@@ -35,7 +37,10 @@ import com.stu.petc.web.ReqAdoptionNote;
 public class AdoptionController {
 	@Autowired
 	AdoptionFilerService service;
-
+	
+	@Autowired
+	private UserRedisService userRedisService;
+	
 	@Autowired
 	UserMapper userMapper;
 	
@@ -140,9 +145,9 @@ public class AdoptionController {
 	}
 	
 	@GetMapping("/adoption")
-	public String getData(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String regionSelect,@RequestParam(defaultValue="All") String kindSelect,Model map) throws FileNotFoundException {
+	public String getData(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String regionSelect,@RequestParam(defaultValue="All") String kindSelect,@RequestParam(defaultValue="1") Integer page,HttpServletRequest request,Model map) throws FileNotFoundException {
 
-		List<AdoptionNote> adoptionNotes = service.doFiler(searchText, regionSelect, kindSelect);
+		List<AdoptionNote> adoptionNotes = service.doFiler(searchText, regionSelect, kindSelect,page);
 		System.out.println(adoptionNotes);
 		
 		for(AdoptionNote adoptionNote:adoptionNotes) {
@@ -162,7 +167,38 @@ public class AdoptionController {
 				}
 			}
 		}
-		
+		String username=null;
+		Cookie[] cookies = request.getCookies();
+		if (null != cookies) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginStatus")) {
+					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+						/**
+						 * check user
+						 */
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+						HttpSession session = request.getSession();
+						String sessionId = session.getId();
+						String currentSessionID = userRedisService.getUserSession(cookie.getValue());
+						System.out.println("[currentSessionID:"+currentSessionID+"]");
+						if (sessionId.equals(currentSessionID) ) {
+							map.addAttribute("username", username);
+						}
+					}
+				}
+			}
+		}
+		int number = service.getTotalNumber();
+		int pages = number/20;
+		int left = number/20;
+		if (left>0) {
+			pages = pages+1;
+		}
+		map.addAttribute("pages", pages);
+		map.addAttribute("page", page);
+		map.addAttribute("prev", "/adoption?searchText="+searchText+"&regionSelect="+regionSelect+"&kindSelect="+kindSelect+"&page="+(page-1));
+		map.addAttribute("next", "/adoption?searchText="+searchText+"&regionSelect="+regionSelect+"&kindSelect="+kindSelect+"&page="+(page+1));
 		map.addAttribute("list", adoptionNotes);
 		
 		return "adoptionTemplate";

@@ -19,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -91,8 +92,30 @@ public class LoginController {
 	}
 
 	@GetMapping("/main")
-	public String index() {
-		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++");
+	public String index(HttpServletRequest request,Model map) {
+		String username=null;
+		Cookie[] cookies = request.getCookies();
+		if (null != cookies) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginStatus")) {
+					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+						/**
+						 * check user
+						 */
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+						HttpSession session = request.getSession();
+						String sessionId = session.getId();
+						String currentSessionID = service.getUserSession(cookie.getValue());
+						System.out.println("[currentSessionID:"+currentSessionID+"]");
+						if (sessionId.equals(currentSessionID) ) {
+							map.addAttribute("username", username);
+						}
+					}
+				}
+			}
+		}
+		
 		return "main";
 	}
 

@@ -33,9 +33,9 @@
                       <!--put personal photo-->
                   </div>
                   <div class="page-header"></div>
-                  <h2  class="text-center">Name: Cindy</h2>
+                  <h2  class="text-center" th:text="'Name: '+${username}">Name: Cindy</h2>
                   <!--User name-->
-                  <h4 class="text-center">Dog lovers| Volunteer</h4>
+                  <h4 class="text-center" th:text="'Tel: '+${tel}">Dog lovers| Volunteer</h4>
                   <!--general describe-->
                   <div class="page-header"></div>
               </div>
@@ -166,7 +166,8 @@
                           <li><a href="/share">Share</a></li>
                           <li><a href="/adoption">Adoption</a></li>
                           <li><a href="/fosterage">Fosterage</a></li>
-                          <li><a href="/login">Sign In</a></li>
+							<li th:if="${username}==null"><a href="/login"><span class="badge badge-light">New</span> Sign In</a></li>
+							<li th:if="${username}"><a href="/user/info" th:text="${username}">Sign In</a></li>
                           <!--若用户登录点击显示用户个人信息页，否则显示登录页面-->
                       </ul>
                   </nav>

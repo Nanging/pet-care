@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,8 @@ public class FosterFilerService {
 	
 	@Autowired
 	FosterMapper mapper;
-	public List<FosterNote> doFiler(String searchText,String regionSelect,String kindSelect) {
-		List<FosterNote> rawList = mapper.getFoster(searchText,regionSelect, kindSelect);
+	public List<FosterNote> doFiler(String searchText,String regionSelect,String kindSelect,Integer page) {
+		List<FosterNote> rawList = mapper.getFoster(searchText,regionSelect, kindSelect,page);
 		return rawList;
 	}
 	public FosterNote getFosterByID(Integer id) {
@@ -42,5 +43,8 @@ public class FosterFilerService {
 	}
 	public Integer addOffer(Integer id,Integer user_id) {
 		return mapper.addOffer(id, user_id);
+	}
+	public Integer getTotalNumber() {
+		return mapper.getTotalNumber();
 	}
 }

@@ -14,6 +14,7 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.tools.Tool;
 import javax.websocket.server.PathParam;
 
@@ -43,6 +44,7 @@ import com.stu.petc.mapper.UserMapper;
  *
  */
 import com.stu.petc.service.FosterFilerService;
+import com.stu.petc.service.UserRedisService;
 import com.stu.petc.util.Tools;
 import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqTargetID;
@@ -53,7 +55,8 @@ public class FosterageController {
 	FosterFilerService service;
 	@Autowired
 	UserMapper userMapper;
-	
+	@Autowired
+	private UserRedisService userRedisService;
 	@RequestMapping("/foster/detail/{id}")
 	public String getFosterDetail(@PathVariable("id") Integer id,Map<String, Object> model) throws FileNotFoundException {
 		FosterNote fosterNote = service.getFosterByID(id);
@@ -154,9 +157,9 @@ public class FosterageController {
 	}
 	
 	@GetMapping("/fosterage")
-	public String getFosterage(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String regionSelect,@RequestParam(defaultValue="All") String kindSelect,Model map) throws FileNotFoundException {
+	public String getFosterage(@RequestParam(defaultValue="") String searchText,@RequestParam(defaultValue="All") String regionSelect,@RequestParam(defaultValue="All") String kindSelect,@RequestParam(defaultValue="1") Integer page,HttpServletRequest request,Model map) throws FileNotFoundException {
 		
-		List<FosterNote> fosterNotes = service.doFiler(searchText, regionSelect, kindSelect);
+		List<FosterNote> fosterNotes = service.doFiler(searchText, regionSelect, kindSelect, page);
 		System.out.println(fosterNotes);
 		
 		for(FosterNote fosterNote:fosterNotes) {
@@ -176,7 +179,38 @@ public class FosterageController {
 				}
 			}
 		}
-		
+		String username=null;
+		Cookie[] cookies = request.getCookies();
+		if (null != cookies) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginStatus")) {
+					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+						/**
+						 * check user
+						 */
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+						HttpSession session = request.getSession();
+						String sessionId = session.getId();
+						String currentSessionID = userRedisService.getUserSession(cookie.getValue());
+						System.out.println("[currentSessionID:"+currentSessionID+"]");
+						if (sessionId.equals(currentSessionID) ) {
+							map.addAttribute("username", username);
+						}
+					}
+				}
+			}
+		}
+		int number = service.getTotalNumber();
+		int pages = number/20;
+		int left = number/20;
+		if (left>0) {
+			pages = pages+1;
+		}
+		map.addAttribute("pages", pages);
+		map.addAttribute("page", page);
+		map.addAttribute("prev", "/foster?searchText="+searchText+"&regionSelect="+regionSelect+"&kindSelect="+kindSelect+"&page="+(page-1));
+		map.addAttribute("next", "/foster?searchText="+searchText+"&regionSelect="+regionSelect+"&kindSelect="+kindSelect+"&page="+(page+1));
 		map.addAttribute("list", fosterNotes);
 		
 		return "fosterageTemplate";

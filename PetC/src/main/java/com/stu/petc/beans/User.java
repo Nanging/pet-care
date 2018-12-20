@@ -14,7 +14,7 @@ public class User implements Serializable{
 	private String password;
 	private String user_tel;
 	private String user_role;
-	private String user_loc;
+	private Integer user_score;
 	public Integer getUser_id() {
 		return user_id;
 	}
@@ -27,34 +27,36 @@ public class User implements Serializable{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@JsonIgnore
 	public String getUser_tel() {
 		return user_tel;
 	}
 	public void setUser_tel(String user_tel) {
 		this.user_tel = user_tel;
 	}
-	@JsonIgnore
 	public String getUser_role() {
 		return user_role;
 	}
 	public void setUser_role(String user_role) {
 		this.user_role = user_role;
 	}
-	@JsonIgnore
-	public String getUser_loc() {
-		return user_loc;
+	public Integer getUser_score() {
+		return user_score;
 	}
-	public void setUser_loc(String user_loc) {
-		this.user_loc = user_loc;
+	public void setUser_score(Integer user_score) {
+		this.user_score = user_score;
 	}
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", username=" + username + ", password=" + password + ", user_tel="
+				+ user_tel + ", user_role=" + user_role + ", user_score=" + user_score + "]";
+	}
+	
 	
 	
 	

@@ -21,6 +21,8 @@ public interface ShareMapper {
 	
 	@Select("select max(id) from share")
 	public Integer getMaxId();
+	@Select("select count(*) from share")
+	public Integer getTotalNumber();
 	
 	@Insert("insert into share (id,title,editor,type,content)values(#{id},#{title},#{editor},#{type},#{content})")
 	public Integer addShare(Integer id,String title, Integer editor, String type, String content);
@@ -51,7 +53,7 @@ public interface ShareMapper {
 	
 	
 	@SelectProvider(type=SqlProvider.class,method="getShare")
-	public List<ShareNote> getShare(String title,String type);
+	public List<ShareNote> getShare(String title,String type,Integer page);
 	
 	@Select("select count(*) from share_like where share_id = #{id}")
 	public Integer getLikesNumber(Integer id);

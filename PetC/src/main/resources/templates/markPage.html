@@ -7,7 +7,7 @@
                     <tr>
                         <td class="text-center">帖子相关人的名字</td>
                         <td>Already Confirmed</td>
-                        <td><a data-id="id" th:attr="data-ismark=${ismark}" data-ismark="1" onclick="isMark(this)" class="glyphicon glyphicon-heart" data-toggle="collapse" data-parent="#accordion"
+                        <td><a data-id="id"   th:attr="data-ismark=${ismark},data-id=${id}" data-ismark="1" onclick="isMark(this)" class="glyphicon glyphicon-heart" data-toggle="collapse" data-parent="#accordion"
                                href="#collapseOne">
                         </a>
                             <a class="glyphicon glyphicon-info-sign" data-toggle="collapse" data-parent="#accordion"
@@ -27,7 +27,9 @@
                     <div class="row">
                         <div class="col-md-3"><h3>Grade:</h3></div>
                         <div class="col-md-1">
-                            <h3><p id="Grade" th:if="${ismark}==1" th:text="${score}">0</p></h3>
+                            <h3><p id="Grade" th:if="${ismark}==1" th:text="${score}">0</p>
+                            	<p id="Grade" th:if="${ismark}==0" >0</p>
+                            </h3>
                         </div>
                     </div>
                     <div class="row">
@@ -53,10 +55,10 @@
             <div class="panel-body">
                 <div class="container">
                     <h1>Personal Infomation</h1>
-                    <h3>name</h3>
+                    <h3 th:text="${actor.username}">name</h3>
                     <p>personal infomation: <a>dog lover</a></p>
-                    <p>phone number: <a>151515515</a></p>
-                    <p>Average score: <a>3.5</a></p>
+                    <p>phone number: <a th:text="${actor.user_tel}">151515515</a></p>
+                    <p>Average score: <a th:text="${actor.user_score}">3.5</a></p>
                     <p>date: <a>2018-12-20</a></p>
                 </div>
             </div>

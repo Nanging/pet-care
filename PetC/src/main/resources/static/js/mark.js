@@ -9,19 +9,20 @@ function isMark(tar) {
         alert("marked");
         var id=tar.getAttribute("data-id");
         var s={};
-        s["id"]=id;
+        s["targetID"]=id;
         var data=JSON.stringify(s);
         console.log(data);
         btnUnabled();
 
         $.ajax({
-            url:mark,
+            url:'/user/fosterage/getscore/',
             type:'POST',
             contentType: "application/json;charset=utf-8",
             dataType:'json',
             data: data,
             success:function (result) {
                 // 返回评分数据
+            	console.log(result);
                 switchGrade(result);
             },
             error:function () {

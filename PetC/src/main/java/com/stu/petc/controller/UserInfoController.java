@@ -36,6 +36,7 @@ import com.stu.petc.util.Encoder;
 import com.stu.petc.util.Tools;
 import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqScore;
+import com.stu.petc.web.ReqTargetID;
 
 @Controller
 public class UserInfoController {
@@ -227,7 +228,7 @@ public class UserInfoController {
 		if (applier!=null) {
 			map.addAttribute("id", id);
 			User actor = mapper.getUserByID(applier);
-			map.addAttribute("applier", actor);
+			map.addAttribute("actor", actor);
 			return "markPage";
 		}
 		List<FosterageCandidate> list = service.getFosterageCandidates(id);
@@ -258,7 +259,7 @@ public class UserInfoController {
 		}
 		map.addAttribute("id", id);
 		User actor = mapper.getUserByID(applier);
-		map.addAttribute("applier", actor);
+		map.addAttribute("actor", actor);
 		return "markPage";
 	}
 	
@@ -284,5 +285,13 @@ public class UserInfoController {
 
 		return new LoginResponse(0, "SUCCESS", "?");
 	}
-	
+	@RequestMapping("/user/fosterage/getscore/")
+	@ResponseBody
+	public Integer getFosterageScore(@RequestBody ReqTargetID targetID) {
+		System.out.println("score");
+		int fosterageid = targetID.getTargetID();
+
+		Integer score = service.getFosterageScore(fosterageid);
+		return score;
+	}
 }

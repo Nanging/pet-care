@@ -25,6 +25,11 @@
     <!--Access this page through GET request with param of sort, filter and page-->
 </head>
 <body>
+
+<div class="pageshow">
+    <img  src="../staticImg/PageshowF.png"/>
+    <p id="pageNum">Num</p>
+</div>
 <div class="container-fluid main">
     <div class="row pageBanner">
         <div class="logoGroup">
@@ -33,10 +38,7 @@
         </div>
     </div>
     <hr>
-    <div class="pageshow">
-        <img  src="../staticImg/PageshowF.png"/>
-        <p id="pageNum">Num</p>
-    </div>
+
     <div class="col-lg-10 offset-lg-1 offset-sm-0 col-sm-12 columnGrid">
         <div class="grid">
 
@@ -72,15 +74,19 @@
 
 
             <!--previous page, directly add the previous page url here through thymeleaf -->
-            
+
             <div class="grid-item" data-toggle="modal" th:if="${page} > 1">
-                <img class="addSearch" src="../staticImg/previous.png" th:href="${prev}"/>
+                <a th:href="${prev}">
+                    <img class="addSearch prebtn" src="../staticImg/previous.png" />
+                </a>
             </div>
 
 
             <!--next page, directly add the next page url here through thymeleaf -->
             <div class="grid-item" data-toggle="modal" th:if="${page} < ${pages}">
-                <img class="addSearch" src="../staticImg/next.png" th:href="${next}"/>
+                <a th:href="${next}">
+                    <img class="addSearch nextbtn" src="../staticImg/next.png" />
+                </a>
             </div>
 
 

@@ -14,9 +14,14 @@ body a{
 
 }
 
+.grid-item a{
+    cursor:default;
+}
+
 
 
 .pageshow{
+    z-index: 100;
     position:fixed;
     right:3vw;
     bottom:3vh;
@@ -333,7 +338,7 @@ div.main {
     -ms-transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
     transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
 }
-.navi .primary-navi { margin-top: 60px; }
+.navi .primary-navi { margin-top: 60px; z-index: -100}
 
 .navi .primary-navi > li{
     margin: 2em 0;
@@ -437,6 +442,13 @@ div.main {
 }
 
 
+@media (max-width: 720px) {
+    .pageshow{
+        visibility: hidden;
+    }
+
+}
+
 @media(max-width:640px){
     .navi-trigger .navi-icon {
         width: 19px;
@@ -446,9 +458,7 @@ div.main {
         height: 40px;
         width: 40px;
     }
-    .pageshow{
-        visibility: hidden;
-    }
+
 
 
 }

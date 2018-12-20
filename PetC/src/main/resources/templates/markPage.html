@@ -1,0 +1,65 @@
+<div class="panel-group" id="accordion" xmlns:th="http://www.thymeleaf.org">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td class="text-center">帖子相关人的名字</td>
+                        <td>Already Confirmed</td>
+                        <td><a data-id="id" data-ismark="1" onclick="isMark(this)" class="glyphicon glyphicon-heart" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseOne">
+                        </a>
+                            <a class="glyphicon glyphicon-info-sign" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseTwo">
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="container">
+                    <h1 id="prompt">give a mark</h1>
+                    <div class="row">
+                        <div class="col-md-3"><h3>Grade:</h3></div>
+                        <div class="col-md-1">
+                            <h3><p id="Grade">0</p></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span id="markOne" value="1" class="glyphicon glyphicon-star-empty starBtn" style="font-size:30px;" aria-hidden="true" onclick="getMark(this)"></span>
+                        <span id="markTwo" value="2" class="glyphicon glyphicon-star-empty starBtn" style="font-size:30px;" aria-hidden="true" onclick="getMark(this)"></span>
+                        <span id="markThree" value="3" class="glyphicon glyphicon-star-empty starBtn" style="font-size:30px;" aria-hidden="true" onclick="getMark(this)"></span>
+                        <span id="markFour" value="4" class="glyphicon glyphicon-star-empty starBtn" style="font-size:30px;" aria-hidden="true" onclick="getMark(this)"></span>
+                        <span id="markFive" value="5" class="glyphicon glyphicon-star-empty starBtn" style="font-size:30px;" aria-hidden="true" onclick="getMark(this)"></span>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button id="clearBtn" class="btn btn-primary" onclick="clearGrade()">Clear</button>
+                            <button data-id="mark.html" id="submitBtn" class="btn btn-success" onclick="submitGrade(this)">Mark</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider"></div>
+            </div>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="container">
+                    <h1>Personal Infomation</h1>
+                    <h3>name</h3>
+                    <p>personal infomation: <a>dog lover</a></p>
+                    <p>phone number: <a>151515515</a></p>
+                    <p>Average score: <a>3.5</a></p>
+                    <p>date: <a>2018-12-20</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

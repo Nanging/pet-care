@@ -14,6 +14,65 @@ body a{
 
 }
 
+
+
+.pageshow{
+    position:fixed;
+    right:3vw;
+    bottom:3vh;
+    height: 200px;
+    width: 200px;
+    transition: all 0.5s;
+}
+.pageshow:hover{
+    transform: scale(1.05);
+}
+
+.pageshow:hover > #pageNum{
+    transform:rotate(5deg);
+}
+
+.pageshow img{
+    height:100%;
+    width: auto;
+}
+
+
+
+#pageNum{
+    position: absolute;
+    font-size: 30px;
+    color: #FFFFFF;
+    left:50%;
+    top:52%;
+    transition: all 0.5s;
+    -webkit-user-select:none;
+
+    -moz-user-select:none;
+
+    -ms-user-select:none;
+
+    user-select:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.badge{
+    font-size: 60%;
+}
+
 .navi a{
     cursor:default;
 }

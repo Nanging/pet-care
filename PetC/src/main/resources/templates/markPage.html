@@ -7,7 +7,7 @@
                     <tr>
                         <td class="text-center">帖子相关人的名字</td>
                         <td>Already Confirmed</td>
-                        <td><a data-id="id" data-ismark="1" onclick="isMark(this)" class="glyphicon glyphicon-heart" data-toggle="collapse" data-parent="#accordion"
+                        <td><a data-id="id" th:attr="data-ismark=${ismark}" data-ismark="1" onclick="isMark(this)" class="glyphicon glyphicon-heart" data-toggle="collapse" data-parent="#accordion"
                                href="#collapseOne">
                         </a>
                             <a class="glyphicon glyphicon-info-sign" data-toggle="collapse" data-parent="#accordion"
@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-md-3"><h3>Grade:</h3></div>
                         <div class="col-md-1">
-                            <h3><p id="Grade">0</p></h3>
+                            <h3><p id="Grade" th:if="${ismark}==1" th:text="${score}">0</p></h3>
                         </div>
                     </div>
                     <div class="row">
@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <button id="clearBtn" class="btn btn-primary" onclick="clearGrade()">Clear</button>
-                            <button data-id="mark.html" id="submitBtn" class="btn btn-success" onclick="submitGrade(this)">Mark</button>
+                            <button th:attr="data-id=${id}" data-id="mark.html" id="submitBtn" class="btn btn-success" onclick="submitGrade(this)">Mark</button>
                         </div>
                     </div>
                 </div>

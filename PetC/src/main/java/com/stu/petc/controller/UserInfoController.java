@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,11 +34,14 @@ import com.stu.petc.mapper.UserMapper;
 import com.stu.petc.service.UserInfoService;
 import com.stu.petc.util.Encoder;
 import com.stu.petc.util.Tools;
+import com.stu.petc.web.LoginResponse;
+import com.stu.petc.web.ReqScore;
 
 @Controller
 public class UserInfoController {
 
-	
+	@Autowired
+	UserMapper mapper;
 	
 	@Autowired
 	UserInfoService service;
@@ -211,6 +216,20 @@ public class UserInfoController {
 	@RequestMapping("/user/foster/show/{id}")
 	public String showFosterageCandidates(@PathVariable("id") Integer id,Model map) {
 		System.out.println("get "+id);
+		Integer applier = service.getFosterageActor(id);
+		Integer score = service.getFosterageScore(id);
+		if (score!=null) {
+			map.addAttribute("ismark", 1);
+			map.addAttribute("score", score.intValue());
+		}else {
+			map.addAttribute("ismark", 0);
+		}
+		if (applier!=null) {
+			map.addAttribute("id", id);
+			User actor = mapper.getUserByID(applier);
+			map.addAttribute("applier", actor);
+			return "markPage";
+		}
 		List<FosterageCandidate> list = service.getFosterageCandidates(id);
 		map.addAttribute("candidates", list);
 		map.addAttribute("type", "fosterage");
@@ -227,11 +246,20 @@ public class UserInfoController {
 	}
 	
 	@RequestMapping("/user/fosterage/confirm/{id}/{applier}")
-	@ResponseBody
 	public String confirmFosterageCandidates(@PathVariable("id") Integer id,@PathVariable("applier") Integer applier,Model map) {
 		System.out.println("get "+id+"/"+applier);
 		service.confirmFosterageApplier(id, applier);
-		return "confirm";
+		Integer score = service.getFosterageScore(id);
+		if (score!=null) {
+			map.addAttribute("ismark", 1);
+			map.addAttribute("score", score.intValue());
+		}else {
+			map.addAttribute("ismark", 0);
+		}
+		map.addAttribute("id", id);
+		User actor = mapper.getUserByID(applier);
+		map.addAttribute("applier", actor);
+		return "markPage";
 	}
 	
 	@RequestMapping("/user/adoption/show/{id}/{applier}")
@@ -242,12 +270,19 @@ public class UserInfoController {
 		return "confirm";
 	}
 	
-	@RequestMapping("/user/fosterage/score/{applier}/{score}")
+	@RequestMapping("/user/fosterage/score/")
 	@ResponseBody
-	public String scoreFosterage(@PathVariable("applier") Integer applier,@PathVariable("score") Integer score,Model map) {
-		System.out.println("get /"+applier);
-		service.scoreFosterageForApplier(applier, score);
-		return "score";
+	public LoginResponse scoreFosterage(@RequestBody ReqScore reqScore,Model map) {
+		System.out.println("score");
+		int fosterageid = reqScore.getId();
+		int score = reqScore.getGrade();
+		Integer userid = service.getFosterageActor(fosterageid);
+		if (userid!=null) {
+			User actor = mapper.getUserByID(userid.intValue());
+			service.scoreFosterageForApplier(fosterageid,actor.getUser_id(), score);			
+		}
+
+		return new LoginResponse(0, "SUCCESS", "?");
 	}
 	
 }

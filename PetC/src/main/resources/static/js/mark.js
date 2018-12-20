@@ -17,6 +17,7 @@ function isMark(tar) {
         $.ajax({
             url:mark,
             type:'POST',
+            contentType: "application/json;charset=utf-8",
             dataType:'json',
             data: data,
             success:function (result) {
@@ -97,8 +98,9 @@ function submitGrade(tar) {
    var data=JSON.stringify(s);
    console.log(data);
    $.ajax({
-       url:"mark",
+       url:"/user/fosterage/score/",
        type:"POST",
+       contentType: "application/json;charset=utf-8",
        dataType:'json',
        data:data,
        success:function () {

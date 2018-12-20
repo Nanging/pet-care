@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="../css/share.css"/>
 </head>
 <body>
+
+<div class="pageshow">
+    <img  src="../staticImg/PageshowS.png"/>
+    <p id="pageNum" >Num</p>
+</div>
 <div class="container-fluid main">
     <div class="row pageBanner">
         <div class="logoGroup">
@@ -30,6 +35,8 @@
             <img src="../staticImg/share.png" class="titleLogo"/>
         </div>
     </div>
+    <hr>
+
     <div class="col-lg-10 offset-lg-1 offset-sm-0 col-sm-12 columnGrid">
         <div class="grid">
 
@@ -77,14 +84,18 @@
             <!-- publish display in progress! -->
 
             <!--previous page, directly add the previous page url here through thymeleaf -->
-            <div class="grid-item" data-toggle="modal">
-                <img class="addSearch" src="../staticImg/previous.png"/>
+            <div class="grid-item" data-toggle="modal" th:if="${page} > 1">
+                <a th:href="${prev}">
+                    <img class="addSearch prebtn" src="../staticImg/previous.png" />
+                </a>
             </div>
 
 
             <!--next page, directly add the next page url here through thymeleaf -->
-            <div class="grid-item" data-toggle="modal">
-                <img class="addSearch" src="../staticImg/next.png"/>
+            <div class="grid-item" data-toggle="modal" th:if="${page} < ${pages}">
+                <a th:href="${next}">
+                    <img class="addSearch nextbtn" src="../staticImg/next.png" />
+                </a>
             </div>
 
 
@@ -216,7 +227,7 @@
 
 
 
-<a href="#navi" class="navi-trigger"> <span class="navi-icon"> <svg x="0px" y="0px" width="54px" height="54px" viewBox="0 0 54 54"></svg> </span> </a>
+<a href="#navi" class="navi-trigger">  <span class="navi-icon"> <svg x="0px" y="0px" width="54px" height="54px" viewBox="0 0 54 54"></svg> </span> </a>
 <div id="navi" class="navi">
     <div class="navigation-wrapper">
         <div class="half-block">
@@ -226,7 +237,10 @@
                     <li><a href="/share"  class="selected">Share</a></li>
                     <li><a href="/adoption">Adoption</a></li>
                     <li><a href="/fosterage">Fosterage</a></li>
-                    <li><a href="/login">Sign In</a></li>
+					<li th:if="${username}==null"><a href="/login"><span class="badge badge-light">New</span> Sign In</a></li>
+					<li th:if="${username}"><a href="/user/info" th:text="${username}">Sign In</a></li>
+                    <!-- keep the space " "  at the beginning of the text when change "sign in" to <username>
+                    & maybe the "new" should be a num-->
                 </ul>
             </nav>
         </div>

@@ -36,6 +36,8 @@ import com.stu.petc.util.Tools;
 @Controller
 public class UserInfoController {
 
+	
+	
 	@Autowired
 	UserInfoService service;
 	
@@ -60,6 +62,7 @@ public class UserInfoController {
 			System.out.println("[NUEXPECT ERROR]");
 		}else {
 			int id = service.getIDByName(username);
+			User user = service.getUserByID(id);
 			List<FosterNote> fosterList = service.getAllFosterByUser(id);
 			for (FosterNote fosterNote : fosterList) {
 				System.out.println(fosterNote);
@@ -72,6 +75,9 @@ public class UserInfoController {
 			for (ShareNote shareNote : shareList) {
 				System.out.println(shareNote);
 			}
+//			map.addAllAttributes(attributeValues)
+			map.addAttribute("username", username);
+			map.addAttribute("tel", user.getUser_tel());
 			map.addAttribute("fosterList", fosterList);
 			map.addAttribute("shareList", shareList);
 			map.addAttribute("adoptionList", adoptionList);
@@ -104,7 +110,7 @@ public class UserInfoController {
 		System.out.println("paths:" + paths);
 		
 		User user = service.getUserByID(adoptionNote.getEditor());
-		
+		service.setAdoptionUnreadZero(id);
 		model.put("publisher", user.getUsername());
 		model.put("phone", user.getUser_tel());
 		model.put("adoption", adoptionNote);
@@ -137,6 +143,7 @@ public class UserInfoController {
 		System.out.println("paths:" + paths);
 		
 		User user = service.getUserByID(fosterNote.getEditor());
+		service.setFosterageUnreadZero(id);
 //		System.out.println(Tools.DateFormat(fosterNote.getPublish_date()));
 		model.put("publisher", user.getUsername());
 		model.put("foster", fosterNote);
@@ -167,7 +174,7 @@ public class UserInfoController {
 		}
 		
 		User user = service.getUserByID(shareNote.getEditor());
-		
+		service.setShareUnreadZero(id);
 		model.put("publisher", user.getUsername());
 		model.put("share", shareNote);
 		model.put("paths", paths);

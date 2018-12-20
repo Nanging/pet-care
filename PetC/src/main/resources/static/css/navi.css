@@ -14,6 +14,70 @@ body a{
 
 }
 
+.grid-item a{
+    cursor:default;
+}
+
+
+
+.pageshow{
+    z-index: 100;
+    position:fixed;
+    right:3vw;
+    bottom:3vh;
+    height: 200px;
+    width: 200px;
+    transition: all 0.5s;
+}
+.pageshow:hover{
+    transform: scale(1.05);
+}
+
+.pageshow:hover > #pageNum{
+    transform:rotate(5deg);
+}
+
+.pageshow img{
+    height:100%;
+    width: auto;
+}
+
+
+
+#pageNum{
+    position: absolute;
+    font-size: 30px;
+    color: #FFFFFF;
+    left:50%;
+    top:52%;
+    transition: all 0.5s;
+    -webkit-user-select:none;
+
+    -moz-user-select:none;
+
+    -ms-user-select:none;
+
+    user-select:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.badge{
+    font-size: 60%;
+}
+
 .navi a{
     cursor:default;
 }
@@ -274,7 +338,7 @@ div.main {
     -ms-transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
     transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
 }
-.navi .primary-navi { margin-top: 60px; }
+.navi .primary-navi { margin-top: 60px; z-index: -100}
 
 .navi .primary-navi > li{
     margin: 2em 0;
@@ -354,6 +418,17 @@ div.main {
         width: 45px;
         right: 13%;
     }
+    .navigation-is-open div.main {
+        -webkit-transform: translateX(-40%);
+        -moz-transform: translateX(-40%);
+        -ms-transform: translateX(-40%);
+        -o-transform: translateX(-40%);
+        transform: translateX(-40%);
+
+    }
+    .navi .primary-navi a {
+        font-size: 5em;
+    }
 
 }
 
@@ -362,10 +437,17 @@ div.main {
         right: 5%;
     }
     .navi h2 {
-        font-size: 2.5em;
+        font-size: 5em;
     }
 }
 
+
+@media (max-width: 720px) {
+    .pageshow{
+        visibility: hidden;
+    }
+
+}
 
 @media(max-width:640px){
     .navi-trigger .navi-icon {
@@ -377,6 +459,8 @@ div.main {
         width: 40px;
     }
 
+
+
 }
 
 
@@ -387,11 +471,9 @@ div.main {
     }
 
     .navi h2 {
-        font-size: 2.2em;
+        font-size: 4.4em;
     }
-    .navi .primary-navi a {
-        font-size: 1.3em;
-    }
+
 }
 
 
@@ -409,8 +491,8 @@ div.main {
     }
 
     .navi h2 {
-        font-size: 2em;
-        margin-bottom: 1em;
+        font-size: 4em;
+        margin-bottom: 2em;
     }
 
     .navi .primary-navi > li {

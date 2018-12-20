@@ -36,7 +36,7 @@ public class UserHandlerInterceptor implements HandlerInterceptor {
 						String sessionId = session.getId();
 						String currentSessionID = service.getUserSession(cookie.getValue());
 						System.out.println("[currentSessionID:"+currentSessionID+"]");
-						if (!currentSessionID.equals(sessionId) ) {
+						if (!sessionId.equals(currentSessionID) ) {
 							flag = false;
 						}
 					}
@@ -57,7 +57,6 @@ public class UserHandlerInterceptor implements HandlerInterceptor {
 			}
 		}
 		request.getSession().setAttribute("userStatus", "NUKNOWN");
-
 		System.out.println("main to login : NUKNOWN");
 		response.sendRedirect("/login");
 		return false;

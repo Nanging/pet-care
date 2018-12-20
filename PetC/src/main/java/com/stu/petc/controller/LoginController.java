@@ -19,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -91,8 +92,30 @@ public class LoginController {
 	}
 
 	@GetMapping("/main")
-	public String index() {
-		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++");
+	public String index(HttpServletRequest request,Model map) {
+		String username=null;
+		Cookie[] cookies = request.getCookies();
+		if (null != cookies) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginStatus")) {
+					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+						/**
+						 * check user
+						 */
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+						HttpSession session = request.getSession();
+						String sessionId = session.getId();
+						String currentSessionID = service.getUserSession(cookie.getValue());
+						System.out.println("[currentSessionID:"+currentSessionID+"]");
+						if (sessionId.equals(currentSessionID) ) {
+							map.addAttribute("username", username);
+						}
+					}
+				}
+			}
+		}
+		
 		return "main";
 	}
 
@@ -154,22 +177,24 @@ public class LoginController {
 						|| reqUser.getPhone().length() > 16 || reqUser.getPhone().isEmpty()) {
 					return new LoginResponse(-3, "WRONG ACCESS", null);
 				}
+				if (!Pattern.matches("^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\\\d{8}$", reqUser.getPhone())) {
+					System.out.println("Wrong phone number");
+					return new LoginResponse(-4, "WRONG PHONE PATTERN", null);
+				}
 				/**
 				 * add new user
 				 */
-//				user.setUsername(reqUser.getUsername());
-//				user.setPassword(reqUser.getPassword());
-//				user.setUser_tel(reqUser.getPhone());
-//				if (1==mapper.add(user)) {
-//					return new LoginResponse(0, "SUCCESS", null);
-//				}
+				user.setUsername(reqUser.getUsername());
+				user.setPassword(reqUser.getPassword());
+				user.setUser_tel(reqUser.getPhone());
+				if (1==mapper.add(user)) {
+					return new LoginResponse(0, "SUCCESS", null);
+				}
 				/**
 				 * re phone number
 				 */
-				if (Pattern.matches("1(([38]\\d)|(5[^4&&\\d])|(4[579])|(7[0135678]))\\d{8}", reqUser.getPhone())) {
-					System.out.println("Wrong phone number");
-				}
-				return new LoginResponse(0, "SUCCESS", null);
+
+//				return new LoginResponse(0, "SUCCESS", null);
 			} else {
 				return new LoginResponse(-1, "Username exists", null);
 			}

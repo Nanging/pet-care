@@ -2,6 +2,7 @@ package com.stu.petc.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,8 @@ import com.stu.petc.mapper.ShareMapper;
 public class ShareFilerService {
 	@Autowired
 	ShareMapper mapper;
-	public List<ShareNote> doFiler(String searchText,String kindSelect) {
-		List<ShareNote> rawList = mapper.getShare(searchText, kindSelect);
+	public List<ShareNote> doFiler(String searchText,String kindSelect,Integer page) {
+		List<ShareNote> rawList = mapper.getShare(searchText, kindSelect,page);
 		if (rawList!=null&&rawList.size()>0) {
 			for (int i = 0; i < rawList.size(); i++) {
 				ShareNote sn= rawList.get(i);
@@ -52,5 +53,13 @@ public class ShareFilerService {
 			return true;
 		}
 		return false;
+	}
+
+	public Integer updateShareUnread(Integer id) {
+		return mapper.updateShareUnread(id);
+	}
+	
+	public Integer getTotalNumber() {
+		return mapper.getTotalNumber();
 	}
 }

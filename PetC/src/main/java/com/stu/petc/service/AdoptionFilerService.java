@@ -2,6 +2,7 @@ package com.stu.petc.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,8 @@ public class AdoptionFilerService {
 	
 	@Autowired
 	AdoptionMapper mapper;
-	public List<AdoptionNote> doFiler(String searchText,String regionSelect,String kindSelect) {
-		List<AdoptionNote> rawList = mapper.getAdoption(searchText, regionSelect, kindSelect);
+	public List<AdoptionNote> doFiler(String searchText,String regionSelect,String kindSelect,Integer page) {
+		List<AdoptionNote> rawList = mapper.getAdoption(searchText, regionSelect, kindSelect,page);
 		return rawList;
 	}
 	public AdoptionNote getAdoptionByID(Integer id) {
@@ -30,4 +31,8 @@ public class AdoptionFilerService {
 		mapper.addAdoption(id, title, editor, type, location, text);
 	}
 	
+
+	public Integer getTotalNumber() {
+		return mapper.getTotalNumber();
+	}
 }

@@ -31,4 +31,16 @@ public class FosterFilerService {
 	public void addFoster(Integer id, String title, Integer editor, String type, String location, String text) {
 		mapper.addFoster(id, title, editor, type, location, text);
 	}
+	public Integer updateFosterageUnread(Integer id) {
+		return mapper.updateFosterageUnread(id);
+	}
+	public boolean checkOffer(Integer id,Integer user_id) {
+		if (mapper.checkOffer(id, user_id)>0) {
+			return false;
+		}
+		return true;
+	}
+	public Integer addOffer(Integer id,Integer user_id) {
+		return mapper.addOffer(id, user_id);
+	}
 }

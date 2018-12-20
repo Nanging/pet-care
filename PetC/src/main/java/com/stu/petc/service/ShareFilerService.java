@@ -2,6 +2,7 @@ package com.stu.petc.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,5 +53,9 @@ public class ShareFilerService {
 			return true;
 		}
 		return false;
+	}
+
+	public Integer updateShareUnread(Integer id) {
+		return mapper.updateShareUnread(id);
 	}
 }

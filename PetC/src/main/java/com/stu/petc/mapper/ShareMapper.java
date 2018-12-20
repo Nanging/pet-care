@@ -74,4 +74,6 @@ public interface ShareMapper {
 	@Select("select count(*) from share_like where share_id = #{id} and user_id = #{user_id}")
 	public Integer checkLike(Integer id,Integer user_id);
 	
+	@Update("update share set unread = unread + 1 where id =#{id}")
+	public Integer updateShareUnread(Integer id);
 }

@@ -104,7 +104,7 @@ public class UserInfoController {
 		System.out.println("paths:" + paths);
 		
 		User user = service.getUserByID(adoptionNote.getEditor());
-		
+		service.setAdoptionUnreadZero(id);
 		model.put("publisher", user.getUsername());
 		model.put("phone", user.getUser_tel());
 		model.put("adoption", adoptionNote);
@@ -137,6 +137,7 @@ public class UserInfoController {
 		System.out.println("paths:" + paths);
 		
 		User user = service.getUserByID(fosterNote.getEditor());
+		service.setFosterageUnreadZero(id);
 //		System.out.println(Tools.DateFormat(fosterNote.getPublish_date()));
 		model.put("publisher", user.getUsername());
 		model.put("foster", fosterNote);
@@ -167,7 +168,7 @@ public class UserInfoController {
 		}
 		
 		User user = service.getUserByID(shareNote.getEditor());
-		
+		service.setShareUnreadZero(id);
 		model.put("publisher", user.getUsername());
 		model.put("share", shareNote);
 		model.put("paths", paths);

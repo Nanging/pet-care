@@ -35,7 +35,7 @@ import com.stu.petc.service.ShareFilerService;
 import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqAdoptionNote;
 import com.stu.petc.web.ReqComment;
-import com.stu.petc.web.ReqEndorse;
+import com.stu.petc.web.ReqTargetID;
 import com.stu.petc.web.ReqShareNote;
 
 @Controller
@@ -149,7 +149,7 @@ public class ShareController {
 	
 	@PostMapping("/endorse")
 	@ResponseBody
-	public LoginResponse publishEndorse(@RequestBody ReqEndorse reqEndorse, HttpServletRequest request) {
+	public LoginResponse publishEndorse(@RequestBody ReqTargetID reqEndorse, HttpServletRequest request) {
 		
 		System.out.println("-----------------");
 		System.out.println(reqEndorse);
@@ -172,10 +172,15 @@ public class ShareController {
 		int user_id = userMapper.getUserByName(username).getUser_id();
 //		int nextId = service.getMaxId() + 1;
 		int share_id = reqEndorse.getTargetID();
+		ShareNote note = service.getShareByID(share_id);
+
 		if (service.checkEndorse(share_id, user_id)) {
 			service.addEndorse(share_id, user_id);
+			if (user_id!=note.getEditor().intValue()) {
+				service.updateShareUnread(share_id);
+			}
 		}
-		
+
 		return new LoginResponse(0, "success", null);
 	}
 	@PostMapping("/publishComment")
@@ -203,8 +208,13 @@ public class ShareController {
 		int user_id = userMapper.getUserByName(username).getUser_id();
 //		int nextId = service.getMaxId() + 1;
 		int share_id = reqComment.getTargetID();
+		ShareNote note = service.getShareByID(share_id);
+
 		String comment = reqComment.getNewComment();
 		service.addComment(share_id, user_id, comment);
+		if (user_id!=note.getEditor().intValue()) {
+			service.updateShareUnread(share_id);
+		}
 		return new LoginResponse(0, "success", null);
 	}
 	

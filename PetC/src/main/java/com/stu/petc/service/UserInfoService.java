@@ -4,6 +4,7 @@ import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -108,4 +109,14 @@ public class UserInfoService {
 	public Integer scoreFosterageForApplier(Integer applier, Integer score) {
 		return userInfoMapper.scoreFosterageForApplier(applier,score);
 	}
+	public Integer setFosterageUnreadZero(Integer id) {
+		return userInfoMapper.setFosterageUnreadZero(id);
+	}
+	public Integer setAdoptionUnreadZero(Integer id) {
+		return userInfoMapper.setAdoptionUnreadZero(id);
+	}
+	public Integer setShareUnreadZero(Integer id) {
+		return userInfoMapper.setShareUnreadZero(id);
+	}
+
 }

@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stu.petc.beans.FosterNote;
+import com.stu.petc.beans.ShareNote;
 import com.stu.petc.beans.User;
 import com.stu.petc.mapper.FosterMapper;
 import com.stu.petc.mapper.UserMapper;
@@ -44,6 +45,7 @@ import com.stu.petc.mapper.UserMapper;
 import com.stu.petc.service.FosterFilerService;
 import com.stu.petc.util.Tools;
 import com.stu.petc.web.LoginResponse;
+import com.stu.petc.web.ReqTargetID;
 import com.stu.petc.web.ReqFosterNote;
 @Controller
 public class FosterageController {
@@ -178,5 +180,42 @@ public class FosterageController {
 		map.addAttribute("list", fosterNotes);
 		
 		return "fosterageTemplate";
+	}
+	
+	@PostMapping("/offer")
+	@ResponseBody
+	public LoginResponse publishEndorse(@RequestBody ReqTargetID reqOffer, HttpServletRequest request) {
+		
+		System.out.println("-----------------");
+		System.out.println(reqOffer);
+		
+		String username="";
+		Cookie[] cookies = request.getCookies();
+		if (null != cookies) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginStatus")) {
+					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+						/**
+						 * check user
+						 */
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+					}
+				}
+			}
+		}
+		int user_id = userMapper.getUserByName(username).getUser_id();
+//		int nextId = service.getMaxId() + 1;
+		int foserage_id = reqOffer.getTargetID();
+		FosterNote note = service.getFosterByID(foserage_id);
+
+		if (service.checkOffer(foserage_id, user_id)) {
+			service.addOffer(foserage_id, user_id);
+			if (user_id != note.getEditor().intValue()) {
+				service.updateFosterageUnread(foserage_id);
+			}
+		}
+
+		return new LoginResponse(0, "success", null);
 	}
 }

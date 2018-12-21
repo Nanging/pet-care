@@ -7,6 +7,18 @@ body{
     border-radius: 50%;
 }
 
+
+.pageBanner{
+    height: 300px;
+    margin-bottom: 20px;
+    background-image: url("../staticImg/bannerBGU.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center;
+
+}
+
+
 span{
     font-size: 25px;
     padding-left: 10px;
@@ -31,12 +43,26 @@ span{
 
 .GeneralInfo{
     background-color:#baccd9;
+    padding:10px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .detailInfo{
     background-color: white;
 }
 
+.item{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 #myTab{
     position: center;
+}
+
+
+.personalPhoto{
+    margin-bottom:15px;
+    margin-top:5px;
 }

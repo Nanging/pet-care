@@ -9,13 +9,14 @@
     <meta name="keywords" content="" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Custom Theme files -->
-    <link href="../css/main.css" type="text/css" rel="stylesheet" media="all">
     <link href="../css/flexslider.css" type="text/css" rel="stylesheet"  media="all">
     <link href="../css/font-awesome.css" type="text/css" rel="stylesheet">
     <script src="../js/modernizr.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/userInfo.css">
+    <link rel="stylesheet" href="../css/titleGroup.css"/>
+    <link rel="stylesheet" href="../css/navi.css"/>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/masonry.pkgd.min.js"></script>
@@ -25,10 +26,21 @@
 
 </head>
 <body>
+
+
+<div class="main">
+    <div class="pageBanner">
+        <div class="logoGroup">
+            <img src="../staticImg/petC.png"  class="logo"/>
+            <img src="../staticImg/userinfo.png" class="titleLogo"/>
+        </div>
+    </div>
+    <hr>
+
       <div class="container">
           <div class="row">
               <div class="col-md-3 GeneralInfo">
-                  <div>
+                  <div class="personalPhoto">
                       <img class="img-circle img-responsive center-block" id="headSculpture" src="../staticImg/img1.jpg">
                       <!--put personal photo-->
                   </div>
@@ -154,6 +166,16 @@
               </div>
           </div>
       </div>
+
+
+</div>
+
+
+
+
+
+
+
       <a href="#navi" class="navi-trigger"> <span class="navi-icon"> <svg x="0px" y="0px" width="54px" height="54px" viewBox="0 0 54 54"></svg> </span> </a>
       <!-- Hidden Navi Menu -->
       <!--这个模板可以套用-->
@@ -215,7 +237,8 @@
             $container.imagesLoaded( function () {
                 $container.masonry({
                     columnWidth: '.item',
-                    itemSelector: '.item'
+                    itemSelector: '.item',
+                    gutter: 10,
                 });
             });
         });

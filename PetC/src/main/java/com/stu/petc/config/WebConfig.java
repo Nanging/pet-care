@@ -21,9 +21,11 @@ public class WebConfig implements WebMvcConfigurer{
         return new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
             @Override
             public void customize(ConfigurableWebServerFactory factory) {
-                ErrorPage error404 = new ErrorPage(HttpStatus.NOT_FOUND, "/404");
-                ErrorPage error500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500");
-                factory.addErrorPages(error404,error500);
+//            	System.out.println("------------------1-------------------");
+//                ErrorPage error404 = new ErrorPage(HttpStatus.NOT_FOUND, "/404.html");
+//                ErrorPage error500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
+//                factory.addErrorPages(error404,error500);
+//                System.out.println("--------------------2-----------------");
             }
         };
     }
@@ -41,6 +43,8 @@ public class WebConfig implements WebMvcConfigurer{
 		// TODO Auto-generated method stub
 //		WebMvcConfigurer.super.addViewControllers(registry);
 		registry.addRedirectViewController("/", "/main");
+		registry.addStatusController("/404", HttpStatus.NOT_FOUND);
+		registry.addStatusController("/500", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 
@@ -51,7 +55,7 @@ public class WebConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
 		registry.addInterceptor(createLoginHandlerInterceptor()).addPathPatterns("/login");
-		registry.addInterceptor(createUserHandlerInterceptor()).addPathPatterns(new String[] {"/foster/**","/share/**","/user/**"}).excludePathPatterns("/login");
+		registry.addInterceptor(createUserHandlerInterceptor()).addPathPatterns(new String[] {"/fosterage/**","/share/**","/user/**"}).excludePathPatterns("/login");
 //		WebMvcConfigurer.super.addInterceptors(registry);
 	}
 

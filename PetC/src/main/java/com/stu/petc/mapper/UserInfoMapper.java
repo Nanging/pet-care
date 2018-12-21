@@ -70,6 +70,9 @@ public interface UserInfoMapper {
 	@Update("update user set user_score = user_score + #{score} where user_id =#{applier}")
 	public Integer scoreFosterageForApplier(Integer applier, Integer score);
 	
+	@Update("update foster set score = #{score} where id =#{fosterageid}")
+	public Integer scoreFosterage(Integer fosterageid, Integer score);
+	
 	@Update("update foster set unread = 0 where id =#{id}")
 	public Integer setFosterageUnreadZero(Integer id);
 	
@@ -80,5 +83,11 @@ public interface UserInfoMapper {
 	
 	@Update("update share set unread = 0 where id =#{id}")
 	public Integer setShareUnreadZero(Integer id);
+	
+	@Select("select actor from foster where id = #{fosterageid} ")
+	public Integer getFosterageActor(Integer fosterageid);
+	
+	@Select("select score from foster where id = #{fosterageid} ")
+	public Integer getFosterageScore(Integer fosterageid);
 	
 }

@@ -22,23 +22,25 @@
     <script src="../js/masonry.pkgd.min.js"></script>
     <script src="../js/imagesloaded.pkgd.min.js"></script>
     <script src="../js/userInfo.js"></script>
+    <script src="../js/mark.js"></script>
+
+
+    <link href="../css/navi.css" type="text/css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="../css/userInfo.css">
 
 
 </head>
 <body>
-
-
-<div class="main">
-    <div class="pageBanner">
-        <div class="logoGroup">
-            <img src="../staticImg/petC.png"  class="logo"/>
-            <img src="../staticImg/userinfo.png" class="titleLogo"/>
-        </div>
-    </div>
-    <hr>
-
-      <div class="container">
+      <div class="container-fluid main">
+          <div class="pageBanner row">
+              <div class="logoGroup">
+                  <img src="../staticImg/petC.png"  class="logo"/>
+                  <img src="../staticImg/userinfo.png" class="titleLogo"/>
+              </div>
+          </div>
+          <div class="dropdown-divider"></div>
           <div class="row">
+              <div class="col-md-1"></div>
               <div class="col-md-3 GeneralInfo">
                   <div class="personalPhoto">
                       <img class="img-circle img-responsive center-block" id="headSculpture" src="../staticImg/img1.jpg">
@@ -74,6 +76,7 @@
                   <div id="myTabContent" class="tab-content">
                       <!--Personal infomation-->
                       <div class="tab-pane fade show active" id="Personal">
+                          <div class="dropdown-divider"></div>
                           <div id="aboutMe">
                           <h1>About Me</h1>
                           <p>Personal Infomation<br>
@@ -149,19 +152,19 @@
                   </div>
                </div>
           </div>
-          <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
-              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                  <div class="modal-content">
-                      <div class="modal-body">
-                      </div>
+      </div>
+      <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content">
+                  <div class="modal-body">
                   </div>
               </div>
           </div>
-          <div class="modal fade" id="infoModal" tabindex="-1" role="dialog">
-              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                  <div class="modal-content">
-                      <div class="modal-body">
-                      </div>
+      </div>
+      <div class="modal fade" id="infoModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content">
+                  <div class="modal-body">
                   </div>
               </div>
           </div>

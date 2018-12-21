@@ -103,10 +103,12 @@ public class UserInfoService {
 		return userInfoMapper.confirmFosterageApplier(fosterageid, applier);
 	}
 	
+	
 	public Integer confirmAdoptionApplier(Integer adoptionid, Integer applier) {
 		return userInfoMapper.confirmAdoptionApplier(adoptionid, applier);
 	}
-	public Integer scoreFosterageForApplier(Integer applier, Integer score) {
+	public Integer scoreFosterageForApplier(Integer fosterageid,Integer applier, Integer score) {
+		userInfoMapper.scoreFosterage(fosterageid, score);
 		return userInfoMapper.scoreFosterageForApplier(applier,score);
 	}
 	public Integer setFosterageUnreadZero(Integer id) {
@@ -118,5 +120,10 @@ public class UserInfoService {
 	public Integer setShareUnreadZero(Integer id) {
 		return userInfoMapper.setShareUnreadZero(id);
 	}
-
+	public Integer getFosterageActor(Integer fosterageid) {
+		return userInfoMapper.getFosterageActor(fosterageid);
+	}
+	public Integer getFosterageScore(Integer fosterageid) {
+		return userInfoMapper.getFosterageScore(fosterageid);
+	}
 }

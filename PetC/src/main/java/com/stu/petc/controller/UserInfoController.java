@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.in;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -227,8 +228,16 @@ public class UserInfoController {
 		}
 		if (applier!=null) {
 			map.addAttribute("id", id);
+			Timestamp date = null;
 			User actor = mapper.getUserByID(applier);
+			List<FosterageCandidate> candidates =  service.getFosterageCandidates(id);
+			for (FosterageCandidate fosterageCandidate : candidates) {
+				if (fosterageCandidate.getApplier().intValue()==applier) {
+					date = fosterageCandidate.getApply_time();
+				}
+			}
 			map.addAttribute("actor", actor);
+			map.addAttribute("date", date);
 			return "markPage";
 		}
 		System.out.println("here");

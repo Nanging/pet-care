@@ -244,7 +244,7 @@ public class UserInfoController {
 	@ResponseBody
 	public String deleteFosterage(@PathVariable("id") Integer id) {
 		
-		service.deleteFosterageByID(id);
+		//service.deleteFosterageByID(id);
 		return "SUCCESS";
 	}
 	@RequestMapping("/user/adoption/delete/{id}")

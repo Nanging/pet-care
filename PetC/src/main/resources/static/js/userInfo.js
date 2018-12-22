@@ -30,6 +30,7 @@ function deleteData(tar) {
         type:"POST",
         success:function (result) {
             console.log(result);
+            window.location.reload();
         },
         error:function (result) {
             console.log(result);

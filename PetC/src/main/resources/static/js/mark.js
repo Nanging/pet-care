@@ -121,6 +121,6 @@ function btnUnabled() {
     $("#submitBtn").attr("disabled",true);
     $("#clearBtn").attr("disabled",true);
     $("#prompt").text("Already Marked");
-    $(".starBtn").attr("disabled",true);
+    $(".starBtn").attr("onclick","null");
 
 }

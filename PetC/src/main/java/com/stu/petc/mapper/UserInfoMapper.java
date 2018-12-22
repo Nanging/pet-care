@@ -67,11 +67,18 @@ public interface UserInfoMapper {
 	@Update("update adoption set actor = #{applier} where id=#{adoptionid}")
 	public Integer confirmAdoptionApplier(Integer adoptionid, Integer applier);
 
-	@Update("update user set user_score = user_score + #{score} where user_id =#{applier}")
-	public Integer scoreFosterageForApplier(Integer applier, Integer score);
+	@Update("update user set user_score = #{score} where user_id =#{applier}")
+	public Integer scoreFosterageForApplier(Integer applier, Float score);
+	
+	@Select("select count(*) from foster where actor = #{id}")
+	public Integer getApplyNumber(Integer id);
+	
+	@Select("select sum(score) from foster where actor = #{id}")
+	public Integer getTotalScore(Integer id);
+	
 	
 	@Update("update foster set score = #{score} where id =#{fosterageid}")
-	public Integer scoreFosterage(Integer fosterageid, Integer score);
+	public Integer scoreFosterage(Integer fosterageid, Float score);
 	
 	@Update("update foster set unread = 0 where id =#{id}")
 	public Integer setFosterageUnreadZero(Integer id);

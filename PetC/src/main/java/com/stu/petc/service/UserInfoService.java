@@ -108,8 +108,14 @@ public class UserInfoService {
 		return userInfoMapper.confirmAdoptionApplier(adoptionid, applier);
 	}
 	public Integer scoreFosterageForApplier(Integer fosterageid,Integer applier, Integer score) {
-		userInfoMapper.scoreFosterage(fosterageid, score);
-		return userInfoMapper.scoreFosterageForApplier(applier,score);
+		float fscore = (int)(score.intValue());
+		userInfoMapper.scoreFosterage(fosterageid, fscore);
+		int number = userInfoMapper.getApplyNumber(applier) + 1;
+		
+		float totalScore = (float)userInfoMapper.getTotalScore(applier);
+		float avgScore = totalScore/number;
+		System.out.println("totalScore "+totalScore+"  number  "+ number+" avgScore "+avgScore);
+		return userInfoMapper.scoreFosterageForApplier(applier,avgScore);
 	}
 	public Integer setFosterageUnreadZero(Integer id) {
 		return userInfoMapper.setFosterageUnreadZero(id);

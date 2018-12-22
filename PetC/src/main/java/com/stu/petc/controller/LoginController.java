@@ -92,8 +92,8 @@ public class LoginController {
 	}
 
 	@GetMapping("/main")
-	public String index(HttpServletRequest request,Model map) {
-		String username=null;
+	public String index(HttpServletRequest request, Model map) {
+		String username = null;
 		Cookie[] cookies = request.getCookies();
 		if (null != cookies) {
 			for (Cookie cookie : cookies) {
@@ -107,15 +107,15 @@ public class LoginController {
 						HttpSession session = request.getSession();
 						String sessionId = session.getId();
 						String currentSessionID = service.getUserSession(cookie.getValue());
-						System.out.println("[currentSessionID:"+currentSessionID+"]");
-						if (sessionId.equals(currentSessionID) ) {
+						System.out.println("[currentSessionID:" + currentSessionID + "]");
+						if (sessionId.equals(currentSessionID)) {
 							map.addAttribute("username", username);
 						}
 					}
 				}
 			}
 		}
-		
+
 		return "main";
 	}
 
@@ -177,17 +177,20 @@ public class LoginController {
 						|| reqUser.getPhone().length() > 16 || reqUser.getPhone().isEmpty()) {
 					return new LoginResponse(-3, "WRONG ACCESS", null);
 				}
-				if (!Pattern.matches("^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\\\d{8}$", reqUser.getPhone())) {
+				if (!Pattern.matches(
+						"^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\d{8}$",
+						reqUser.getPhone())) {
 					System.out.println("Wrong phone number");
+					System.out.println(reqUser.getPhone());
 					return new LoginResponse(-4, "WRONG PHONE PATTERN", null);
 				}
 				/**
 				 * add new user
 				 */
 				user.setUsername(reqUser.getUsername());
-				user.setPassword(reqUser.getPassword());
+				user.setPassword(Encoder.encryptBasedDes(reqUser.getPassword()));
 				user.setUser_tel(reqUser.getPhone());
-				if (1==mapper.add(user)) {
+				if (1 == mapper.add(user)) {
 					return new LoginResponse(0, "SUCCESS", null);
 				}
 				/**

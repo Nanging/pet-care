@@ -28,13 +28,12 @@ function deleteData(tar) {
     $.ajax({
         url:link,
         type:"POST",
-        dataType:'json',
-        data: data,
-        success:function () {
-            console.log(success);
+        success:function (result) {
+            console.log(result);
         },
-        error:function () {
-            console.log("fail");
+        error:function (result) {
+            console.log(result);
+            console.log("fail-------------------");
         }
     })
 }

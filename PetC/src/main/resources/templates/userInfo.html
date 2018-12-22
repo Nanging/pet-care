@@ -108,7 +108,7 @@
                                           <p><button  class="btn btn-primary"
                                           th:attr="data-detailTarget=@{'/user/foster/show/'+${FosterNote.id}}" 
                                           onclick="showInfo(this)" role="button">Info </button>
-                                              <button class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</button></p>
+                                              <button class="btn btn-default"  th:attr="data-detailTarget=@{'/user/foster/delete/' + ${FosterNote.id}}" role="button" onclick="deleteData(this)">Delete</button></p>
                                       </div>
                                   </div>
                               </div>

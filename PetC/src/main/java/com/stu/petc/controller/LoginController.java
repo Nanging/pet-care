@@ -1,45 +1,27 @@
 package com.stu.petc.controller;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import javax.crypto.spec.DESKeySpec;
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.stu.petc.beans.User;
 import com.stu.petc.mapper.UserMapper;
 import com.stu.petc.service.UserRedisService;
-import com.stu.petc.util.CookieUtil;
 import com.stu.petc.util.Encoder;
-import com.stu.petc.util.SpringUtil;
 import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqUser;
-import com.stu.petc.web.UserSession;
-
-import io.micrometer.core.instrument.util.JsonUtils;
 
 @Controller
 public class LoginController {
@@ -119,10 +101,10 @@ public class LoginController {
 		return "main";
 	}
 
-	@GetMapping("/autoSignIn")
+	@GetMapping("/pleaseSignIn")
 	public String autoSignIn() {
 
-		return "main";
+		return "redirectLogin";
 	}
 
 	@ResponseBody

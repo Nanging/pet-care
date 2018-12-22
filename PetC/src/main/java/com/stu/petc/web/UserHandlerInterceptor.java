@@ -23,7 +23,7 @@ public class UserHandlerInterceptor implements HandlerInterceptor {
 		boolean isExists = false;
 		boolean flag = false;
 		Cookie[] cookies = request.getCookies();
-		if (null!=cookies) {
+		if (null != cookies) {
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals("loginStatus")) {
 					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
@@ -35,15 +35,15 @@ public class UserHandlerInterceptor implements HandlerInterceptor {
 						HttpSession session = request.getSession();
 						String sessionId = session.getId();
 						String currentSessionID = service.getUserSession(cookie.getValue());
-						System.out.println("[currentSessionID:"+currentSessionID+"]");
-						if (!sessionId.equals(currentSessionID) ) {
+						System.out.println("[currentSessionID:" + currentSessionID + "]");
+						if (!sessionId.equals(currentSessionID)) {
 							flag = false;
 						}
 					}
 				}
-			}		
+			}
 		}
-		System.out.println("[isExists:"+isExists+"]"+"[flag:"+flag+"]");
+		System.out.println("[isExists:" + isExists + "]" + "[flag:" + flag + "]");
 		if (isExists == true) {
 			if (flag == true) {
 				request.getSession().setAttribute("userStatus", "SAVED");
@@ -52,13 +52,13 @@ public class UserHandlerInterceptor implements HandlerInterceptor {
 			} else {
 				request.getSession().setAttribute("userStatus", "FAILED");
 				System.out.println("main to login : FAILED");
-				response.sendRedirect("/login");
+				response.sendRedirect("/pleaseSignIn");
 				return false;
 			}
 		}
 		request.getSession().setAttribute("userStatus", "NUKNOWN");
 		System.out.println("main to login : NUKNOWN");
-		response.sendRedirect("/login");
+		response.sendRedirect("/pleaseSignIn");
 		return false;
 	}
 

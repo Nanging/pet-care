@@ -188,7 +188,7 @@ public class LoginController {
 				 * add new user
 				 */
 				user.setUsername(reqUser.getUsername());
-				user.setPassword(reqUser.getPassword());
+				user.setPassword(Encoder.encryptBasedDes(reqUser.getPassword()));
 				user.setUser_tel(reqUser.getPhone());
 				if (1 == mapper.add(user)) {
 					return new LoginResponse(0, "SUCCESS", null);

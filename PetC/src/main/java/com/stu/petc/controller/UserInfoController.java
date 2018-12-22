@@ -49,7 +49,7 @@ public class UserInfoController {
 	UserInfoService service;
 	
 	@RequestMapping("/user/info")
-	public String userInfo(HttpServletRequest request,Model map) {
+	public String userInfo(HttpServletRequest request,Model map) throws FileNotFoundException {
 		String username = "";
 		Cookie[] cookies = request.getCookies();
 		if (null!=cookies) {
@@ -73,14 +73,61 @@ public class UserInfoController {
 			List<FosterNote> fosterList = service.getAllFosterByUser(id);
 			for (FosterNote fosterNote : fosterList) {
 				System.out.println(fosterNote);
+				String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/"
+						+ String.valueOf(fosterNote.getId()) + "/";
+				File directory = new File(basepath);
+				if (directory.isDirectory()) {
+					File[] files = directory.listFiles();
+					for (File fileIndex : files) {
+						if (fileIndex.isDirectory()) {
+
+						} else {
+							// if is file
+							fosterNote.setTitleimg("../staticImg/forsterage/" + String.valueOf(fosterNote.getId()) + "/"
+									+ fileIndex.getName());
+							System.out.println(String.valueOf(fosterNote.getId()) + ":" + fosterNote.getTitleimg());
+							break;
+						}
+					}
+				}
 			}
 			List<AdoptionNote> adoptionList = service.getAllAdoptionByUser(id);
 			for (AdoptionNote adoptionNote : adoptionList) {
 				System.out.println(adoptionNote);
+				String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/";
+				File directory = new File(basepath);
+				if(directory.isDirectory()){
+					File []files = directory.listFiles();
+					for(File fileIndex:files){
+						if(fileIndex.isDirectory()){
+						
+						}else {
+						// if is file
+						adoptionNote.setTitleimg("../staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/" + fileIndex.getName());
+						System.out.println(String.valueOf(adoptionNote.getId()) + ":" + adoptionNote.getTitleimg());
+						break;
+						}
+					}
+				}
 			}
 			List<ShareNote> shareList = service.getAllShareByUser(id);
 			for (ShareNote shareNote : shareList) {
 				System.out.println(shareNote);
+				String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/share/" + String.valueOf(shareNote.getId()) + "/";
+				File directory = new File(basepath);
+				if(directory.isDirectory()){
+					File []files = directory.listFiles();
+					for(File fileIndex:files){
+						if(fileIndex.isDirectory()){
+						
+						}else {
+						// if is file
+							shareNote.setTitleimg("../staticImg/share/" + String.valueOf(shareNote.getId()) + "/" + fileIndex.getName());
+						System.out.println(String.valueOf(shareNote.getId()) + ":" + shareNote.getTitleimg());
+						break;
+						}
+					}
+				}
 			}
 //			map.addAllAttributes(attributeValues)
 			map.addAttribute("username", username);

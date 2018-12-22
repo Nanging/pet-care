@@ -77,7 +77,10 @@
                           <div class="adoptionInfo" th:each="AdoptNote : ${adoptionList}">
                               <div class="col-md-4 col-sm-6 item">
                                   <div class="card">
-                                      <img class="card-img-top" src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/user/adopt/detail/'+${AdoptNote.id}}" onclick="showDetail(this)">
+                                      <div th:attr="data-detailTarget=@{'/user/adopt/detail/'+${AdoptNote.id}}" onclick="showDetail(this)">
+                                      	  <img class="card-img-top" th:if="${AdoptNote.titleimg} != null" th:src="@{${AdoptNote.titleimg}}">
+                                      	  <img class="card-img-top" th:if="${AdoptNote.titleimg} == null"    src="../staticImg/1.jpg">
+                                      </div>
                                       <!--在自己个人页面显示detail页面时，页面的按钮不显示-->
                                       <div class="card-body">
                                           <h5 class="card-title">Adoption Name</h5>
@@ -95,7 +98,10 @@
                           <div id="fosterageInfo" th:each="FosterNote : ${fosterList}">
                               <div class="col-md-4 col-sm-6 item" >
                                   <div class="card">
-                                      <img class="card-img-top" src="../staticImg/1.jpg" alt="" th:attr="data-detailTarget=@{'/user/foster/detail/'+${FosterNote.id}}" onclick="showDetail(this)">
+                                      <div th:attr="data-detailTarget=@{'/user/foster/detail/'+${FosterNote.id}}" onclick="showDetail(this)">
+                                      	  <img class="card-img-top" th:if="${FosterNote.titleimg} != null" th:src="@{${FosterNote.titleimg}}">
+                                      	  <img class="card-img-top" th:if="${FosterNote.titleimg} == null"    src="../staticImg/1.jpg">
+                                      </div>
                                       <div class="card-body">
                                           <h5 class="card-title">Fosterage Name</h5>
                                           <p class="card-text">General Infomation </p>
@@ -113,7 +119,10 @@
                           <div id="shareInfo"  th:each="ShareNote : ${shareList}">
                               <div class="col-md-4 col-sm-6 item">
                                   <div class="card">
-                                      <img class="card-img-top" src="../staticImg/img3.jpg" alt="" th:attr="data-detailTarget=@{'/user/share/detail/'+${ShareNote.id}}" onclick="showInfo(this)">
+                                      <div th:attr="data-detailTarget=@{'/user/share/detail/'+${ShareNote.id}}" onclick="showDetail(this)">
+                                      	  <img class="card-img-top" th:if="${ShareNote.titleimg} != null" th:src="@{${ShareNote.titleimg}}">
+                                      	  <img class="card-img-top" th:if="${ShareNote.titleimg} == null"    src="../staticImg/1.jpg">
+                                      </div>
                                       <div class="card-body">
                                           <h5 class="card-title">Share Name</h5>
                                           <p class="card-text">General Infomation </p>

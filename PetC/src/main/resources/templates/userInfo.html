@@ -14,9 +14,9 @@
     <script src="../js/modernizr.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../css/userInfo.css">
     <link rel="stylesheet" href="../css/titleGroup.css"/>
-    <link rel="stylesheet" href="../css/navi.css"/>
+    <link href="../css/navi.css" type="text/css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="../css/userInfo.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/masonry.pkgd.min.js"></script>
@@ -25,8 +25,6 @@
     <script src="../js/mark.js"></script>
 
 
-    <link href="../css/navi.css" type="text/css" rel="stylesheet" media="all">
-    <link rel="stylesheet" type="text/css" href="../css/userInfo.css">
 
 
 </head>
@@ -79,16 +77,6 @@
                           <div class="dropdown-divider"></div>
                           <div id="aboutMe">
                           <h1>About Me</h1>
-                          <p>Personal Infomation<br>
-                          Personal Infomation<br>
-                          Personal Infomation<br>
-                          Personal Infomation<br>
-                          Personal Infomation<br>
-                          Personal Infomation</p>
-                          <br>
-                          <br>
-                          <br>
-                          <br>
                           </div>
                           <div class="page-header"></div>
                           <div id="personalInfo">
@@ -107,8 +95,8 @@
                                       <div class="card-body">
                                           <h5 class="card-title">Adoption Name</h5>
                                           <p class="card-text">General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Info    </a>
-                                              <a href="#" class="btn btn-danger" th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
+                                          <p><button  class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Info    </button>
+                                              <button  class="btn btn-danger" th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</button></p>
                                       </div>
                                   </div>
                               </div>
@@ -124,10 +112,10 @@
                                       <div class="card-body">
                                           <h5 class="card-title">Fosterage Name</h5>
                                           <p class="card-text">General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary"
+                                          <p><button  class="btn btn-primary"
                                           th:attr="data-detailTarget=@{'/user/foster/show/'+${FosterNote.id}}" 
-                                          onclick="showInfo(this)" role="button">Info </a>
-                                              <a href="#" class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
+                                          onclick="showInfo(this)" role="button">Info </button>
+                                              <button class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</button></p>
                                       </div>
                                   </div>
                               </div>
@@ -142,8 +130,8 @@
                                       <div class="card-body">
                                           <h5 class="card-title">Share Name</h5>
                                           <p class="card-text">General Infomation </p>
-                                          <p><a href="#" class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Detail</a>
-                                              <a href="#" class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</a></p>
+                                          <p><button class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Detail</button>
+                                              <button class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</button></p>
                                       </div>
                                   </div>
                               </div>

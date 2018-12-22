@@ -56,12 +56,7 @@
               <div class="col-md-8 tab-pane" id="detailInfo">
                   <ul id="myTab" class="nav nav-tabs">
                       <li class="nav-item">
-                          <a class="nav-link active" href="#Personal" role="tab" data-toggle="tab">
-                              Personal
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#Adoption" role="tab" data-toggle="tab">Adoption</a>
+                          <a class="nav-link active" href="#Adoption" role="tab" data-toggle="tab">Adoption</a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" href="#Fosterage" role="tab" data-toggle="tab">Fosterage</a>
@@ -69,24 +64,16 @@
                       <li class="nav-item">
                           <a class="nav-link" href="#Share" role="tab" data-toggle="tab">Share</a>
                       </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#Offer" role="tab" data-toggle="tab">
+                              Offer
+                          </a>
+                      </li>
                   </ul>
                   <div class="page-header"></div>
                   <div id="myTabContent" class="tab-content">
-                      <!--Personal infomation-->
-                      <div class="tab-pane fade show active" id="Personal">
-                          <div class="dropdown-divider"></div>
-                          <div id="aboutMe">
-                          <h1>About Me</h1>
-                          </div>
-                          <div class="page-header"></div>
-                          <div id="personalInfo">
-                          <h1>Personal Infomation</h1>
-                          <p>Phone Number: <a>12345678910</a></p>
-                          <p>other infomation</p>
-                          </div>
-                      </div>
                       <!--Adoption infomation-->
-                      <div class="masonry-container tab-pane fade" id="Adoption">
+                      <div class="masonry-container tab-pane fade show active" id="Adoption">
                           <div class="adoptionInfo" th:each="AdoptNote : ${adoptionList}">
                               <div class="col-md-4 col-sm-6 item">
                                   <div class="card">
@@ -137,7 +124,21 @@
                               </div>
                           </div>
                       </div>
+                      <!--Offer Infomation-->
+                      <div class="masonry-container tab-pane fade" id="Offer">
+                          <div class="dropdown-divider"></div>
+                          <div id="aboutMe">
+                              <h1>About Me</h1>
+                          </div>
+                          <div class="page-header"></div>
+                          <div id="personalInfo">
+                              <h1>Personal Infomation</h1>
+                              <p>Phone Number: <a>12345678910</a></p>
+                              <p>other infomation</p>
+                          </div>
+                      </div>
                   </div>
+
                </div>
           </div>
       </div>

@@ -119,7 +119,7 @@
                           <div id="shareInfo"  th:each="ShareNote : ${shareList}">
                               <div class="col-md-4 col-sm-6 item">
                                   <div class="card">
-                                      <div th:attr="data-detailTarget=@{'/user/share/detail/'+${ShareNote.id}}" onclick="showDetail(this)">
+                                      <div th:attr="data-detailTarget=@{'/share/detail/'+${ShareNote.id}}" onclick="showDetail(this)">
                                       	  <img class="card-img-top" th:if="${ShareNote.titleimg} != null" th:src="@{${ShareNote.titleimg}}">
                                       	  <img class="card-img-top" th:if="${ShareNote.titleimg} == null"    src="../staticImg/1.jpg">
                                       </div>

@@ -3,20 +3,18 @@
     <script src="../js/shareDetail.js"></script>
     <link rel="stylesheet" href="../css/AFDetail.css"/>
     <link rel="stylesheet" href="../css/comment.css"/>
-    <p id="identity">0000001</p>
-    <h1 id="detailTitle" class="textCustom">Sample Title</h1>
+    <p id="identity" th:text="${share.id}">0000001</p>
+    <h1 id="detailTitle" class="textCustom" th:text="${share.title}">Sample Title</h1>
     <label for="author">Author:</label>
-    <h3 id="author" class="textCustom">Sample User</h3>
+    <h3 id="author" class="textCustom" th:text="${publisher}">Sample User</h3>
 
     <div id="imageShow" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
 
             <!-- implement the url with thymeleaf, AND DO KEEP the .active class for the FIRST div, and ONLY FOR the FIRST div -->
-            <div class="carousel-item active" style="background-image: url('../staticImg/IMG_6344.JPG')">
+            <div class="carousel-item " th:each="path:${paths}" th:style="'background-image: url('+ @{${path}} +')'" th:if="${pathStat.index} eq '0'" th:class="'carousel-item active'">
             </div>
-            <div class="carousel-item" style="background-image: url('../staticImg/IMG_6346.JPG')">
-            </div>
-            <div class="carousel-item " style="background-image: url('../staticImg/Sample1080_1920.jpg')">
+            <div class="carousel-item " th:each="path:${paths}" th:style="'background-image: url('+ @{${path}} +')'" th:if="${pathStat.index} gt '0'">
             </div>
         </div>
         <a class="carousel-control-prev" href="#imageShow" role="button" data-slide="prev">
@@ -31,7 +29,7 @@
 
 
     <!-- details -->
-    <p th:if="${share!=null}" th:text="${share.content}">Details Details Details Details Details Details Details Details Details Details
+    <p >Details Details Details Details Details Details Details Details Details Details
         Details Details Details Details Details Details Details Details Details Details Details
         Details Details Details Details Details Details </p>
 
@@ -58,33 +56,24 @@
 
 
 
-        <div id="commentContainer" class="container">
+        <div id="commentContainer" class="container" th:each="commenter : ${commenters}">
+        
 
             <!-- sample comment -->
             <div class="card commentCard">
-                <h5 class="card-header"><span class="glyphicon glyphicon-comment"></span> User: </h5>
+                <h5 class="card-header" th:text="${commenter.username}"><span class="glyphicon glyphicon-comment"></span> User: </h5>
                 <div class="card-body">
-                    <p class="card-text">This is very very very freaking awesome!! I'm really really really really serious you know.</p>
+                    <p class="card-text" th:text="${commenter.comment}">This is very very very freaking awesome!! I'm really really really really serious you know.</p>
 
                 </div>
-                <div class="card-footer">
+                <div class="card-footer" th:text="${#dates.format(commenter.comment_date, 'yyyy-MM-dd HH:mm:ss')}">
                     2018/12/12
                     <!-- publish time -->
                 </div>
             </div>
 
 
-            <div class="card commentCard">
-                <h5 class="card-header"><span class="glyphicon glyphicon-comment"></span> User: </h5>
-                <div class="card-body">
-                    <p class="card-text">This is very very very freaking awesome!! I'm really really really really serious you know.</p>
 
-                </div>
-                <div class="card-footer">
-                    2018/12/12
-                    <!-- publish time -->
-                </div>
-            </div>
             <!-- sample comment -->
 
         </div>
@@ -97,4 +86,3 @@
     </script>
 
 </div>
-

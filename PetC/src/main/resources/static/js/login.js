@@ -75,7 +75,10 @@ function signup() {
             console.log(result);
             if(result.code==0){
 
-                window.location.href="./main";
+                $("#signUpform").reset();
+                $("#signUpModal").modal("hide");
+                alert("Signup Success");
+
 
                 //signup&login success
                 //create session and redirect
@@ -124,7 +127,7 @@ function login() {
             console.log(result);
             if (result.code==0) {//success
                 //alert("sucess");
-                window.location.href="./main";
+                window.location.href="/main";
                 //redirect to main page
                 //login success
                 //create session and redirect

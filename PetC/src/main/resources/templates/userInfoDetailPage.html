@@ -20,7 +20,8 @@
                         <!--帖子未确认前显示如下按钮-->
                         <!--确认后显示已确认-->
                         <td><a class="glyphicon glyphicon-ok-sign" data-toggle="collapse" data-parent="#accordion"
-                               href="#" data-person_id="id" data-card_id="cardid" th:attr="data-detailTarget=@{'/user/'+${type}+'/confirm/'+${id}}+'/'+${Candidate.applier}" onclick="confirm(this)"></a>
+                               href="#" data-person_id="id" data-card_id="cardid" 
+                               th:attr="data-detailTarget=@{'/user/fosterage/confirm/'+${id}}+'/'+${Candidate.applier}" onclick="confirm(this)"></a>
                             <a class="glyphicon glyphicon-info-sign" data-toggle="collapse" data-parent="#accordion"
                                href="#" th:href="@{'#collapse'+${Candidate.applier}}">
 

@@ -231,6 +231,7 @@ public class UserInfoController {
 			map.addAttribute("actor", actor);
 			return "markPage";
 		}
+		System.out.println("here");
 		List<FosterageCandidate> list = service.getFosterageCandidates(id);
 		map.addAttribute("candidates", list);
 		map.addAttribute("type", "fosterage");

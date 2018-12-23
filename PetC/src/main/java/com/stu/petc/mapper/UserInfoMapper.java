@@ -10,6 +10,7 @@ import com.stu.petc.beans.AdoptionCandidate;
 import com.stu.petc.beans.AdoptionNote;
 import com.stu.petc.beans.FosterNote;
 import com.stu.petc.beans.FosterageCandidate;
+import com.stu.petc.beans.OfferNote;
 import com.stu.petc.beans.ShareCommenter;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.beans.User;
@@ -57,6 +58,10 @@ public interface UserInfoMapper {
 			+ "select share_id from share_comment where commenter = #{useid} )")
 	public List<ShareNote> getAllCommentedShareByUser(Integer useid);
 	
+	@Select("select foster.id,foster.title,foster.editor,foster.actor,foster.score "
+			+ "from foster_apply, foster "
+			+ "where foster.id = foster_apply.foster_id and #{id} = foster_apply.applier and foster_apply.foster_id != foster_apply.applier")
+	public List<OfferNote> getAllOfferByUser(Integer id);
 	
 	@Select("select user_id from user where username = #{username}")
 	public Integer getIDByName(String username);

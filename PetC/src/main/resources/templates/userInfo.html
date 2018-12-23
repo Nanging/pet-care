@@ -77,7 +77,7 @@
                           <div class="adoptionInfo" th:each="AdoptNote : ${adoptionList}">
                               <div class="col-md-4 col-sm-6 item">
                                   <div class="card">
-                                      <div th:attr="data-detailTarget=@{'/user/adopt/detail/'+${AdoptNote.id}}" onclick="showDetail(this)">
+                                      <div th:attr="data-detailTarget=@{'/adopt/detail/'+${AdoptNote.id}}" onclick="showDetail(this)">
                                       	  <img class="card-img-top" th:if="${AdoptNote.titleimg} != null" th:src="@{${AdoptNote.titleimg}}">
                                       	  <img class="card-img-top" th:if="${AdoptNote.titleimg} == null"    src="../staticImg/1.jpg">
                                       </div>
@@ -137,16 +137,33 @@
                           <table class="table">
                               <thead>
                               <tr>
-                                  <td>Host name</td>
-                                  <td>Selected</td>
+                                  <td>Title</td>
+                                  <td>State</td>
                                   <td>Score</td>
+                                  <td>Detail</td>
                               </tr>
                               </thead>
                               <tbody>
-                              <tr>
-                                  <td>Bob</td>
-                                  <td>Yes</td>
-                                  <td>3</td>
+                              <tr th:each="OfferNote : ${offerList}">
+                                  <td th:text="${OfferNote.title}">Dog</td>
+                                  <td>
+                                      <div th:switch="${OfferNote.actor}">
+                                          <p th:case="${id}">accepted</p>
+                                          <p th:case="null">waiting</p>
+                                          <!-- *: case的默认的选项 -->
+  										  <p th:case="*">refused</p>
+                                      </div>
+                                  </td>
+                                  <td>
+                                      <div th:switch="${OfferNote.actor}">
+                                          <p th:case="${id}" th:text="${OfferNote.score}"></p>
+                                          <!-- *: case的默认的选项 -->
+  										  <p th:case="*">None</p>
+                                      </div>
+                                  </td>
+                                  <td>
+                                      <button class="btn btn-danger" th:attr="data-detailTarget=@{'/foster/detail/'+${OfferNote.id}}" onclick="showDetail(this)">More</button>
+                                  </td>
                               </tr>
                               </tbody>
                           </table>

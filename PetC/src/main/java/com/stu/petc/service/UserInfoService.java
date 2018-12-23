@@ -12,6 +12,7 @@ import com.stu.petc.beans.AdoptionCandidate;
 import com.stu.petc.beans.AdoptionNote;
 import com.stu.petc.beans.FosterNote;
 import com.stu.petc.beans.FosterageCandidate;
+import com.stu.petc.beans.OfferNote;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.beans.User;
 import com.stu.petc.mapper.AdoptionMapper;
@@ -61,6 +62,10 @@ public class UserInfoService {
 	public List<ShareNote> getAllShareByUser(int id) {
 		// TODO Auto-generated method stub
 		return userInfoMapper.getAllShareByUser(id);
+	}
+	
+	public List<OfferNote> getAllOfferByUser(int id) {
+		return userInfoMapper.getAllOfferByUser(id);
 	}
 	
 	public Integer deleteFosterageByID(int id) {
@@ -124,4 +129,6 @@ public class UserInfoService {
 	public Integer getFosterageScore(Integer fosterageid) {
 		return userInfoMapper.getFosterageScore(fosterageid);
 	}
+	
+	
 }

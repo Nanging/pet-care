@@ -28,6 +28,7 @@ import com.stu.petc.beans.AdoptionCandidate;
 import com.stu.petc.beans.AdoptionNote;
 import com.stu.petc.beans.FosterNote;
 import com.stu.petc.beans.FosterageCandidate;
+import com.stu.petc.beans.OfferNote;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.beans.User;
 import com.stu.petc.mapper.NoteMapper;
@@ -133,16 +134,22 @@ public class UserInfoController {
 					}
 				}
 			}
+			
+			List<OfferNote> offerList = service.getAllOfferByUser(id);
+			System.out.println(offerList);
+			
 //			map.addAllAttributes(attributeValues)
 			map.addAttribute("username", username);
 			int unread = unreadService.checkUnread(mapper.getUserByName(username).getUser_id());
 			if (unread>0) {
 				map.addAttribute("unread", unread);
 			}
+			map.addAttribute("id", service.getIDByName(username));
 			map.addAttribute("tel", user.getUser_tel());
 			map.addAttribute("fosterList", fosterList);
 			map.addAttribute("shareList", shareList);
 			map.addAttribute("adoptionList", adoptionList);
+			map.addAttribute("offerList", offerList);
 			
 		}
 		return "userInfo";

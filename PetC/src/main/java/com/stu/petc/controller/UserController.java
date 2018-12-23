@@ -16,20 +16,20 @@ import com.stu.petc.service.UserRedisService;
 @Controller
 public class UserController {
 
-    @RequestMapping("/main")
-    public String main(){
-        return "main";
-    }
+//    @RequestMapping("/main")
+//    public String main(){
+//        return "main";
+//    }
 
-    @RequestMapping("/userInfo")
-    public String userInfo(){
-        return "userInfo";
-    }
-
-    @PostMapping("/foster/detail/id")
-    public String test(){
-        return "userInfo";
-    }
+//    @RequestMapping("/userInfo")
+//    public String userInfo(){
+//        return "userInfo";
+//    }
+//
+//    @PostMapping("/foster/detail/id")
+//    public String test(){
+//        return "userInfo";
+//    }
 //    @Autowired
 //    private UserRedisService userRedisService;
 ///** 

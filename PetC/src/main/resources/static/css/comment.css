@@ -18,10 +18,7 @@
 .flexslider{
     width:100%;
 }
-#endorseBtn span{
-    color: #ffffff;
-}
 
-#commentBtn span{
-    color: #ffffff;
+button span{
+	color:#ffffff
 }

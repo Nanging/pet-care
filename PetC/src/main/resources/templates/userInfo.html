@@ -83,10 +83,9 @@
                                       </div>
                                       <!--在自己个人页面显示detail页面时，页面的按钮不显示-->
                                       <div class="card-body">
-                                          <h5 class="card-title">Adoption Name</h5>
-                                          <p class="card-text">General Infomation </p>
-                                          <p><button  class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Info    </button>
-                                              <button  class="btn btn-danger" th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</button></p>
+                                          <h5 class="card-title" th:text="${AdoptNote.title}">Adoption Name</h5>
+                                          <p><button  class="btn btn-primary" th:attr="data-detailTarget=@{'/adopt/detail/'+${AdoptNote.id}}" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Info    </button>
+                                              <button  class="btn btn-danger" th:attr="data-detailTarget=@{'/user/adoption/delete/' + ${FosterNote.id}}"  role="button" onclick="deleteData(this)">Delete</button></p>
                                       </div>
                                   </div>
                               </div>
@@ -98,13 +97,12 @@
                           <div id="fosterageInfo" th:each="FosterNote : ${fosterList}">
                               <div class="col-md-4 col-sm-6 item" >
                                   <div class="card">
-                                      <div th:attr="data-detailTarget=@{'/user/foster/detail/'+${FosterNote.id}}" onclick="showDetail(this)">
+                                      <div th:attr="data-detailTarget=@{'/foster/detail/'+${FosterNote.id}}" onclick="showDetail(this)">
                                       	  <img class="card-img-top" th:if="${FosterNote.titleimg} != null" th:src="@{${FosterNote.titleimg}}">
                                       	  <img class="card-img-top" th:if="${FosterNote.titleimg} == null"    src="../staticImg/1.jpg">
                                       </div>
                                       <div class="card-body">
-                                          <h5 class="card-title">Fosterage Name</h5>
-                                          <p class="card-text">General Infomation </p>
+                                          <h5 class="card-title" th:text="${FosterNote.title}">Fosterage Name</h5>
                                           <p><button  class="btn btn-primary"
                                           th:attr="data-detailTarget=@{'/user/foster/show/'+${FosterNote.id}}" 
                                           onclick="showInfo(this)" role="button">Info </button>
@@ -126,8 +124,8 @@
                                       <div class="card-body">
                                           <h5 class="card-title">Share Name</h5>
                                           <p class="card-text">General Infomation </p>
-                                          <p><button class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" onclick="showInfo(this)" role="button">Detail</button>
-                                              <button class="btn btn-default"  th:attr="data-detailTarget=@{'/foster/detail/id3'}" role="button" onclick="deleteData(this)">Delete</button></p>
+                                          <p><button class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" th:attr="data-detailTarget=@{'/share/detail/'+${ShareNote.id}}" onclick="showInfo(this)" role="button">Detail</button>
+                                              <button class="btn btn-default"  th:attr="data-detailTarget=@{'/user/share/delete/' + ${FosterNote.id}}"  role="button" onclick="deleteData(this)">Delete</button></p>
                                       </div>
                                   </div>
                               </div>

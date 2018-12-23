@@ -50,7 +50,7 @@ public class FosterageController {
 	@Autowired
 	CheckUnreadService unreadService;
 	@RequestMapping("/foster/detail/{id}")
-	public String getFosterDetail(@PathVariable("id") Integer id, Map<String, Object> model)
+	public String getFosterDetail(@PathVariable("id") Integer id, Map<String, Object> model,HttpServletRequest request)
 			throws FileNotFoundException {
 		FosterNote fosterNote = service.getFosterByID(id);
 		System.out.println(fosterNote + "-" + id);
@@ -74,10 +74,28 @@ public class FosterageController {
 		}
 
 		System.out.println("paths:" + paths);
-
-		User user = userMapper.getUserByID(fosterNote.getEditor());
+		String username = "";
+		Cookie[] cookies = request.getCookies();
+		if (null != cookies) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginStatus")) {
+					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+						/**
+						 * check user
+						 */
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+					}
+				}
+			}
+		}
+		User user = userMapper.getUserByName(username);
+		if (!user.getUser_id().equals(fosterNote.getEditor())) {
+			model.put("offer", true);
+		}
+		User editor = userMapper.getUserByID(fosterNote.getEditor());
 //		System.out.println(Tools.DateFormat(fosterNote.getPublish_date()));
-		model.put("publisher", user.getUsername());
+		model.put("publisher", editor.getUsername());
 		model.put("foster", fosterNote);
 		model.put("paths", paths);
 		return "fosterageDetailPage";

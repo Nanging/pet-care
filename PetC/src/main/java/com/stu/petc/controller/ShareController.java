@@ -54,7 +54,7 @@ public class ShareController {
 	UserMapper userMapper;
 	
 	@RequestMapping("/share/detail/{id}")
-	public String getShareDetail(@PathVariable("id") Integer id,Map<String, Object> model) throws FileNotFoundException {
+	public String getShareDetail(@PathVariable("id") Integer id,Map<String, Object> model, HttpServletRequest request) throws FileNotFoundException {
 		ShareNote shareNote = service.getShareByID(id);
 		System.out.println(shareNote+"-"+id);
 		
@@ -75,11 +75,30 @@ public class ShareController {
 			}
 		}
 		
-		User user = userMapper.getUserByID(shareNote.getEditor());
+		String username = "";
+		Cookie[] cookies = request.getCookies();
+		if (null != cookies) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loginStatus")) {
+					if (null != cookie.getValue() && !"".equals(cookie.getValue())) {
+						/**
+						 * check user
+						 */
+						String[] token = cookie.getValue().split("_");
+						username = token[0];
+					}
+				}
+			}
+		}
+		User user = userMapper.getUserByName(username);
+		if (!user.getUser_id().equals(shareNote.getEditor())) {
+			unreadService.setShareUnreadZero(shareNote.getId());
+		}
+		User editor = userMapper.getUserByID(shareNote.getEditor());
 		List<ShareCommenter> commenters = service.getShareCommenters(id);
 		boolean like = service.checkEndorse(id, user.getUser_id());
 		model.put("like", like);
-		model.put("publisher", user.getUsername());
+		model.put("publisher", editor.getUsername());
 		model.put("share", shareNote);
 		model.put("paths", paths);
 		model.put("commenters", commenters);

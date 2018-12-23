@@ -259,14 +259,14 @@ public class UserInfoController {
 	@ResponseBody
 	public String deleteAdoption(@PathVariable("id") Integer id) {
 		
-		service.deleteAdoptionByID(id);
+		//service.deleteAdoptionByID(id);
 		return "SUCCESS";
 	}
 	@RequestMapping("/user/share/delete/{id}")
 	@ResponseBody
 	public String deleteShare(@PathVariable("id") Integer id) {
 		
-		service.deleteShareByID(id);
+		//service.deleteShareByID(id);
 		return "SUCCESS";
 	}
 	

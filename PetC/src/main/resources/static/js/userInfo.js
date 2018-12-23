@@ -40,7 +40,7 @@ function deleteData(tar) {
 }
 
 function confirm(tar) {
-    alert("confirm");
+    // alert("confirm");
     console.log("click Info");
     var link = tar.getAttribute('data-detailTarget');
     console.log(link);

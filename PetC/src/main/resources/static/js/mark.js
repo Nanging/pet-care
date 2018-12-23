@@ -2,11 +2,11 @@ function isMark(tar) {
     var ismark=tar.getAttribute("data-isMark");
     // 未打分
     if(ismark==0){
-        alert("unmarked");
+        // alert("unmarked");
     }
     // 已打分
     else {
-        alert("marked");
+        // alert("marked");
         var id=tar.getAttribute("data-id");
         var s={};
         s["targetID"]=id;
@@ -26,7 +26,7 @@ function isMark(tar) {
                 switchGrade(result);
             },
             error:function () {
-                alert("fail");
+                console.log("fail");
             }
         })
 
@@ -74,7 +74,7 @@ function switchGrade(grade1) {
 
 function getMark(tar) {
     var grade=tar.getAttribute("value");
-    alert(grade);
+    // alert(grade);
     switchGrade(grade);
 }
 
@@ -89,9 +89,9 @@ function clearGrade() {
 
 function submitGrade(tar) {
     var grade=$("#Grade").text();
-    alert(grade);
+    // alert(grade);
     var id=tar.getAttribute("data-id");
-    alert(id);
+    // alert(id);
    var s={};
    s["grade"]=grade;
    s["id"]=id;

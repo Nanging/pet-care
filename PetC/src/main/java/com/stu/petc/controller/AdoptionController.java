@@ -27,8 +27,10 @@ import com.stu.petc.beans.AdoptionNote;
 import com.stu.petc.beans.FosterNote;
 import com.stu.petc.beans.User;
 import com.stu.petc.mapper.AdoptionMapper;
+import com.stu.petc.mapper.NoteMapper;
 import com.stu.petc.mapper.UserMapper;
 import com.stu.petc.service.AdoptionFilerService;
+import com.stu.petc.service.CheckUnreadService;
 import com.stu.petc.service.UserRedisService;
 import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqAdoptionNote;
@@ -40,7 +42,8 @@ public class AdoptionController {
 	
 	@Autowired
 	private UserRedisService userRedisService;
-	
+	@Autowired
+	CheckUnreadService unreadService;
 	@Autowired
 	UserMapper userMapper;
 	
@@ -184,6 +187,10 @@ public class AdoptionController {
 						System.out.println("[currentSessionID:"+currentSessionID+"]");
 						if (sessionId.equals(currentSessionID) ) {
 							map.addAttribute("username", username);
+							int unread = unreadService.checkUnread(userMapper.getUserByName(username).getUser_id());
+							if (unread>0) {
+								map.addAttribute("unread", unread);
+							}
 						}
 					}
 				}

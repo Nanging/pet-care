@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.stu.petc.beans.FosterNote;
 import com.stu.petc.beans.User;
 import com.stu.petc.mapper.UserMapper;
+import com.stu.petc.service.CheckUnreadService;
 /**
  * post?
  * wrong position
@@ -46,7 +47,8 @@ public class FosterageController {
 	UserMapper userMapper;
 	@Autowired
 	private UserRedisService userRedisService;
-
+	@Autowired
+	CheckUnreadService unreadService;
 	@RequestMapping("/foster/detail/{id}")
 	public String getFosterDetail(@PathVariable("id") Integer id, Map<String, Object> model)
 			throws FileNotFoundException {
@@ -195,6 +197,10 @@ public class FosterageController {
 						System.out.println("[currentSessionID:" + currentSessionID + "]");
 						if (sessionId.equals(currentSessionID)) {
 							map.addAttribute("username", username);
+							int unread = unreadService.checkUnread(userMapper.getUserByName(username).getUser_id());
+							if (unread>0) {
+								map.addAttribute("unread", unread);
+							}
 						}
 					}
 				}

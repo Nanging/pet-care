@@ -29,8 +29,10 @@ import com.stu.petc.beans.ShareCommenter;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.beans.User;
 import com.stu.petc.mapper.FosterMapper;
+import com.stu.petc.mapper.NoteMapper;
 import com.stu.petc.mapper.ShareMapper;
 import com.stu.petc.mapper.UserMapper;
+import com.stu.petc.service.CheckUnreadService;
 import com.stu.petc.service.FosterFilerService;
 import com.stu.petc.service.ShareFilerService;
 import com.stu.petc.service.UserRedisService;
@@ -44,7 +46,8 @@ import com.stu.petc.web.ReqShareNote;
 public class ShareController {
 	@Autowired
 	ShareFilerService service;
-	
+	@Autowired
+	CheckUnreadService unreadService;
 	@Autowired
 	private UserRedisService userRedisService;
 	@Autowired
@@ -261,6 +264,10 @@ public class ShareController {
 						System.out.println("[currentSessionID:"+currentSessionID+"]");
 						if (sessionId.equals(currentSessionID) ) {
 							map.addAttribute("username", username);
+							int unread = unreadService.checkUnread(userMapper.getUserByName(username).getUser_id());
+							if (unread>0) {
+								map.addAttribute("unread", unread);
+							}
 						}
 					}
 				}

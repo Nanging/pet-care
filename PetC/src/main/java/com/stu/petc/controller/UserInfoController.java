@@ -30,8 +30,10 @@ import com.stu.petc.beans.FosterNote;
 import com.stu.petc.beans.FosterageCandidate;
 import com.stu.petc.beans.ShareNote;
 import com.stu.petc.beans.User;
+import com.stu.petc.mapper.NoteMapper;
 import com.stu.petc.mapper.UserInfoMapper;
 import com.stu.petc.mapper.UserMapper;
+import com.stu.petc.service.CheckUnreadService;
 import com.stu.petc.service.UserInfoService;
 import com.stu.petc.util.Encoder;
 import com.stu.petc.util.Tools;
@@ -44,6 +46,8 @@ public class UserInfoController {
 
 	@Autowired
 	UserMapper mapper;
+	@Autowired
+	CheckUnreadService unreadService;
 	
 	@Autowired
 	UserInfoService service;
@@ -131,6 +135,10 @@ public class UserInfoController {
 			}
 //			map.addAllAttributes(attributeValues)
 			map.addAttribute("username", username);
+			int unread = unreadService.checkUnread(mapper.getUserByName(username).getUser_id());
+			if (unread>0) {
+				map.addAttribute("unread", unread);
+			}
 			map.addAttribute("tel", user.getUser_tel());
 			map.addAttribute("fosterList", fosterList);
 			map.addAttribute("shareList", shareList);
@@ -164,7 +172,7 @@ public class UserInfoController {
 		System.out.println("paths:" + paths);
 		
 		User user = service.getUserByID(adoptionNote.getEditor());
-		service.setAdoptionUnreadZero(id);
+		unreadService.setAdoptionUnreadZero(id);
 		model.put("publisher", user.getUsername());
 		model.put("phone", user.getUser_tel());
 		model.put("adoption", adoptionNote);
@@ -197,7 +205,7 @@ public class UserInfoController {
 		System.out.println("paths:" + paths);
 		
 		User user = service.getUserByID(fosterNote.getEditor());
-		service.setFosterageUnreadZero(id);
+		unreadService.setFosterageUnreadZero(id);
 //		System.out.println(Tools.DateFormat(fosterNote.getPublish_date()));
 		model.put("publisher", user.getUsername());
 		model.put("foster", fosterNote);
@@ -228,7 +236,7 @@ public class UserInfoController {
 		}
 		
 		User user = service.getUserByID(shareNote.getEditor());
-		service.setShareUnreadZero(id);
+		unreadService.setShareUnreadZero(id);
 		model.put("publisher", user.getUsername());
 		model.put("share", shareNote);
 		model.put("paths", paths);

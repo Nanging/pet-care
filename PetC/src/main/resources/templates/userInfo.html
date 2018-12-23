@@ -197,8 +197,8 @@
                           <li><a href="/share">Share</a></li>
                           <li><a href="/adoption">Adoption</a></li>
                           <li><a href="/fosterage">Fosterage</a></li>
-							<li th:if="${username}==null"><a href="/login"><span class="badge badge-light">New</span> Sign In</a></li>
-							<li th:if="${username}"><a href="/user/info" th:text="${username}">Sign In</a></li>
+							<li th:if="${username}==null"><a href="/login"> Sign In</a></li>
+							<li th:if="${username}"><a href="/user/info" th:text="${username}"><span class="badge badge-light" th:if="${unread}">New</span>Sign In</a></li>
                           <!--若用户登录点击显示用户个人信息页，否则显示登录页面-->
                       </ul>
                   </nav>

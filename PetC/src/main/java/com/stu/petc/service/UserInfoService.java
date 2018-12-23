@@ -117,15 +117,7 @@ public class UserInfoService {
 		System.out.println("totalScore "+totalScore+"  number  "+ number+" avgScore "+avgScore);
 		return userInfoMapper.scoreFosterageForApplier(applier,avgScore);
 	}
-	public Integer setFosterageUnreadZero(Integer id) {
-		return userInfoMapper.setFosterageUnreadZero(id);
-	}
-	public Integer setAdoptionUnreadZero(Integer id) {
-		return userInfoMapper.setAdoptionUnreadZero(id);
-	}
-	public Integer setShareUnreadZero(Integer id) {
-		return userInfoMapper.setShareUnreadZero(id);
-	}
+
 	public Integer getFosterageActor(Integer fosterageid) {
 		return userInfoMapper.getFosterageActor(fosterageid);
 	}

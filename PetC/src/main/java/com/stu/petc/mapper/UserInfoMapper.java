@@ -80,16 +80,6 @@ public interface UserInfoMapper {
 	@Update("update foster set score = #{score} where id =#{fosterageid}")
 	public Integer scoreFosterage(Integer fosterageid, Float score);
 	
-	@Update("update foster set unread = 0 where id =#{id}")
-	public Integer setFosterageUnreadZero(Integer id);
-	
-	
-	@Update("update adoption set unread = 0 where id =#{id}")
-	public Integer setAdoptionUnreadZero(Integer id);
-	
-	
-	@Update("update share set unread = 0 where id =#{id}")
-	public Integer setShareUnreadZero(Integer id);
 	
 	@Select("select actor from foster where id = #{fosterageid} ")
 	public Integer getFosterageActor(Integer fosterageid);

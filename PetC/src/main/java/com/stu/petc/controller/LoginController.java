@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stu.petc.beans.User;
+import com.stu.petc.mapper.NoteMapper;
 import com.stu.petc.mapper.UserMapper;
+import com.stu.petc.service.CheckUnreadService;
 import com.stu.petc.service.UserRedisService;
 import com.stu.petc.util.Encoder;
 import com.stu.petc.web.LoginResponse;
@@ -29,7 +31,9 @@ public class LoginController {
 	private UserMapper mapper;
 	@Autowired
 	private UserRedisService service;
-
+	@Autowired
+	CheckUnreadService unreadService;
+	
 	@GetMapping("/login")
 	public String login(Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) {
 		String username = "";
@@ -92,12 +96,16 @@ public class LoginController {
 						System.out.println("[currentSessionID:" + currentSessionID + "]");
 						if (sessionId.equals(currentSessionID)) {
 							map.addAttribute("username", username);
+							int unread = unreadService.checkUnread(mapper.getUserByName(username).getUser_id());
+							if (unread>0) {
+								map.addAttribute("unread", unread);
+							}
 						}
 					}
 				}
 			}
 		}
-
+		
 		return "main";
 	}
 

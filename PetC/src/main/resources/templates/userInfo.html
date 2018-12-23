@@ -106,7 +106,7 @@
                                           <p><button  class="btn btn-primary"
                                           th:attr="data-detailTarget=@{'/user/foster/show/'+${FosterNote.id}}" 
                                           onclick="showInfo(this)" role="button">Info </button>
-                                              <button class="btn btn-default"  th:attr="data-detailTarget=@{'/user/foster/delete/' + ${FosterNote.id}}" role="button" onclick="deleteData(this)">Delete</button></p>
+                                              <button class="btn btn-danger"  th:attr="data-detailTarget=@{'/user/foster/delete/' + ${FosterNote.id}}" role="button" onclick="deleteData(this)">Delete</button></p>
                                       </div>
                                   </div>
                               </div>
@@ -124,8 +124,7 @@
                                       <div class="card-body">
                                           <h5 class="card-title">Share Name</h5>
                                           <p class="card-text">General Infomation </p>
-                                          <p><button class="btn btn-primary" data-detailTarget="userInfoDetailPage.html" th:attr="data-detailTarget=@{'/share/detail/'+${ShareNote.id}}" onclick="showInfo(this)" role="button">Detail</button>
-                                              <button class="btn btn-default"  th:attr="data-detailTarget=@{'/user/share/delete/' + ${ShareNote.id}}"  role="button" onclick="deleteData(this)">Delete</button></p>
+                                          <button class="btn btn-danger"  th:attr="data-detailTarget=@{'/user/share/delete/' + ${ShareNote.id}}"  role="button" onclick="deleteData(this)">Delete</button></p>
                                       </div>
                                   </div>
                               </div>

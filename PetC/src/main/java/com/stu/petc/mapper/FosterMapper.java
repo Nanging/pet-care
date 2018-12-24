@@ -27,9 +27,12 @@ public interface FosterMapper {
 	@Insert("insert into foster (id,title,editor,type,location,text)values(#{id},#{title},#{editor},#{type},#{location},#{text})")
 	public Integer addFoster(Integer id, String title, Integer editor, String type, String location, String text);
 	
-	@Delete("delete from foster where id=#{arg1}")
+	@Delete("delete from foster where id=#{id}")
 	public Integer deleteFosterByID(Integer id);
-
+	
+	@Delete("delete from foster_apply where foster_id=#{id}")
+	public Integer deleteFosterApplyByID(Integer id);
+	
 //	@Update("update user set username=#{username},password=#{password},user_tel=#{user_tel} where user_id=#{user_id}")
 //	public Integer update(User user);
 //	

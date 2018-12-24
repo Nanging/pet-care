@@ -257,23 +257,58 @@ public class UserInfoController {
 	
 	@RequestMapping("/user/foster/delete/{id}")
 	@ResponseBody
-	public String deleteFosterage(@PathVariable("id") Integer id) {
+	public String deleteFosterage(@PathVariable("id") Integer id) throws FileNotFoundException {
 		
-		//service.deleteFosterageByID(id);
+		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/" + String.valueOf(id) + "/";
+		File directory = new File(basepath);
+		if(directory != null && directory.isDirectory()){
+			File []files = directory.listFiles();
+			for(File file:files){
+				file.delete();
+			}
+		}
+		if(directory != null)directory.delete();
+		
+		service.deleteFosterageByID(id);
+		service.deleteFosterApplyByID(id);
+		
 		return "SUCCESS";
 	}
 	@RequestMapping("/user/adoption/delete/{id}")
 	@ResponseBody
-	public String deleteAdoption(@PathVariable("id") Integer id) {
+	public String deleteAdoption(@PathVariable("id") Integer id) throws FileNotFoundException {
 		
-		//service.deleteAdoptionByID(id);
+		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/" + String.valueOf(id) + "/";
+		File directory = new File(basepath);
+		if(directory != null && directory.isDirectory()){
+			File []files = directory.listFiles();
+			for(File file:files){
+				file.delete();
+			}
+		}
+		if(directory != null)directory.delete();
+		
+		service.deleteAdoptionByID(id);
 		return "SUCCESS";
 	}
 	@RequestMapping("/user/share/delete/{id}")
 	@ResponseBody
-	public String deleteShare(@PathVariable("id") Integer id) {
+	public String deleteShare(@PathVariable("id") Integer id) throws FileNotFoundException {
 		
-		//service.deleteShareByID(id);
+		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/share/" + String.valueOf(id) + "/";
+		File directory = new File(basepath);
+		if(directory != null && directory.isDirectory()){
+			File []files = directory.listFiles();
+			for(File file:files){
+				file.delete();
+			}
+		}
+		if(directory != null)directory.delete();
+		
+		service.deleteShareByID(id);
+		service.deleteShareCommentByID(id);
+		service.deleteShareLikeByID(id);
+		
 		return "SUCCESS";
 	}
 	

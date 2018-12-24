@@ -71,13 +71,27 @@ public class UserInfoService {
 	public Integer deleteFosterageByID(int id) {
 		return fosterMapper.deleteFosterByID(id);
 	}
+	
+	public Integer deleteFosterApplyByID(Integer id) {
+		return fosterMapper.deleteFosterApplyByID(id);
+	}
+	
 	public Integer deleteAdoptionByID(int id) {
 		return adoptionMapper.deleteAdoptionByID(id);
 	}
+	
 	public Integer deleteShareByID(int id) {
 		return shareMapper.deleteShareByID(id);
 	}
-
+	
+	public Integer deleteShareCommentByID(int id) {
+		return shareMapper.deleteShareCommentByID(id);
+	}
+	
+	public Integer deleteShareLikeByID(int id) {
+		return shareMapper.deleteShareLikeByID(id);
+	}
+	
 	public List<FosterageCandidate> getFosterageCandidates(Integer id) {
 		// TODO Auto-generated method stub
 		return userInfoMapper.getFosterageCandidates(id);

@@ -27,8 +27,14 @@ public interface ShareMapper {
 	@Insert("insert into share (id,title,editor,type,content)values(#{id},#{title},#{editor},#{type},#{content})")
 	public Integer addShare(Integer id,String title, Integer editor, String type, String content);
 
-	@Delete("delete from share where id=#{arg1}")
+	@Delete("delete from share where id=#{id}")
 	public Integer deleteShareByID(Integer id);
+	
+	@Delete("delete from share_comment where share_id=#{id}")
+	public Integer deleteShareCommentByID(Integer id);
+	
+	@Delete("delete from share_like where share_id=#{id}")
+	public Integer deleteShareLikeByID(Integer id);
 	
 	@Select("select * from share where id = #{id}")
 	public ShareNote getShareByID(Integer id);

@@ -7,10 +7,10 @@
                     <tr>
                         <td class="text-center" th:text="${actor.username}">帖子相关人的名字</td>
                         <td>Already Confirmed</td>
-                        <td><a data-id="id"   th:attr="data-ismark=${ismark},data-id=${id}" data-ismark="1" onclick="isMark(this)" class="glyphicon glyphicon-heart" data-toggle="collapse" data-parent="#accordion"
+                        <td><a data-id="id"   th:attr="data-ismark=${ismark},data-id=${id}" data-placement="bottom" title="Mark" data-ismark="1" onclick="isMark(this)" class="glyphicon glyphicon-heart" data-toggle="collapse" data-parent="#accordion"
                                href="#collapseOne">
                         </a>
-                            <a class="glyphicon glyphicon-info-sign" data-toggle="collapse" data-parent="#accordion"
+                            <a class="glyphicon glyphicon-info-sign" data-toggle="collapse" data-placement="bottom" title="Detail" data-parent="#accordion"
                                href="#collapseTwo">
                             </a>
                         </td>

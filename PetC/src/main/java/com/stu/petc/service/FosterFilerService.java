@@ -44,7 +44,7 @@ public class FosterFilerService {
 	public Integer addOffer(Integer id,Integer user_id) {
 		return mapper.addOffer(id, user_id);
 	}
-	public Integer getTotalNumber() {
-		return mapper.getTotalNumber();
+	public Integer getTotalNumber(String searchText, String regionSelect, String kindSelect) {
+		return mapper.getTotalNumber(searchText, regionSelect, kindSelect);
 	}
 }

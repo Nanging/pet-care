@@ -18,8 +18,8 @@ public interface AdoptionMapper {
 	
 	@Select("select max(id) from adoption")
 	public Integer getMaxId();
-	@Select("select count(*) from adoption")
-	public Integer getTotalNumber();
+	@SelectProvider(type=SqlProvider.class,method="getAdoptionTotalNumber")
+	public Integer getTotalNumber(String title,String location,String type);
 	
 	@Insert("insert into adoption (id,title,editor,type,location,text)values(#{id},#{title},#{editor},#{type},#{location},#{text})")
 	public Integer addAdoption(Integer id, String title, Integer editor, String type, String location, String text);

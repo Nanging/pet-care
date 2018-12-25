@@ -32,7 +32,7 @@ public class AdoptionFilerService {
 	}
 	
 
-	public Integer getTotalNumber() {
-		return mapper.getTotalNumber();
+	public Integer getTotalNumber(String searchText, String regionSelect, String kindSelect) {
+		return mapper.getTotalNumber(searchText, regionSelect, kindSelect);
 	}
 }

@@ -59,7 +59,7 @@ public class ShareFilerService {
 		return mapper.updateShareUnread(id);
 	}
 	
-	public Integer getTotalNumber() {
-		return mapper.getTotalNumber();
+	public Integer getTotalNumber(String searchText, String kindSelect) {
+		return mapper.getTotalNumber(searchText, kindSelect);
 	}
 }

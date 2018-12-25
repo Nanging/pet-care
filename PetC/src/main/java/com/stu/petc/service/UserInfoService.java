@@ -131,7 +131,7 @@ public class UserInfoService {
 		userInfoMapper.scoreFosterage(fosterageid, fscore);
 		int number = userInfoMapper.getApplyNumber(applier) + 1;
 		
-		float totalScore = (float)userInfoMapper.getTotalScore(applier);
+		float totalScore = (float)userInfoMapper.getTotalScore(applier) + 5;
 		float avgScore = totalScore/number;
 		System.out.println("totalScore "+totalScore+"  number  "+ number+" avgScore "+avgScore);
 		return userInfoMapper.scoreFosterageForApplier(applier,avgScore);
@@ -142,6 +142,10 @@ public class UserInfoService {
 	}
 	public Integer getFosterageScore(Integer fosterageid) {
 		return userInfoMapper.getFosterageScore(fosterageid);
+	}
+	
+	public Integer getApplierTimes(Integer applier) {
+		return userInfoMapper.getApplyNumber(applier);
 	}
 	
 	

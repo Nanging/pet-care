@@ -335,6 +335,7 @@ public class UserInfoController {
 			}
 			map.addAttribute("actor", actor);
 			map.addAttribute("date", date);
+			map.addAttribute("Times", service.getApplierTimes(applier));
 			return "markPage";
 		}
 		System.out.println("here");

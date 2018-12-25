@@ -14,7 +14,7 @@ public class User implements Serializable{
 	private String password;
 	private String user_tel;
 	private String user_role;
-	private Integer user_score;
+	private Float user_score;
 	public Integer getUser_id() {
 		return user_id;
 	}
@@ -45,18 +45,20 @@ public class User implements Serializable{
 	public void setUser_role(String user_role) {
 		this.user_role = user_role;
 	}
-	public Integer getUser_score() {
+	public Float getUser_score() {
 		return user_score;
 	}
-	public void setUser_score(Integer user_score) {
+	public void setUser_score(Float user_score) {
 		this.user_score = user_score;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", username=" + username + ", password=" + password + ", user_tel="
 				+ user_tel + ", user_role=" + user_role + ", user_score=" + user_score + "]";
 	}
-	
 	
 	
 	

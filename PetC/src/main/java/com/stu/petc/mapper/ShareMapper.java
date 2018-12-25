@@ -21,8 +21,8 @@ public interface ShareMapper {
 	
 	@Select("select max(id) from share")
 	public Integer getMaxId();
-	@Select("select count(*) from share")
-	public Integer getTotalNumber();
+	@SelectProvider(type=SqlProvider.class,method="getShareTotalNumber")
+	public Integer getTotalNumber(String title,String type);
 	
 	@Insert("insert into share (id,title,editor,type,content)values(#{id},#{title},#{editor},#{type},#{content})")
 	public Integer addShare(Integer id,String title, Integer editor, String type, String content);

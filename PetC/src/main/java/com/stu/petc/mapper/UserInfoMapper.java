@@ -82,7 +82,7 @@ public interface UserInfoMapper {
 	public Integer getTotalScore(Integer id);
 	
 	
-	@Update("update foster set score = #{score} where id =#{fosterageid}")
+	@Update("update foster set score = #{score}, state = 1 where id =#{fosterageid}")
 	public Integer scoreFosterage(Integer fosterageid, Float score);
 	
 	

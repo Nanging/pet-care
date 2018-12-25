@@ -32,6 +32,7 @@ import com.stu.petc.mapper.UserMapper;
 import com.stu.petc.service.AdoptionFilerService;
 import com.stu.petc.service.CheckUnreadService;
 import com.stu.petc.service.UserRedisService;
+import com.stu.petc.util.Tools;
 import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqAdoptionNote;
 
@@ -196,9 +197,9 @@ public class AdoptionController {
 				}
 			}
 		}
-		int number = service.getTotalNumber();
+		int number = service.getTotalNumber(searchText, regionSelect, kindSelect);
 		int pages = number/20;
-		int left = number/20;
+		int left = number - 20*pages;
 		if (left>0) {
 			pages = pages+1;
 		}
@@ -207,6 +208,8 @@ public class AdoptionController {
 		map.addAttribute("prev", "/adoption?searchText="+searchText+"&regionSelect="+regionSelect+"&kindSelect="+kindSelect+"&page="+(page-1));
 		map.addAttribute("next", "/adoption?searchText="+searchText+"&regionSelect="+regionSelect+"&kindSelect="+kindSelect+"&page="+(page+1));
 		map.addAttribute("list", adoptionNotes);
+		
+		Tools.getImgDirectory();
 		
 		return "adoptionTemplate";
 	}

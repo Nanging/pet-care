@@ -295,9 +295,9 @@ public class ShareController {
 				}
 			}
 		}
-		int number = service.getTotalNumber();
+		int number = service.getTotalNumber(searchText,kindSelect);
 		int pages = number/20;
-		int left = number/20;
+		int left = number - 20*pages;
 		if (left>0) {
 			pages = pages+1;
 		}

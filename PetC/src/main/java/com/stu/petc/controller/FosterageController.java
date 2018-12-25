@@ -224,12 +224,14 @@ public class FosterageController {
 				}
 			}
 		}
-		int number = service.getTotalNumber();
+		int number = service.getTotalNumber(searchText, regionSelect, kindSelect);
 		int pages = number / 20;
-		int left = number / 20;
+		int left = number - 20*pages;
 		if (left > 0) {
 			pages = pages + 1;
 		}
+		System.out.println(number);
+		System.out.println(pages);
 		map.addAttribute("pages", pages);
 		map.addAttribute("page", page);
 		map.addAttribute("prev", "/fosterage?searchText=" + searchText + "&regionSelect=" + regionSelect

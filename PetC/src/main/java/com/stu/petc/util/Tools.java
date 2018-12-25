@@ -1,7 +1,11 @@
 package com.stu.petc.util;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+
+import org.springframework.util.ResourceUtils;
 
 public class Tools {
 //	public static String DateFormat(Timestamp timestamp) {
@@ -9,4 +13,16 @@ public class Tools {
 //		
 //		return sdf.format(timestamp);
 //	}
+	public static String getImgDirectory() {
+		File path = null;
+	      try {
+	         path = new File(ResourceUtils.getURL("classpath:").getPath());
+	      } catch (FileNotFoundException e) {
+	         e.printStackTrace();
+	      }
+	      String imgDirectory=path.getParentFile().getParentFile().getParent() + "/img/";
+	      imgDirectory = imgDirectory.replace('\\', '/');
+	      System.out.println(imgDirectory);
+	      return imgDirectory;
+	}
 }

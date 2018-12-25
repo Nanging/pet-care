@@ -21,8 +21,8 @@ public interface FosterMapper {
 	@Select("select max(id) from foster")
 	public Integer getMaxId();
 	
-	@Select("select count(*) from foster")
-	public Integer getTotalNumber();
+	@SelectProvider(type=SqlProvider.class,method="getFosterTotalNumber")
+	public Integer getTotalNumber(String title,String location,String type);
 	
 	@Insert("insert into foster (id,title,editor,type,location,text)values(#{id},#{title},#{editor},#{type},#{location},#{text})")
 	public Integer addFoster(Integer id, String title, Integer editor, String type, String location, String text);

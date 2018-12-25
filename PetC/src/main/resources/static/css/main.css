@@ -15,6 +15,14 @@ body a{
 
 }
 
+.badge{
+	font-size: 60%;
+	margin-right: 14px;
+	margin-bottom: 2px;
+	transition: all, 0.5s;
+}
+
+
 .welcome a{
 	cursor: default;
 }

@@ -22,6 +22,9 @@ public class Tools {
 	      }
 	      String imgDirectory=path.getParentFile().getParentFile().getParent() + "/img/";
 	      imgDirectory = imgDirectory.replace('\\', '/');
+	      if(imgDirectory.startsWith("file:/")) {
+	    	  imgDirectory = imgDirectory.replaceAll("file:/", "");
+	      }
 	      System.out.println(imgDirectory);
 	      return imgDirectory;
 	}

@@ -158,9 +158,7 @@ public class AdoptionController {
 			String basepath = Tools.getImgDirectory() + "static/staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/";
 			System.out.println(basepath);
 			File directory = new File(basepath);
-			System.out.println("basepath:" + basepath);
 			if(directory.isDirectory()){
-				System.out.println("hello");
 				File []files = directory.listFiles();
 				for(File fileIndex:files){
 					if(fileIndex.isDirectory()){

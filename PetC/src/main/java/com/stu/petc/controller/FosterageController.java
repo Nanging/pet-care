@@ -35,6 +35,7 @@ import com.stu.petc.service.CheckUnreadService;
  */
 import com.stu.petc.service.FosterFilerService;
 import com.stu.petc.service.UserRedisService;
+import com.stu.petc.util.Tools;
 import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqFosterNote;
 import com.stu.petc.web.ReqTargetID;
@@ -55,7 +56,7 @@ public class FosterageController {
 		FosterNote fosterNote = service.getFosterByID(id);
 		System.out.println(fosterNote + "-" + id);
 
-		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/"
+		String basepath = Tools.getImgDirectory() + "static/staticImg/forsterage/"
 				+ String.valueOf(id) + "/";
 		System.out.println(basepath);
 
@@ -68,7 +69,7 @@ public class FosterageController {
 
 				} else {
 					// if is file
-					paths.add("../staticImg/forsterage/" + String.valueOf(id) + "/" + fileIndex.getName());
+					paths.add("/static/staticImg/forsterage/" + String.valueOf(id) + "/" + fileIndex.getName());
 				}
 			}
 		}
@@ -112,7 +113,7 @@ public class FosterageController {
 		}
 
 		int nextId = service.getMaxId() + 1;
-		String basePath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/"
+		String basePath = Tools.getImgDirectory() + "static/staticImg/forsterage/"
 				+ String.valueOf(nextId) + "/";
 		System.out.println("------------------");
 		System.out.println("basePath:" + basePath);
@@ -180,7 +181,7 @@ public class FosterageController {
 		System.out.println(fosterNotes);
 
 		for (FosterNote fosterNote : fosterNotes) {
-			String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/"
+			String basepath = Tools.getImgDirectory() + "static/staticImg/forsterage/"
 					+ String.valueOf(fosterNote.getId()) + "/";
 			File directory = new File(basepath);
 			if (directory.isDirectory()) {
@@ -190,7 +191,7 @@ public class FosterageController {
 
 					} else {
 						// if is file
-						fosterNote.setTitleimg("../staticImg/forsterage/" + String.valueOf(fosterNote.getId()) + "/"
+						fosterNote.setTitleimg("/static/staticImg/forsterage/" + String.valueOf(fosterNote.getId()) + "/"
 								+ fileIndex.getName());
 						System.out.println(String.valueOf(fosterNote.getId()) + ":" + fosterNote.getTitleimg());
 						break;

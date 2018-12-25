@@ -36,6 +36,7 @@ import com.stu.petc.service.CheckUnreadService;
 import com.stu.petc.service.FosterFilerService;
 import com.stu.petc.service.ShareFilerService;
 import com.stu.petc.service.UserRedisService;
+import com.stu.petc.util.Tools;
 import com.stu.petc.web.LoginResponse;
 import com.stu.petc.web.ReqAdoptionNote;
 import com.stu.petc.web.ReqComment;
@@ -58,7 +59,7 @@ public class ShareController {
 		ShareNote shareNote = service.getShareByID(id);
 		System.out.println(shareNote+"-"+id);
 		
-		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/share/" + String.valueOf(id) + "/";
+		String basepath = Tools.getImgDirectory() + "static/staticImg/share/" + String.valueOf(id) + "/";
 		System.out.println(basepath);
 		
 		ArrayList<String> paths = new ArrayList<String>();
@@ -70,7 +71,7 @@ public class ShareController {
 				
 				}else {
 				// if is file
-				paths.add("../staticImg/share/" + String.valueOf(id) + "/" + fileIndex.getName());
+				paths.add("/static/staticImg/share/" + String.valueOf(id) + "/" + fileIndex.getName());
 				}
 			}
 		}
@@ -118,7 +119,7 @@ public class ShareController {
 		}
 		
 		int nextId = service.getMaxId() + 1;
-		String basePath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/share/" + String.valueOf(nextId) + "/";
+		String basePath = Tools.getImgDirectory() + "static/staticImg/share/" + String.valueOf(nextId) + "/";
         System.out.println("------------------");
 		System.out.println("basePath:" + basePath);
 		
@@ -253,7 +254,7 @@ public class ShareController {
 		System.out.println(shareNotes);
 		
 		for(ShareNote shareNote:shareNotes) {
-			String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/share/" + String.valueOf(shareNote.getId()) + "/";
+			String basepath = Tools.getImgDirectory() + "static/staticImg/share/" + String.valueOf(shareNote.getId()) + "/";
 			File directory = new File(basepath);
 			if(directory.isDirectory()){
 				File []files = directory.listFiles();
@@ -262,7 +263,7 @@ public class ShareController {
 					
 					}else {
 					// if is file
-						shareNote.setTitleimg("../staticImg/share/" + String.valueOf(shareNote.getId()) + "/" + fileIndex.getName());
+						shareNote.setTitleimg("/static/staticImg/share/" + String.valueOf(shareNote.getId()) + "/" + fileIndex.getName());
 					System.out.println(String.valueOf(shareNote.getId()) + ":" + shareNote.getTitleimg());
 					break;
 					}

@@ -53,7 +53,7 @@ public class AdoptionController {
 		AdoptionNote adoptionNote = service.getAdoptionByID(id);
 		System.out.println(adoptionNote+"-"+id);
 		
-		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/" + String.valueOf(id) + "/";
+		String basepath = Tools.getImgDirectory() + "static/staticImg/adoption/" + String.valueOf(id) + "/";
 		System.out.println(basepath);
 		
 		ArrayList<String> paths = new ArrayList<String>();
@@ -65,7 +65,7 @@ public class AdoptionController {
 				
 				}else {
 				// if is file
-				paths.add("../staticImg/adoption/" + String.valueOf(id) + "/" + fileIndex.getName());
+				paths.add("/static/staticImg/adoption/" + String.valueOf(id) + "/" + fileIndex.getName());
 				}
 			}
 		}
@@ -92,7 +92,7 @@ public class AdoptionController {
 		}
 		
 		int nextId = service.getMaxId() + 1;
-		String basePath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/" + String.valueOf(nextId) + "/";
+		String basePath = Tools.getImgDirectory() + "static/staticImg/adoption/" + String.valueOf(nextId) + "/";
         System.out.println("------------------");
 		System.out.println("basePath:" + basePath);
 		
@@ -155,7 +155,8 @@ public class AdoptionController {
 		System.out.println(adoptionNotes);
 		
 		for(AdoptionNote adoptionNote:adoptionNotes) {
-			String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/";
+			String basepath = Tools.getImgDirectory() + "static/staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/";
+			System.out.println(basepath);
 			File directory = new File(basepath);
 			if(directory.isDirectory()){
 				File []files = directory.listFiles();
@@ -164,7 +165,7 @@ public class AdoptionController {
 					
 					}else {
 					// if is file
-					adoptionNote.setTitleimg("../staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/" + fileIndex.getName());
+					adoptionNote.setTitleimg("/static/staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/" + fileIndex.getName());
 					System.out.println(String.valueOf(adoptionNote.getId()) + ":" + adoptionNote.getTitleimg());
 					break;
 					}

@@ -78,7 +78,7 @@ public class UserInfoController {
 			List<FosterNote> fosterList = service.getAllFosterByUser(id);
 			for (FosterNote fosterNote : fosterList) {
 				System.out.println(fosterNote);
-				String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/"
+				String basepath = Tools.getImgDirectory() + "static/staticImg/forsterage/"
 						+ String.valueOf(fosterNote.getId()) + "/";
 				File directory = new File(basepath);
 				if (directory.isDirectory()) {
@@ -88,7 +88,7 @@ public class UserInfoController {
 
 						} else {
 							// if is file
-							fosterNote.setTitleimg("../staticImg/forsterage/" + String.valueOf(fosterNote.getId()) + "/"
+							fosterNote.setTitleimg("/static/staticImg/forsterage/" + String.valueOf(fosterNote.getId()) + "/"
 									+ fileIndex.getName());
 							System.out.println(String.valueOf(fosterNote.getId()) + ":" + fosterNote.getTitleimg());
 							break;
@@ -99,7 +99,7 @@ public class UserInfoController {
 			List<AdoptionNote> adoptionList = service.getAllAdoptionByUser(id);
 			for (AdoptionNote adoptionNote : adoptionList) {
 				System.out.println(adoptionNote);
-				String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/";
+				String basepath = Tools.getImgDirectory() + "static/staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/";
 				File directory = new File(basepath);
 				if(directory.isDirectory()){
 					File []files = directory.listFiles();
@@ -108,7 +108,7 @@ public class UserInfoController {
 						
 						}else {
 						// if is file
-						adoptionNote.setTitleimg("../staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/" + fileIndex.getName());
+						adoptionNote.setTitleimg("/static/staticImg/adoption/" + String.valueOf(adoptionNote.getId()) + "/" + fileIndex.getName());
 						System.out.println(String.valueOf(adoptionNote.getId()) + ":" + adoptionNote.getTitleimg());
 						break;
 						}
@@ -118,7 +118,7 @@ public class UserInfoController {
 			List<ShareNote> shareList = service.getAllShareByUser(id);
 			for (ShareNote shareNote : shareList) {
 				System.out.println(shareNote);
-				String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/share/" + String.valueOf(shareNote.getId()) + "/";
+				String basepath = Tools.getImgDirectory() + "static/staticImg/share/" + String.valueOf(shareNote.getId()) + "/";
 				File directory = new File(basepath);
 				if(directory.isDirectory()){
 					File []files = directory.listFiles();
@@ -127,7 +127,7 @@ public class UserInfoController {
 						
 						}else {
 						// if is file
-							shareNote.setTitleimg("../staticImg/share/" + String.valueOf(shareNote.getId()) + "/" + fileIndex.getName());
+							shareNote.setTitleimg("/static/staticImg/share/" + String.valueOf(shareNote.getId()) + "/" + fileIndex.getName());
 						System.out.println(String.valueOf(shareNote.getId()) + ":" + shareNote.getTitleimg());
 						break;
 						}
@@ -159,7 +159,7 @@ public class UserInfoController {
 		AdoptionNote adoptionNote = service.getAdoptionByID(id);
 		System.out.println(adoptionNote+"-"+id);
 		
-		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/" + String.valueOf(id) + "/";
+		String basepath = Tools.getImgDirectory() + "static/staticImg/adoption/" + String.valueOf(id) + "/";
 		System.out.println(basepath);
 		
 		ArrayList<String> paths = new ArrayList<String>();
@@ -171,7 +171,7 @@ public class UserInfoController {
 				
 				}else {
 				// if is file
-				paths.add("../staticImg/adoption/" + String.valueOf(id) + "/" + fileIndex.getName());
+				paths.add("/static/staticImg/adoption/" + String.valueOf(id) + "/" + fileIndex.getName());
 				}
 			}
 		}
@@ -192,7 +192,7 @@ public class UserInfoController {
 		FosterNote fosterNote = service.getFosterByID(id);
 		System.out.println(fosterNote+"-"+id);
 		
-		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/" + String.valueOf(id) + "/";
+		String basepath = Tools.getImgDirectory() + "static/staticImg/forsterage/" + String.valueOf(id) + "/";
 		System.out.println(basepath);
 		
 		ArrayList<String> paths = new ArrayList<String>();
@@ -204,7 +204,7 @@ public class UserInfoController {
 				
 				}else {
 				// if is file
-				paths.add("../staticImg/forsterage/" + String.valueOf(id) + "/" + fileIndex.getName());
+				paths.add("/static/staticImg/forsterage/" + String.valueOf(id) + "/" + fileIndex.getName());
 				}
 			}
 		}
@@ -225,7 +225,7 @@ public class UserInfoController {
 		ShareNote shareNote = service.getShareByID(id);
 		System.out.println(shareNote+"-"+id);
 		
-		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/share/" + String.valueOf(id) + "/";
+		String basepath = Tools.getImgDirectory() + "static/staticImg/share/" + String.valueOf(id) + "/";
 		System.out.println(basepath);
 		
 		ArrayList<String> paths = new ArrayList<String>();
@@ -237,7 +237,7 @@ public class UserInfoController {
 				
 				}else {
 				// if is file
-				paths.add("../staticImg/share/" + String.valueOf(id) + "/" + fileIndex.getName());
+				paths.add("/static/staticImg/share/" + String.valueOf(id) + "/" + fileIndex.getName());
 				}
 			}
 		}
@@ -259,7 +259,7 @@ public class UserInfoController {
 	@ResponseBody
 	public String deleteFosterage(@PathVariable("id") Integer id) throws FileNotFoundException {
 		
-		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/forsterage/" + String.valueOf(id) + "/";
+		String basepath = Tools.getImgDirectory() + "static/staticImg/forsterage/" + String.valueOf(id) + "/";
 		File directory = new File(basepath);
 		if(directory != null && directory.isDirectory()){
 			File []files = directory.listFiles();
@@ -278,7 +278,7 @@ public class UserInfoController {
 	@ResponseBody
 	public String deleteAdoption(@PathVariable("id") Integer id) throws FileNotFoundException {
 		
-		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/adoption/" + String.valueOf(id) + "/";
+		String basepath = Tools.getImgDirectory() + "static/staticImg/adoption/" + String.valueOf(id) + "/";
 		File directory = new File(basepath);
 		if(directory != null && directory.isDirectory()){
 			File []files = directory.listFiles();
@@ -295,7 +295,7 @@ public class UserInfoController {
 	@ResponseBody
 	public String deleteShare(@PathVariable("id") Integer id) throws FileNotFoundException {
 		
-		String basepath = ResourceUtils.getURL("classpath:").getPath() + "static/staticImg/share/" + String.valueOf(id) + "/";
+		String basepath = Tools.getImgDirectory() + "static/staticImg/share/" + String.valueOf(id) + "/";
 		File directory = new File(basepath);
 		if(directory != null && directory.isDirectory()){
 			File []files = directory.listFiles();

@@ -97,6 +97,9 @@ public class ShareController {
 		User editor = userMapper.getUserByID(shareNote.getEditor());
 		List<ShareCommenter> commenters = service.getShareCommenters(id);
 		boolean like = service.checkEndorse(id, user.getUser_id());
+		if(like == false) model.put("isEndorsed", 1);
+		else model.put("isEndorsed", 0);
+		
 		model.put("like", like);
 		model.put("publisher", editor.getUsername());
 		model.put("share", shareNote);

@@ -122,8 +122,7 @@
                                       	  <img class="card-img-top" th:if="${ShareNote.titleimg} == null"    src="../staticImg/1.jpg">
                                       </div>
                                       <div class="card-body">
-                                          <h5 class="card-title">Share Name</h5>
-                                          <p class="card-text">General Infomation </p>
+                                          <h5 class="card-title" th:text="${ShareNote.title}">Share Name</h5>
                                           <button class="btn btn-danger"  th:attr="data-detailTarget=@{'/user/share/delete/' + ${ShareNote.id}}"  role="button" onclick="deleteData(this)">Delete</button></p>
                                       </div>
                                   </div>

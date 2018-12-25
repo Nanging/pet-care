@@ -6,6 +6,7 @@ $(document).ready(function () {
         gutter: 10,
     });
 
+
     $("#imgInput").fileinput({
         uploadUrl:"/uploadImageShare",   //differ from foster
         msgFilesTooLess:"You should choose at least 1 image",
@@ -50,7 +51,6 @@ $(document).ready(function () {
                     $("#msgTitle").text("Success");
                     $("#msgContent").text("Your publish has been submitted successfully!");
                     $("#msgModal").modal("show");
-                    $("#publishForm").reset();
                     $("#imgInput").fileinput("clear");
                 }
                 else{
@@ -145,4 +145,8 @@ function publishSubmit(){
     if(!inputCheck()) return;
     console.log("start");
     $("#imgInput").fileinput('upload').fileinput('lock');//upload images first
+}
+
+function refresh(){
+    window.location.reload();
 }

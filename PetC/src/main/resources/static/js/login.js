@@ -75,9 +75,9 @@ function signup() {
             console.log(result);
             if(result.code==0){
 
-                $("#signUpform").reset();
                 $("#signUpModal").modal("hide");
                 alert("Signup Success");
+                window.location.reload();
 
 
                 //signup&login success

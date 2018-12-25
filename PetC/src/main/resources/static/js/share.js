@@ -50,7 +50,6 @@ $(document).ready(function () {
                     $("#msgTitle").text("Success");
                     $("#msgContent").text("Your publish has been submitted successfully!");
                     $("#msgModal").modal("show");
-                    $("#publishForm").reset();
                     $("#imgInput").fileinput("clear");
                 }
                 else{
@@ -145,4 +144,8 @@ function publishSubmit(){
     if(!inputCheck()) return;
     console.log("start");
     $("#imgInput").fileinput('upload').fileinput('lock');//upload images first
+}
+
+function refresh(){
+    window.location.reload();
 }

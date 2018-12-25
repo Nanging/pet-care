@@ -25,7 +25,7 @@ function endorse(){
 
             if(result.code==0){
                 $("#endorseBtn").attr("disabled",true);
-                $("#btnContainer").append("<small style='color:lawngreen'><span class='glyphicon glyphicon-check'></span>Endorsed</small>");
+                $("#btnContainer").append("<small style='color:green'><span class='glyphicon glyphicon-check'></span>Endorsed</small>");
             }
             else{
                 $("#btnContainer").append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'></span>Endorse refused</small>");
@@ -63,7 +63,7 @@ function commentSubmit(){
             console.log(result);
             if(result.code==0){
                 $("#commentBox").val("");
-                $("#submitGroup").append("<small style='color:lawngreen'><span class='glyphicon glyphicon-check'></span>Comment submitted</small>");
+                $("#submitGroup").append("<small style='color:green'><span class='glyphicon glyphicon-check'></span>Comment submitted</small>");
                 var link="/share/detail/"+$("#identity").text();
                 $("#mainContentBody").parent().load(link);
             }

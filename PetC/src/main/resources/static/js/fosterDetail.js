@@ -13,8 +13,8 @@ function offerClick(){
             console.log(result);
 
             if(result.code==0){
-                $("#offerBtn").disable();
-                $("#btnContainer").append("<small style='color:lawngreen'><span class='glyphicon glyphicon-check'></span>You've shown your will to help</small>");
+                $("#offerBtn").attr("disabled",true);
+                $("#btnContainer").append("<small style='color:green'><span class='glyphicon glyphicon-check'></span>You've shown your will to help</small>");
             }
             else{
                 $("#btnContainer").append("<small style='color:orangered'><span class='glyphicon glyphicon-remove'></span>Offer refused by server</small>");

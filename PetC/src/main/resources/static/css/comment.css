@@ -22,3 +22,6 @@
 #btnContainer span{
 	color:#ffffff
 }
+#isEndorsed{
+    visibility: hidden;
+}

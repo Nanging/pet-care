@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    if($("#isEndorsed").text()=="1") {
+        $("#endorseBtn").attr("disabled", true);
+    }
 
 
 

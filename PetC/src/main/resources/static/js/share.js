@@ -6,6 +6,7 @@ $(document).ready(function () {
         gutter: 10,
     });
 
+
     $("#imgInput").fileinput({
         uploadUrl:"/uploadImageShare",   //differ from foster
         msgFilesTooLess:"You should choose at least 1 image",

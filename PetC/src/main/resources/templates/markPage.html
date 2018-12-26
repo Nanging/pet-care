@@ -58,7 +58,7 @@
                     <h3 th:text="${actor.username}">name</h3>
                     <p>phone number: <a th:text="${actor.user_tel}">151515515</a></p>
                     <p>Average score: <a th:text="${actor.user_score}">3.5</a></p>
-                    <p>Fosterage Times: <a th:text="${Times}">3.5</a></p>
+                    <p>Fosterage Times: <a th:if="${Times}" th:text="${Times}">0</a><a th:if="${Times}==null">0</a></p>
                     <p>date: <a th:text="${#dates.format(date, 'yyyy-MM-dd HH:mm:ss')}">2018-12-20</a></p>
                 </div>
             </div>

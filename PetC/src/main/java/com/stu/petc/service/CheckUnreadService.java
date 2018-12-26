@@ -27,6 +27,7 @@ public class CheckUnreadService {
 		return adoption+fosterage+share;
 	}
 	public Integer setFosterageUnreadZero(Integer id) {
+		System.out.println("id  :"+id);
 	return mapper.setFosterageUnreadZero(id);
 	}
 	public Integer setAdoptionUnreadZero(Integer id) {

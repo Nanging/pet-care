@@ -73,7 +73,9 @@ public class AdoptionController {
 		System.out.println("paths:" + paths);
 		
 		User user = userMapper.getUserByID(adoptionNote.getEditor());
-		
+		if (user.getUser_id().equals(adoptionNote.getEditor())) {
+			unreadService.setAdoptionUnreadZero(id);
+		}
 		model.put("publisher", user.getUsername());
 		model.put("phone", user.getUser_tel());
 		model.put("adoption", adoptionNote);

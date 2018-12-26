@@ -14,6 +14,7 @@ public class FosterageCandidate implements Serializable{
 	private String user_tel;
 	private Integer user_score;
 	private Timestamp apply_time;
+	private Integer times;
 	public Integer getApplier() {
 		return applier;
 	}
@@ -44,10 +45,16 @@ public class FosterageCandidate implements Serializable{
 	public void setApply_time(Timestamp apply_time) {
 		this.apply_time = apply_time;
 	}
+	public Integer getTimes() {
+		return times;
+	}
+	public void setTimes(Integer times) {
+		this.times = times;
+	}
 	@Override
 	public String toString() {
 		return "FosterageCandidate [applier=" + applier + ", username=" + username + ", user_tel=" + user_tel
-				+ ", user_score=" + user_score + ", apply_time=" + apply_time + "]";
+				+ ", user_score=" + user_score + ", apply_time=" + apply_time + ", times=" + times + "]";
 	}
 	
 	

@@ -91,6 +91,9 @@ public class FosterageController {
 			}
 		}
 		User user = userMapper.getUserByName(username);
+		if (user.getUser_id().equals(fosterNote.getEditor())) {
+			unreadService.setFosterageUnreadZero(id);
+		}
 		if (!user.getUser_id().equals(fosterNote.getEditor()) && service.checkOffer(id, user.getUser_id()) ) {
 			model.put("offer", true);
 		}

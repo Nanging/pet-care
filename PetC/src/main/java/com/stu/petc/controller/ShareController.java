@@ -92,8 +92,8 @@ public class ShareController {
 			}
 		}
 		User user = userMapper.getUserByName(username);
-		if (!user.getUser_id().equals(shareNote.getEditor())) {
-			unreadService.setShareUnreadZero(shareNote.getId());
+		if (user.getUser_id().equals(shareNote.getEditor())) {
+			unreadService.setShareUnreadZero(id);
 		}
 		User editor = userMapper.getUserByID(shareNote.getEditor());
 		List<ShareCommenter> commenters = service.getShareCommenters(id);

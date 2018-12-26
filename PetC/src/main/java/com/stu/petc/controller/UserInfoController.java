@@ -140,6 +140,7 @@ public class UserInfoController {
 			
 //			map.addAllAttributes(attributeValues)
 			map.addAttribute("username", username);
+			
 			int unread = unreadService.checkUnread(mapper.getUserByName(username).getUser_id());
 			if (unread>0) {
 				map.addAttribute("unread", unread);
@@ -331,15 +332,22 @@ public class UserInfoController {
 			for (FosterageCandidate fosterageCandidate : candidates) {
 				if (fosterageCandidate.getApplier().intValue()==applier) {
 					date = fosterageCandidate.getApply_time();
+					
 				}
 			}
+			unreadService.setFosterageUnreadZero(id);
 			map.addAttribute("actor", actor);
 			map.addAttribute("date", date);
 			map.addAttribute("Times", service.getApplierTimes(applier));
+			System.out.println("date:"+date+"  times :" + service.getApplierTimes(applier));
 			return "markPage";
 		}
 		System.out.println("here");
 		List<FosterageCandidate> list = service.getFosterageCandidates(id);
+		for (FosterageCandidate fosterageCandidate : list) {
+			fosterageCandidate.setTimes(service.getApplierTimes(fosterageCandidate.getApplier()));
+		}
+		unreadService.setFosterageUnreadZero(id);
 		map.addAttribute("candidates", list);
 		map.addAttribute("type", "fosterage");
 		return "userInfoDetailPage";
@@ -349,6 +357,7 @@ public class UserInfoController {
 	public String showAdoptionCandidates(@PathVariable("id") Integer id,Model map) {
 		List<AdoptionCandidate> list = service.getAdoptionCandidates(id);
 		map.addAttribute("id", id);
+		unreadService.setAdoptionUnreadZero(id);
 		map.addAttribute("candidates", list);
 		map.addAttribute("type", "adoption");
 		return "userInfoDetailPage";
@@ -366,8 +375,18 @@ public class UserInfoController {
 			map.addAttribute("ismark", 0);
 		}
 		map.addAttribute("id", id);
+		Timestamp date = null;
+		List<FosterageCandidate> candidates =  service.getFosterageCandidates(id);
+		for (FosterageCandidate fosterageCandidate : candidates) {
+			if (fosterageCandidate.getApplier().intValue()==applier) {
+				date = fosterageCandidate.getApply_time();
+				
+			}
+		}
 		User actor = mapper.getUserByID(applier);
 		map.addAttribute("actor", actor);
+		map.addAttribute("date", date);
+		map.addAttribute("Times", service.getApplierTimes(applier));
 		return "markPage";
 	}
 	

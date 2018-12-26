@@ -19,6 +19,9 @@ public interface ShareMapper {
 //	@Insert("insert into share (title,editor,type,content)values(#{title},#{editor},#{type},#{content})")
 //	public Integer addShare(ShareNote newShare);
 	
+	@Select("select count(id) from share")
+	public Integer getTotal();
+	
 	@Select("select max(id) from share")
 	public Integer getMaxId();
 	@SelectProvider(type=SqlProvider.class,method="getShareTotalNumber")

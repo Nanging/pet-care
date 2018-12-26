@@ -16,6 +16,9 @@ public interface AdoptionMapper {
 //	@Insert("insert into adoption (title,editor,type,location,text)values(#{title},#{editor},#{type},#{location},#{text})")
 //	public Integer add(AdoptionNote newAdoption);
 	
+	@Select("select count(id) from adoption")
+	public Integer getTotal();
+	
 	@Select("select max(id) from adoption")
 	public Integer getMaxId();
 	@SelectProvider(type=SqlProvider.class,method="getAdoptionTotalNumber")

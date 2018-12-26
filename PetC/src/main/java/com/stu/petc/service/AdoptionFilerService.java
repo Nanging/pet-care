@@ -24,7 +24,10 @@ public class AdoptionFilerService {
 	}
 	
 	public Integer getMaxId() {
-		return mapper.getMaxId();
+		if(mapper.getTotal()>0)
+			return mapper.getMaxId();
+		else
+			return 0;
 	}
 	
 	public void addAdoption(Integer id, String title, Integer editor, String type, String location, String text) {

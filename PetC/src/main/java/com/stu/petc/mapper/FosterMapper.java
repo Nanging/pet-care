@@ -18,6 +18,10 @@ public interface FosterMapper {
 //	@Insert("insert into foster (title,editor,type,location,text)values(#{title},#{editor},#{type},#{location},#{text})")
 //	public Integer add(FosterNote newFoster);
 	
+	
+	@Select("select count(id) from foster")
+	public Integer getTotal();
+	
 	@Select("select max(id) from foster")
 	public Integer getMaxId();
 	

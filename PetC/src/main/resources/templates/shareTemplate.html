@@ -235,7 +235,7 @@
                     <li><a href="/adoption">Adoption</a></li>
                     <li><a href="/fosterage">Fosterage</a></li>
 					<li th:if="${username}==null"><a href="/login">Sign In</a></li>
-					<li th:if="${username}"><span class="badge badge-light" th:if="unread">New</span><a href="/user/info" th:text="${username}"> Sign In</a></li>
+					<li th:if="${username}"><span class="badge badge-light" th:if="${unread}">New</span><a href="/user/info" th:text="${username}"> Sign In</a></li>
                     <!-- keep the space " "  at the beginning of the text when change "sign in" to <username>
                     & maybe the "new" should be a num-->
                 </ul>

@@ -69,6 +69,8 @@ body{
 
 
 
-td.col-6 a{
-    display: inline-block;
+
+
+.right{
+    float:right;
 }

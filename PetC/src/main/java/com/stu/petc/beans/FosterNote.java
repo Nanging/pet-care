@@ -21,7 +21,14 @@ public class FosterNote implements Serializable{
 	private Integer state;
 	private Timestamp publish_date;
 	private String titleimg;
+	private Date startdate;
 	
+	public Date getStartdate() {
+		return startdate;
+	}
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
+	}
 	public Integer getId() {
 		return id;
 	}

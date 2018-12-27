@@ -1,5 +1,6 @@
 package com.stu.petc.mapper;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -28,8 +29,8 @@ public interface FosterMapper {
 	@SelectProvider(type=SqlProvider.class,method="getFosterTotalNumber")
 	public Integer getTotalNumber(String title,String location,String type);
 	
-	@Insert("insert into foster (id,title,editor,type,location,text)values(#{id},#{title},#{editor},#{type},#{location},#{text})")
-	public Integer addFoster(Integer id, String title, Integer editor, String type, String location, String text);
+	@Insert("insert into foster (id,title,editor,type,location,text,startdate)values(#{id},#{title},#{editor},#{type},#{location},#{text},#{startdate})")
+	public Integer addFoster(Integer id, String title, Integer editor, String type, String location, String text, Date startdate);
 	
 	@Delete("delete from foster where id=#{id}")
 	public Integer deleteFosterByID(Integer id);

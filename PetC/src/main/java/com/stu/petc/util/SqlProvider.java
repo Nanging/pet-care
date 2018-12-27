@@ -21,7 +21,7 @@ public class SqlProvider {
 	}
 	
 	public String getAdoptionTotalNumber(String title,String location,String type){
-		StringBuffer sql = new StringBuffer("select count(*) from foster where state = 0");
+		StringBuffer sql = new StringBuffer("select count(*) from adoption where 0 = 0");
 		if (!"All".equals(location)) {
 			sql.append(" and location=#{location}");
 		}
@@ -36,7 +36,7 @@ public class SqlProvider {
 	}
 	
 	public String getShareTotalNumber(String title,String type){
-		StringBuffer sql = new StringBuffer("select count(*) from foster where state = 0");
+		StringBuffer sql = new StringBuffer("select count(*) from share where 0 = 0");
 		if (!"All".equals(type)) {
 			sql.append(" and type=#{type}");
 		}

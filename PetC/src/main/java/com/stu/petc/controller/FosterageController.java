@@ -169,7 +169,7 @@ public class FosterageController {
 		int editor = userMapper.getUserByName(username).getUser_id();
 		int nextId = service.getMaxId() + 1;
 		service.addFoster(nextId, reqFosterNote.getNewTitle(), editor, reqFosterNote.getNewKindSelect(),
-				reqFosterNote.getNewRegionSelect(), reqFosterNote.getNewContent());
+				reqFosterNote.getNewRegionSelect(), reqFosterNote.getNewContent(), reqFosterNote.getNewDate());
 
 		return new LoginResponse(0, "success", null);
 	}

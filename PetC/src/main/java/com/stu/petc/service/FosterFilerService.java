@@ -2,6 +2,7 @@ package com.stu.petc.service;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
@@ -32,8 +33,9 @@ public class FosterFilerService {
 			return 0;
 	}
 	
-	public void addFoster(Integer id, String title, Integer editor, String type, String location, String text) {
-		mapper.addFoster(id, title, editor, type, location, text);
+	public void addFoster(Integer id, String title, Integer editor, String type, String location, String text, Date startdate) {
+		System.out.println(String.valueOf(startdate));
+		mapper.addFoster(id, title, editor, type, location, text, startdate);
 	}
 	public Integer updateFosterageUnread(Integer id) {
 		return mapper.updateFosterageUnread(id);
